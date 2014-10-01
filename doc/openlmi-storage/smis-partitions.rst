@@ -29,7 +29,7 @@ As result of this deficiency, some adjustments were necessary:
    the real usable data on partition.
 
 .. figure:: pic/partitions.png
-   :target: ../_images/partitions.png
+   :target: _images/partitions.png
 
    Correct overview of logical partitions.
 

@@ -30,7 +30,7 @@ and:
   * 2 logical partitions
 
 .. figure:: pic/partition-instance.svg
-   :target: ../_images/partition-instance.svg
+   :target: _images/partition-instance.svg
 
 Especially note that the extended partition ``/dev/sda4`` *contains* an extended
 partition table and all logical partitions are based on this extended

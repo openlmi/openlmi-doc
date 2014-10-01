@@ -18,7 +18,7 @@ Members of the MD RAID are associated to the
 Following instance diagram shows RAID5 ``/dev/md/myRAID`` with three devices:
 
 .. figure:: pic/raid5-instance.svg
-   :target: ../_images/raid5-instance.svg
+   :target: _images/raid5-instance.svg
 
 Note the :ref:`Level <LMI-MDRAIDStorageExtent-Level>` property in
 :ref:`LMI_MDRAIDStorageExtent <LMI-MDRAIDStorageExtent>`, which was added to

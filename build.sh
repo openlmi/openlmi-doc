@@ -118,9 +118,11 @@ popd
 
 # Copy docs to the right place
 cp -rv _ext/openlmi-storage/doc/admin/{*.rst,generated,pic} doc/openlmi-storage
+find doc/openlmi-storage/ -name .gitignore -exec rm {} \;
 
 # Copy MOF files to the right place, excluding the master 60_* one
 cp -v _ext/openlmi-storage/mof/LMI_Storage*.mof _build/mof/
+
 # Remove useless classes and instances
 rm -v _build/mof/*MethodParameters*
 # Remove classes.rst, we have class reference on the top level

@@ -1,0 +1,27 @@
+@startuml
+LMI_LVAllocatedFromStoragePool -up-|> CIM_AllocatedFromStoragePool
+class LMI_LVAllocatedFromStoragePool {
+}
+url of LMI_LVAllocatedFromStoragePool is [[LMI_LVAllocatedFromStoragePool.html]]
+LMI_VGStoragePool -up-|> CIM_StoragePool
+class LMI_VGStoragePool {
+    string ElementName
+    uint64 ExtentSize
+    string InstanceID
+    string Name
+    string PoolID
+    boolean Primordial
+    uint64 RemainingExtents
+    uint64 RemainingManagedSpace
+    uint64 TotalExtents
+    uint64 TotalManagedSpace
+    string UUID
+    GetSupportedSizeRange()
+    GetSupportedSizes()
+}
+url of LMI_VGStoragePool is [[LMI_VGStoragePool.html]]
+LMI_VGAllocatedFromStoragePool -up-|> CIM_AllocatedFromStoragePool
+class LMI_VGAllocatedFromStoragePool {
+}
+url of LMI_VGAllocatedFromStoragePool is [[LMI_VGAllocatedFromStoragePool.html]]
+@enduml

@@ -1,0 +1,104 @@
+@startuml
+LMI_DiskPartition -up-|> CIM_DiskPartition
+class LMI_DiskPartition {
+    uint64 BlockSize
+    uint64 ConsumableBlocks
+    uint16 DataRedundancy
+    string DeviceBusType
+    string ElementName
+    string[] ExtentDiscriminator
+    uint16[] ExtentStatus
+    uint64 ExtentStripeLength
+    string InstanceID
+    string Name
+    uint16 NameFormat
+    uint16 NameNamespace
+    string[] Names
+    boolean NoSinglePointOfFailure
+    uint64 NumberOfBlocks
+    uint16[] OperationalStatus
+    uint16 PackageRedundancy
+    uint16 PartitionType
+    boolean PrimaryPartition
+    boolean Primordial
+}
+url of LMI_DiskPartition is [[LMI_DiskPartition.html]]
+CIM_DiskPartition -up-|> CIM_GenericDiskPartition
+class CIM_DiskPartition
+
+LMI_MDRAIDStorageExtent -up-|> LMI_StorageExtent
+class LMI_MDRAIDStorageExtent {
+    string ElementName
+    uint16 Level
+    string UUID
+}
+url of LMI_MDRAIDStorageExtent is [[LMI_MDRAIDStorageExtent.html]]
+LMI_StorageExtent -up-|> CIM_StorageExtent
+class LMI_StorageExtent {
+    uint64 BlockSize
+    uint64 ConsumableBlocks
+    uint16 DataRedundancy
+    string DeviceBusType
+    string ElementName
+    string[] ExtentDiscriminator
+    uint16[] ExtentStatus
+    uint64 ExtentStripeLength
+    string InstanceID
+    boolean IsComposite
+    string Name
+    uint16 NameFormat
+    uint16 NameNamespace
+    string[] Names
+    boolean NoSinglePointOfFailure
+    uint64 NumberOfBlocks
+    uint16[] OperationalStatus
+    uint16 PackageRedundancy
+    boolean Primordial
+}
+url of LMI_StorageExtent is [[LMI_StorageExtent.html]]
+CIM_MediaPartition -up-|> CIM_StorageExtent
+class CIM_MediaPartition
+
+CIM_VTOCDiskPartition -up-|> CIM_GenericDiskPartition
+class CIM_VTOCDiskPartition
+
+LMI_LUKSStorageExtent -up-|> LMI_EncryptionExtent
+class LMI_LUKSStorageExtent {
+}
+url of LMI_LUKSStorageExtent is [[LMI_LUKSStorageExtent.html]]
+CIM_GPTDiskPartition -up-|> CIM_GenericDiskPartition
+class CIM_GPTDiskPartition
+
+LMI_LVStorageExtent -up-|> LMI_StorageExtent
+class LMI_LVStorageExtent {
+    string ElementName
+    boolean ThinlyProvisioned
+    string UUID
+}
+url of LMI_LVStorageExtent is [[LMI_LVStorageExtent.html]]
+CIM_GenericDiskPartition -up-|> CIM_MediaPartition
+class CIM_GenericDiskPartition
+
+LMI_GenericDiskPartition -up-|> CIM_GenericDiskPartition
+class LMI_GenericDiskPartition {
+    uint64 BlockSize
+    uint64 ConsumableBlocks
+    uint16 DataRedundancy
+    string DeviceBusType
+    string ElementName
+    string[] ExtentDiscriminator
+    uint16[] ExtentStatus
+    uint64 ExtentStripeLength
+    string InstanceID
+    string Name
+    uint16 NameFormat
+    uint16 NameNamespace
+    string[] Names
+    boolean NoSinglePointOfFailure
+    uint64 NumberOfBlocks
+    uint16[] OperationalStatus
+    uint16 PackageRedundancy
+    boolean Primordial
+}
+url of LMI_GenericDiskPartition is [[LMI_GenericDiskPartition.html]]
+@enduml

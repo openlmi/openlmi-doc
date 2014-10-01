@@ -63,7 +63,7 @@ at /boot. The filesystem is specified by its UUID. No persitent entry in
 /etc/fstab is managed.
 
 .. figure:: pic/mounting-instance.svg
-   :target: ../_images/mounting-instance.svg
+   :target: _images/mounting-instance.svg
 
 The next figure shows a local ext3 partition /dev/sda1 mounted at /home and also
 made persistent in /etc/fstab, both with slightly different mount options. The
@@ -73,7 +73,7 @@ represented by two different
 instances.
 
 .. image:: pic/mounting-instance-2.svg
-   :target: ../_images/mounting-instance-2.svg
+   :target: _images/mounting-instance-2.svg
 
 The final diagram represents a state where a local ext4 partition /dev/sda4,
 filesystem of which is specified by its UUID, is mounted at /var/log and also
@@ -82,7 +82,7 @@ mount and the persistent entry) are the same, as is indicated by IsNext and
 IsCurrent being set to 1.
 
 .. image:: pic/mounting-instance-3.svg
-   :target: ../_images/mounting-instance-3.svg
+   :target: _images/mounting-instance-3.svg
 
 .. note::
 
