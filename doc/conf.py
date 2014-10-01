@@ -62,7 +62,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'OpenLMI providers'
+project = u'OpenLMI'
 copyright = u'OpenLMI authors'
 
 # The version info for the project you're documenting, acts as replacement for
