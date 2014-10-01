@@ -69,9 +69,9 @@ Details
 
 * Links to figures in original .rst files are translated to appropriate parent
   directories. In other words, following is perfectly OK and it will be updated
-  to point to the right file::
+  to point to the right file:
 
-
-    .. figure:: pic/my.svg 
-       :target: _static/my.svg
-
+  ```
+  .. figure:: pic/my.svg 
+     :target: _static/my.svg
+  ```
