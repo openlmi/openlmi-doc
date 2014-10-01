@@ -1,0 +1,13 @@
+LMI metacommand
+---------------
+
+Is a command line interface for OpenLMI Providers sitting on top of *LMIShell*.
+It provides an easy to use interface for system management through modular
+commands. These dynamically extend the functionality of *LMI metacommand*.
+
+**Short example:**
+
+.. code-block:: sh
+
+    $ lmi -h myhost.example.org storage fs create --label=opt-root ext4 /dev/vda5
+

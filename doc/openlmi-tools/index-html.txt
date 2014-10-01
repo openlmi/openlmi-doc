@@ -1,0 +1,28 @@
+.. _openlmi-tools:
+
+OpenLMI Tools documentation
+===========================
+`OpenLMI Tools` is a part of `OpenLMI Project`_. It is a collection of
+client-side utilities for interacting with OpenLMI Providers.
+
+It consists of LMIShell_ and `LMI metacommand`_.
+
+.. include:: shell-heading.txt
+
+.. include:: metacommand-heading.txt
+
+Contents
+--------
+
+.. include:: toc.txt
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+.. _github:  https://github.com/openlmi/openlmi-scripts
+.. _PyPi:    https://pypi.python.org/pypi?%3Aaction=search&term=openlmi-scripts&submit=search
+.. _OpenLMI Project: http://www.openlmi.org/

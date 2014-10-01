@@ -1,0 +1,55 @@
+@startuml
+object "LMI_DiskPartition\n/dev/sda1" as obj0
+obj0 : DeviceID = /dev/sda1
+obj0 : BlockSize = 512
+obj0 : DataRedundancy = 1
+obj0 : ExtentStripeLength = 1
+obj0 : NumberOfBlocks = 2093056
+obj0 : PackageRedundancy = 0
+
+object "LMI_DiskPartition\n/dev/sdb1" as obj1
+obj1 : DeviceID = /dev/sdb1
+obj1 : BlockSize = 512
+obj1 : DataRedundancy = 1
+obj1 : ExtentStripeLength = 1
+obj1 : NumberOfBlocks = 2093056
+obj1 : PackageRedundancy = 0
+
+object "LMI_DiskPartition\n/dev/sdc1" as obj2
+obj2 : DeviceID = /dev/sdc1
+obj2 : BlockSize = 512
+obj2 : DataRedundancy = 1
+obj2 : ExtentStripeLength = 1
+obj2 : NumberOfBlocks = 2093056
+obj2 : PackageRedundancy = 0
+
+object "LMI_MDRAIDStorageExtent\n/dev/md/myRAID" as obj8
+obj8 : DeviceID = /dev/md/myRAID
+obj8 : BlockSize = 512
+obj8 : DataRedundancy = 1
+obj8 : ExtentStripeLength = 3
+obj8 : IsComposite = True
+obj8 : Level = 5
+obj8 : NumberOfBlocks = 4182016
+obj8 : PackageRedundancy = 1
+obj8 : UUID = 9a9c99bf:ee7d1428:317b0885:d0298678
+
+object "LMI_MDRAIDStorageSetting" as obj9
+obj9 : InstanceID = LMI:LMI_MDRAIDStorageSetting:/dev/md/md0
+obj9 : ChangeableType = 3
+obj9 : DataRedundancyGoal = 1
+obj9 : DataRedundancyMax = 1
+obj9 : DataRedundancyMin = 1
+obj9 : ExtentStripeLength = 3
+obj9 : ExtentStripeLengthMax = 3
+obj9 : ExtentStripeLengthMin = 3
+obj9 : PackageRedundancyGoal = 1
+obj9 : PackageRedundancyMax = 1
+obj9 : PackageRedundancyMin = 1
+obj9 : ParityLayout = 2
+
+obj8 -- obj0 : LMI_MDRAIDBasedOn
+obj8 -- obj1 : LMI_MDRAIDBasedOn
+obj8 -- obj2 : LMI_MDRAIDBasedOn
+obj8 -right- obj9 : LMI_MDRAIDElementSettingData
+@enduml

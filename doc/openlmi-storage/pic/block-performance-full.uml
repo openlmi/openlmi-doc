@@ -1,0 +1,118 @@
+@startuml
+object "LMI_BlockStatisticsManifest" as obj0
+obj0 : CSVSequence = [\n	'InstanceID',\n	'ElementType',\n	'StatisticTime',\n	'IOTimeCounter',\n	'KBytesRead',\n	'KBytesTransferred',\n	'KBytesWritten',\n	'ReadIOs',\n	'TotalIOs',\n	'WriteIOs']
+obj0 : ElementType = 9
+obj0 : IncludeIOTimeCounter = True
+obj0 : IncludeIdleTimeCounter = False
+obj0 : IncludeKBytesRead = True
+obj0 : IncludeKBytesTransferred = True
+obj0 : IncludeKBytesWritten = True
+obj0 : IncludeMaintOp = False
+obj0 : IncludeMaintTimeCounter = False
+obj0 : IncludeReadHitIOTimeCounter = False
+obj0 : IncludeReadHitIOs = False
+obj0 : IncludeReadIOTimeCounter = False
+obj0 : IncludeReadIOs = True
+obj0 : IncludeStartStatisticTime = False
+obj0 : IncludeStatisticTime = True
+obj0 : IncludeTotalIOs = True
+obj0 : IncludeWriteHitIOTimeCounter = False
+obj0 : IncludeWriteHitIOs = False
+obj0 : IncludeWriteIOTimeCounter = False
+obj0 : IncludeWriteIOs = True
+
+object "LMI_BlockStatisticsManifestCollection" as obj1
+obj1 : ElementName = None
+obj1 : IsDefault = True
+
+object "LMI_BlockStorageStatisticalData" as obj3
+obj3 : ElementName = /dev/sdb
+obj3 : ElementType = 9
+obj3 : IOTimeCounter = 117
+obj3 : IdleTimeCounter = None
+obj3 : KBytesRead = 72708
+obj3 : KBytesTransferred = 78804
+obj3 : KBytesWritten = 6096
+obj3 : ReadIOs = 15358
+obj3 : SampleInterval = None
+obj3 : StartStatisticTime = None
+obj3 : StatisticTime = 20130513114717.961211+000
+obj3 : TotalIOs = 15950
+obj3 : WriteIOs = 592
+
+object "LMI_BlockStorageStatisticalData" as obj4
+obj4 : ElementName = /dev/sdb1
+obj4 : ElementType = 9
+obj4 : IOTimeCounter = 30
+obj4 : IdleTimeCounter = None
+obj4 : KBytesRead = 6092
+obj4 : KBytesTransferred = 6612
+obj4 : KBytesWritten = 520
+obj4 : ReadIOs = 1287
+obj4 : SampleInterval = None
+obj4 : StartStatisticTime = None
+obj4 : StatisticTime = 20130513114718.161104+000
+obj4 : TotalIOs = 1291
+obj4 : WriteIOs = 4
+
+object "LMI_GenericDiskPartition" as obj33
+obj33 : BlockSize = 512
+obj33 : ConsumableBlocks = 192512
+obj33 : DataRedundancy = 1
+obj33 : ElementName = sdb1
+obj33 : ExtentDiscriminator = []
+obj33 : ExtentStatus = []
+obj33 : ExtentStripeLength = 1
+obj33 : Name = /dev/sdb1
+obj33 : NoSinglePointOfFailure = False
+obj33 : NumberOfBlocks = 192512
+obj33 : OperationalStatus = [2L]
+obj33 : PackageRedundancy = 0
+obj33 : Primordial = False
+
+
+object "LMI_StorageExtent" as obj47
+obj47 : BlockSize = 512
+obj47 : ConsumableBlocks = 2097016
+obj47 : DataRedundancy = 1
+obj47 : ElementName = sdb
+obj47 : ExtentDiscriminator = []
+obj47 : ExtentStatus = []
+obj47 : ExtentStripeLength = 1
+obj47 : IsComposite = False
+obj47 : Name = /dev/sdb
+obj47 : NoSinglePointOfFailure = False
+obj47 : NumberOfBlocks = 2097152
+obj47 : OperationalStatus = [2L]
+obj47 : PackageRedundancy = 0
+obj47 : Primordial = True
+
+object "LMI_StorageStatisticsCollection" as obj51
+obj51 : SampleInterval = 00000000000000.000000:000
+
+obj1 -- obj51 : LMI_AssociatedBlockStatisticsManifestCollection
+obj0 -- obj1 : LMI_MemberOfBlockStatisticsManifestCollection
+obj3 -up- obj51 : LMI_MemberOfStorageStatisticsCollection
+obj4 -up- obj51 : LMI_MemberOfStorageStatisticsCollection
+obj3 -down- obj47 : LMI_StorageElementStatisticalData
+obj4 -down- obj33 : LMI_StorageElementStatisticalData
+
+
+object "LMI_BlockStatisticsCapabilities" as objx0
+objx0 : AsynchronousMethodsSupported = []
+objx0 : ClockTickInterval = 100000
+objx0 : ElementTypesSupported = [9]
+objx0 : SupportedFeatures = [2]
+objx0 : SynchronousMethodsSupported = [4]
+
+object "LMI_BlockStatisticsService" as objx1
+objx1 : EnabledDefault = 2
+objx1 : EnabledState = 2
+objx1 : HealthState = 5
+objx1 : OperationalStatus = [2]
+objx1 : PrimaryStatus = 1
+objx1 : StartMode = Automatic
+objx1 : Started = True
+
+objx0 -- objx1 : LMI_BlockStorageStatisticsElementCapabilities
+@enduml

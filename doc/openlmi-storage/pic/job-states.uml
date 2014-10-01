@@ -1,0 +1,34 @@
+@startuml
+
+[*] --> Queued
+
+Queued --> Suspended : RequestStateChange(Suspend)
+Suspended --> Queued : RequestStateChange(Start)
+Queued --> Running : (automatically)
+Queued --> Cancelled : RequestStateChange(Terminate)
+Suspended --> Cancelled : RequestStateChange(Terminate)
+Running --> Finished : (automatically)
+Running --> Failed : (automatically)
+Finished --> [*]
+Failed --> [*]
+Cancelled --> [*]
+
+Queued : OperationalStatus = ["Dormant"]
+Queued : JobState = "New"
+
+Suspended : OperationalStatus = ["OK"]
+Suspended : JobState = "Suspended"
+
+Running : OperationalStatus = ["OK"]
+Running : JobState = "Running"
+
+Finished : OperationalStatus = ["Completed", "OK"]
+Finished : JobState = "Completed"
+
+Failed : OperationalStatus = ["Completed", "Error"]
+Failed : JobState = "Exception"
+
+Cancelled : OperationalStatus = ["Stopped"]
+Cancelled : JobState = "Terminated"
+
+@enduml

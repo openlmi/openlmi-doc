@@ -1,0 +1,72 @@
+@startuml
+
+
+object "LMI_LVStorageExtent\n/dev/mapper/myGroup-myVol1" as obj9
+obj9 : DeviceID = /dev/mapper/myGroup-myVol1
+obj9 : BlockSize = 512
+obj9 : NumberOfBlocks = 204800
+obj9 : UUID = V3pahc-czJ1-s7ud-irlE-FVkU-RrB0-3tQp7y
+
+object "LMI_LVStorageSetting" as obj11
+obj11 : InstanceID = LMI:LMI_LVStorageSetting:/dev/mapper/myGroup-myVol1
+obj11 : ChangeableType = 3
+
+obj9 -up- obj11 : LMI_LVElementSettingData
+
+
+object "LMI_LVStorageExtent\n/dev/mapper/myGroup-myVol2" as obj10
+obj10 : DeviceID = /dev/mapper/myGroup-myVol2
+obj10 : BlockSize = 512
+obj10 : NumberOfBlocks = 204800
+obj10 : UUID = rn9W30-WZqN-xsj4-Ql2u-NkW3-PU5X-MA8RvC
+
+object "LMI_LVStorageSetting" as obj12
+obj12 : InstanceID = LMI:LMI_LVStorageSetting:/dev/mapper/myGroup-myVol2
+obj12 : ChangeableType = 3
+
+obj10 -up- obj12 : LMI_LVElementSettingData
+
+object "LMI_VGStoragePool" as obj17
+obj17 : InstanceID = LMI:VG:myGroup
+obj17 : ExtentSize = 4194304
+obj17 : PoolID = myGroup
+obj17 : RemainingExtents = 715
+obj17 : RemainingManagedSpace = 2998927360
+obj17 : TotalExtents = 765
+obj17 : TotalManagedSpace = 3208642560
+obj17 : UUID = 3BIeCm-bR7f-kFPd-qxlR-9dUe-Zccu-IcTvpO
+
+obj9 -- obj17 : LMI_LVAllocatedFromStoragePool
+obj10 -- obj17 : LMI_LVAllocatedFromStoragePool
+
+object "LMI_LVStorageCapabilities" as obj8
+obj8 : InstanceID = LMI:LMI_LVStorageCapabilities:/dev/mapper/myGroup
+
+object "LMI_VGStorageSetting" as obj18
+obj18 : InstanceID = LMI:LMI_VGStorageSetting:/dev/mapper/myGroup
+obj18 : ChangeableType = 3
+obj18 : ExtentSize = 4194304
+
+
+obj17 -left- obj18 : LMI_VGElementSettingData
+obj8 -- obj17 : LMI_LVElementCapabilities
+
+object "LMI_DiskPartition\n/dev/sda1" as obj0
+obj0 : DeviceID = /dev/sda1
+obj0 : BlockSize = 512
+obj0 : NumberOfBlocks = 2093056
+
+object "LMI_DiskPartition\n/dev/sdb1" as obj1
+obj1 : DeviceID = /dev/sdb1
+obj1 : BlockSize = 512
+obj1 : NumberOfBlocks = 2093056
+
+object "LMI_DiskPartition\n/dev/sdc1" as obj2
+obj2 : DeviceID = /dev/sdc1
+obj2 : BlockSize = 512
+obj2 : NumberOfBlocks = 2093056
+
+obj17 -- obj0 : LMI_VGAssociatedComponentExtent
+obj17 -- obj1 : LMI_VGAssociatedComponentExtent
+obj17 -- obj2 : LMI_VGAssociatedComponentExtent
+@enduml

@@ -1,0 +1,80 @@
+@startuml
+object "LMI_FileSystemSetting" as obj2
+obj2 : ActualFileSystemType = 32770
+obj2 : DataExtentsSharing = 1
+obj2 : FilenameCaseAttributes = 1
+obj2 : FilenameFormats = [2L]
+obj2 : FilenameLengthMax = [255L]
+obj2 : NumberOfObjects = [0L, 0L, 0L]
+obj2 : NumberOfObjectsMax = [18446744073709551615L, 18446744073709551615L, 0L]
+obj2 : NumberOfObjectsMin = [0L, 0L, 0L]
+obj2 : ObjectSize = [0L, 0L, 0L]
+obj2 : ObjectSizeMax = [4096L, 9223372036854775808L, 0L]
+obj2 : ObjectSizeMin = [128L, 0L, 0L]
+obj2 : ObjectTypes = [2L, 3L, 7L]
+obj2 : PersistenceTypes = [2L]
+
+object "LMI_FileSystemSetting" as obj3
+obj3 : ActualFileSystemType = 12
+obj3 : DataExtentsSharing = 1
+obj3 : FilenameCaseAttributes = 1
+obj3 : FilenameFormats = [2L]
+obj3 : FilenameLengthMax = [255L]
+obj3 : NumberOfObjects = [0L, 0L, 0L]
+obj3 : NumberOfObjectsMax = [4294967295L, 4294967295L, 0L]
+obj3 : NumberOfObjectsMin = [0L, 0L, 0L]
+obj3 : ObjectSize = [256L, 0L, 0L]
+obj3 : ObjectSizeMax = [4096L, 0L, 0L]
+obj3 : ObjectSizeMin = [128L, 0L, 0L]
+obj3 : ObjectTypes = [2L, 3L, 7L]
+obj3 : PersistenceTypes = [2L]
+
+object "LMI_GenericDiskPartition" as obj5
+obj5 : BlockSize = 512
+obj5 : Name = /dev/sdb1
+obj5 : NumberOfBlocks = 192512
+
+object "LMI_GenericDiskPartition" as obj6
+obj6 : BlockSize = 512
+obj6 : Name = /dev/sdb2
+obj6 : NumberOfBlocks = 194560
+
+object "LMI_GenericDiskPartition" as obj7
+obj7 : BlockSize = 512
+obj7 : Name = /dev/sdb3
+obj7 : NumberOfBlocks = 192512
+
+object "LMI_GenericDiskPartition" as obj8
+obj8 : BlockSize = 512
+obj8 : Name = /dev/sdb4
+obj8 : NumberOfBlocks = 192512
+
+object "LMI_LocalFileSystem" as obj9
+obj9 : AvailableSpace = None
+obj9 : BlockSize = None
+obj9 : FileSystemSize = None
+obj9 : FileSystemType = vfat
+obj9 : Name = UUID=0072-C988
+
+object "LMI_LocalFileSystem" as obj10
+obj10 : AvailableSpace = None
+obj10 : BlockSize = None
+obj10 : FileSystemSize = None
+obj10 : FileSystemType = ext3
+obj10 : Name = UUID=17b6df80-9292-4deb-ac28-dd6b73d1b930
+
+
+object "LMI_LocalFileSystem" as obj12
+obj12 : AvailableSpace = None
+obj12 : BlockSize = None
+obj12 : FileSystemSize = None
+obj12 : FileSystemType = btrfs
+obj12 : Name = UUID=f66c5d24-aba1-456f-9b9f-aafcedfea595
+
+obj10 -up- obj3 : LMI_FileSystemElementSettingData
+obj12 -up- obj2 : LMI_FileSystemElementSettingData
+obj9 -down- obj8 : LMI_ResidesOnExtent
+obj10 -down- obj7 : LMI_ResidesOnExtent
+obj12 -down- obj5 : LMI_ResidesOnExtent
+obj12 -down- obj6 : LMI_ResidesOnExtent
+@enduml

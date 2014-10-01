@@ -1,0 +1,26 @@
+@startuml
+
+object LMI_StorageJob {
+    Name = "CREATE VG ON /dev/sda1+/dev/sdb1"
+    JobState = Running
+}
+
+object LMI_StorageExtent1 {
+    Name="/dev/sda1"
+}
+
+object LMI_StorageExtent2 {
+    "name="/dev/sdb1"
+}
+
+object LMI_StorageMethodResult {
+    PreCallIndication = "<embedded instance of CIM_InstMethodCall>"
+    PostCallIndication = None
+}
+
+
+LMI_StorageMethodResult -- LMI_StorageJob : LMI_AssociatedStorageJobMethodResult
+LMI_StorageConfigurationService -- LMI_StorageJob : LMI_OwningStorageJobElement
+LMI_StorageJob -- LMI_StorageExtent1 : LMI_AffectedStorageJobElement
+LMI_StorageJob -- LMI_StorageExtent2 : LMI_AffectedStorageJobElement
+@enduml

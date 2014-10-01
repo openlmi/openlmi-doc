@@ -1,0 +1,12 @@
+.. _openlmi-tools:
+
+OpenLMI Tools documentation
+===========================
+`OpenLMI Tools` is a part of `OpenLMI Project`_. It is a collection of
+client-side utilities for interacting with OpenLMI Providers.
+
+It consists of :ref:`lmi_shell` and :ref:`lmi_metacommand`.
+
+.. include:: toc.txt
+
+.. _OpenLMI Project: http://www.openlmi.org/

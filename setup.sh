@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Copyright (C) 2014 Red Hat, Inc.
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
+
+# Configure local environment for documentation build.
+#
+# In reality, just check out all the git repositories we need into _ext/
+
+set -e
+
+pushd _ext
+rm -rf openlmi-networking openlmi-providers openlmi-storage
+git clone https://git.fedorahosted.org/git/openlmi-networking.git
+git clone https://git.fedorahosted.org/git/openlmi-providers.git
+git clone https://git.fedorahosted.org/git/openlmi-storage.git
+git clone https://git.fedorahosted.org/git/openlmi-tools.git
+git clone https://github.com/openlmi/openlmi-scripts.git
+popd
+

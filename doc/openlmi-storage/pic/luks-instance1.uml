@@ -1,0 +1,16 @@
+@startuml
+object "LMI_DiskPartition" as obj2
+obj2 : BlockSize = 512
+obj2 : ConsumableBlocks = 2093056
+obj2 : ElementName = sda1
+obj2 : Name = /dev/sda1
+obj2 : NumberOfBlocks = 2093056
+obj2 : PrimaryPartition = True
+obj2 : Primordial = False
+
+object "LMI_LUKSFormat" as obj6
+obj6 : SlotStatus = [1, 0, 0, 0, 0, 0, 0, 0]
+obj6 : UUID = a288c012-9dd8-4ebe-95d1-3cc19d6119e0
+
+obj6 -- obj2 : LMI_ResidesOnExtent
+@enduml

@@ -1,0 +1,66 @@
+@startuml
+
+
+object LMI_FileSystemConfigurationService {
+    Name = myFSService
+    void SNIA_CreateFileSystem()
+    void SNIA_ModifyFileSystem()
+    void DeleteFileSystem()
+}
+note top: Singleton with methods\nto manipulate with filesystems
+
+object LMI_FileSystemConfigurationCapabilities {
+    SupportedAsynchronousMethods = [
+            \t\tCreateFileSystem,
+            \t\tModifyFileSystem,
+            \t\tDeleteFileSystem]
+    SupportedSynchronousMethods = NULL
+    SupportedActualFileSystemTypes = [ext,xfs]
+}
+note bottom: Description of what operations the service supports
+
+object LMI_ExtFileSystemCapabilities {
+    InstanceID = "Capabilities1"
+    ActualFileSystemType = ext
+    SupportedProperties = [..,JournalSize,ReservedBlocks]
+}
+note top: Description what features of Ext the service supports
+
+object LMI_XFSFileSystemCapabilities {
+    InstanceID = "Capabilities2"
+    ActualFileSystemType = xfs
+    SupportedProperties = [..,JournalSize,JournalVersion]
+}
+note top: Description what features of ext the service supports
+
+object LMI_ExtFileSystemSetting {
+    InstanceID = "Setting1"
+    ActualFileSystemType = ext
+    JournalSize = NULL
+    BlockSizeMin = 1024
+    BlockSizeMax = 4096
+    BlockSize = NULL
+    ReservedBlocksMin = 0%
+    ReservedBlocksMax = 100%
+    ReservedBlocks = 5%
+}
+note bottom: Definition of min/max values of\nproperties that ext filesystem supports
+
+object LMI_XFSFileSystemSetting{
+    InstanceID = "Setting2"
+    ActualFileSystemType = xfs
+    JournalSize = NULL
+    BlockSizeMin = 512
+    BlockSizeMax = 65536
+    BlockSize = 4096
+    JournalVersions = 2
+}
+note bottom: Definition of min/max values of\nproperties that XFS filesystem supports
+
+LMI_ExtFileSystemCapabilities -left- LMI_FileSystemConfigurationService : LMI_ElementCapabilities
+LMI_XFSFileSystemCapabilities -right- LMI_FileSystemConfigurationService : LMI_ElementCapabilities
+LMI_FileSystemConfigurationCapabilities -up- LMI_FileSystemConfigurationService : LMI_ElementCapabilities
+LMI_ExtFileSystemCapabilities -- LMI_ExtFileSystemSetting : LMI_SettingsDefineCapabilities
+LMI_XFSFileSystemCapabilities -- LMI_XFSFileSystemSetting : LMI_SettingsDefineCapabilities
+
+@enduml

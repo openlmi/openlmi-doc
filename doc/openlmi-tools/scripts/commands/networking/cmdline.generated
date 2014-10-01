@@ -1,0 +1,58 @@
+..
+    !!!!!!!!!
+    This is generated file. Use 'make cmdregen' to regenerate it from installed 'lmi help <CMD_NAME>'
+    !!!!!!!!!
+
+net
+---
+
+Networking service management.
+
+
+**Usage:**
+
+    **lmi** **net** **device** (\ **--help**\  | **show** [\ *<device_name>*\  ...] | **list** [\ *<device_name>*\  ...])
+
+    **lmi** **net** **setting** (\ **--help**\  | \ *<operation>*\  [\ *<args>*\ ...])
+
+    **lmi** **net** **activate** \ *<caption>*\  [\ *<device_name>*\ ]
+
+    **lmi** **net** **deactivate** \ *<caption>*\  [\ *<device_name>*\ ]
+
+    **lmi** **net** **enslave** \ *<master_caption>*\  \ *<device_name>*\ 
+
+    **lmi** **net** **address** (\ **--help**\  | \ *<operation>*\  [\ *<args>*\ ...])
+
+    **lmi** **net** **route** (\ **--help**\  | \ *<operation>*\  [\ *<args>*\ ...])
+
+    **lmi** **net** **dns** (\ **--help**\  | \ *<operation>*\  [\ *<args>*\ ...])
+
+
+
+**Commands:**
+
+
+    **device**
+        Display information about network devices.
+
+    **setting**
+        Manage the network settings.
+
+    **activate**
+        Activate setting on given network device.
+
+    **deactivate**
+        Deactivate the setting.
+
+    **enslave**
+        Create new slave setting.
+
+    **address**
+        Manipulate the list of IP addresses on given setting.
+
+    **route**
+        Manipulate the list of static routes on given setting.
+
+    **dns**
+        Manipulate the list of DNS servers on given setting.
+

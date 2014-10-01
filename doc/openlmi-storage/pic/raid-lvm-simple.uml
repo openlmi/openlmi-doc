@@ -1,0 +1,81 @@
+@startuml
+object LMI_StorageExtent1 {
+	DeviceID = "/dev/sda1"
+	BlockSize = 512
+	NumberOfBlocks = 2048000
+	...
+}
+
+object LMI_StorageExtent2 {
+	DeviceID = "/dev/sdb1"
+	BlockSize = 512
+	NumberOfBlocks = 2048000
+	...
+}
+
+object LMI_StorageExtent3 {
+	DeviceID = "/dev/sdc1"
+	BlockSize = 512
+	NumberOfBlocks = 2048000
+	...
+}
+
+object LMI_MDRAIDStorageExtent1 {
+	DeviceID = "/dev/md0"
+	UUID = 123
+	ElementName = "md0"
+\t
+	DataRedundancy = 3
+	ExtentStripeLength = 1
+	PackageRedundancy = 2
+	BlockSize = 512
+	NumberOfBlocks=...
+	...
+}
+
+object LMI_VGStoragePool1{
+	InstaneID = "/dev/mygroup"
+	PoolID = "mygroup"
+	UUID = 456...
+	ExtentSize = 4MiB
+	RemainingExtents = ...
+	TotalExtents = ...
+\t
+	RemainingManagedSpace = ...
+	TotalManagedSpace = ...
+	...
+}
+
+object LMI_LVStorageExtent1{
+	DeviceID = "/dev/mapper/mygroup-vol1"
+	UUID = 123...
+\t
+	DataRedundancy = 3
+	ExtentStripeLength = 1
+	PackageRedundancy = 2
+	BlockSize = 512
+	NumberOfBlocks = ...
+	...
+}
+
+object LMI_LVStorageExtent2{
+	DeviceID = "/dev/mapper/mygroup-vol2"
+	UUID = 345...
+\t
+	DataRedundancy = 3
+	ExtentStripeLength = 1
+	PackageRedundancy = 2
+	BlockSize = 512
+	NumberOfBlocks = ...
+	...
+}
+LMI_StorageExtent1 -- LMI_MDRAIDStorageExtent1 : LMI_BasedOn
+LMI_StorageExtent2 -- LMI_MDRAIDStorageExtent1 : LMI_BasedOn
+LMI_StorageExtent3 -- LMI_MDRAIDStorageExtent1 : LMI_BasedOn
+LMI_MDRAIDStorageExtent1 -- LMI_VGStoragePool1 : LMI_VGAssociatedComponentExtent
+LMI_LVStorageExtent1 -up- LMI_VGStoragePool1 : LMI_LVAllocatedFromStoragePool
+LMI_LVStorageExtent2 -up- LMI_VGStoragePool1 : LMI_LVAllocatedFromStoragePool
+LMI_LVStorageExtent1 -up- LMI_MDRAIDStorageExtent1 : LMI_BasedOn
+LMI_LVStorageExtent2 -up- LMI_MDRAIDStorageExtent1 : LMI_BasedOn
+
+@enduml

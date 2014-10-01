@@ -1,0 +1,19 @@
+@startuml
+object "LMI_BlockStatisticsCapabilities" as obj0
+obj0 : AsynchronousMethodsSupported = []
+obj0 : ClockTickInterval = 100000
+obj0 : ElementTypesSupported = [9L]
+obj0 : SupportedFeatures = [2L]
+obj0 : SynchronousMethodsSupported = [4L]
+
+object "LMI_BlockStatisticsService" as obj1
+obj1 : EnabledDefault = 2
+obj1 : EnabledState = 2
+obj1 : HealthState = 5
+obj1 : OperationalStatus = [2L]
+obj1 : PrimaryStatus = 1
+obj1 : StartMode = Automatic
+obj1 : Started = True
+
+obj0 -- obj1 : LMI_BlockStorageStatisticsElementCapabilities
+@enduml

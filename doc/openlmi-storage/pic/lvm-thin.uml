@@ -1,0 +1,33 @@
+@startuml
+
+' volume group
+object "LMI_VGStoragePool\n/dev/myGroup" as vg
+vg : InstanceID = LMI:VG:myGroup
+vg : ExtentSize = 4194304
+vg : PoolID = myGroup
+vg : RemainingExtents = 715
+vg : RemainingManagedSpace = 2998927360
+vg : TotalExtents = 765
+vg : TotalManagedSpace = 3208642560
+vg : UUID = 3BIeCm-bR7f-kFPd-qxlR-9dUe-Zccu-IcTvpO
+
+' thin pool
+object "LMI_VGStoragePool\n/dev/mapper/myGroup-myThinPool" as tp
+tp : InstanceID = LMI:VG:myThinPool
+tp : PoolID = myGroup-myThinPool
+tp : RemainingManagedSpace = 0
+tp : SpaceLimit = 104857600
+tp : SpaceLimitDetermination = 4 (Limitless)
+
+' thin volume
+object "LMI_LVStorageExtent\n/dev/mapper/myGroup-myThinVolume" as tlv
+tlv : DeviceID = /dev/mapper/myGroup-myThinVolume
+tlv : BlockSize = 512
+tlv : NumberOfBlocks = 20971520
+tlv : ThinlyProvisioned = True
+tlv : UUID = RK4DXp-dt28-25xx-Eevp-4ZuS-DL6l-wIyA3U
+
+vg -right- tp: LMI_VGAllocatedFromStoragePool
+tp -right- tlv: LMI_LVAllocatedFromStoragePool
+
+@enduml

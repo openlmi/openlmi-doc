@@ -1,0 +1,24 @@
+LMIShell
+--------
+
+.. only:: not man
+
+    LMIShell provides a (non)interactive way how to access CIM objects provided
+    by *OpenPegasus* or *sblim-sfcb* broker. The shell is based on a python
+    interpreter and added logic, therefore what you can do in pure python, it
+    is possible in LMIShell. There are classes added to manipulate with CIM
+    classes, instance names, instances, etc.  Additional classes are added to
+    fulfill wrapper pattern and expose only those methods, which are necessary
+    for the purpose of a shell.
+
+    **Short example:**
+
+    .. code-block:: python
+
+        $ lmishell
+        > c = connect('localhost', 'root', 'password')
+        > for proc in c.root.cimv2.LMI_Processor.instances():
+        ...   print "Name:\t%s, Clock Speed:\t%s" % (proc.Name, proc.MaxClockSpeed)
+        ...
+        Name:   QEMU Virtual CPU version 1.6.2, Clock Speed:    2000
+        Name:   QEMU Virtual CPU version 1.6.2, Clock Speed:    2000

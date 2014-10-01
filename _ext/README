@@ -1,0 +1,3 @@
+This directory contains git clones of OpenLMI repositories.
+
+It is created by 'setup.sh' utility - when broken use 'setup.sh' to re-create it.

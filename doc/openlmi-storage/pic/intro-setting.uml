@@ -1,0 +1,22 @@
+@startuml
+object extLocalFileSystem {
+    Name = "/dev/sda1"
+    BlockSize = 4096
+    AvailableSpace = 920223744
+    FileSystemSize = 103208550
+}
+note right: State of a file system
+
+object extFileSystemSetting {
+    ActualFileSystemType = ext
+    JournalSize = 16777216
+    BlockSizeMin = NULL
+    BlockSizeMax = NULL
+    BlockSize = 4096
+}
+note right: Configuration of a file system
+
+extLocalFileSystem -- extFileSystemSetting : CIM_ElementSettingData
+
+
+@enduml

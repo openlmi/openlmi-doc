@@ -1,0 +1,83 @@
+@startuml
+
+object "LMI_DiskPartition\n/dev/sda1" as obj1
+obj1 : DeviceID = /dev/sda1
+obj1 : BlockSize = 512
+obj1 : NumberOfBlocks = 204800
+obj1 : PartitionType = 1 (Primary)
+obj1 : PrimaryPartition = True
+
+object "LMI_DiskPartition\n/dev/sda2" as obj2
+obj2 : DeviceID = /dev/sda2
+obj2 : BlockSize = 512
+obj2 : ConsumableBlocks = 204800
+obj2 : NumberOfBlocks = 204800
+obj2 : PartitionType = 1 (Primary)
+obj2 : PrimaryPartition = True
+
+object "LMI_DiskPartition\n/dev/sda3" as obj3
+obj3 : DeviceID = /dev/sda3
+obj3 : BlockSize = 512
+obj3 : ConsumableBlocks = 204800
+obj3 : NumberOfBlocks = 204800
+obj3 : PartitionType = 1 (Primary)
+obj3 : PrimaryPartition = True
+
+object "LMI_DiskPartition\n/dev/sda4" as obj4
+obj4 : DeviceID = /dev/sda4
+obj4 : BlockSize = 512
+obj4 : ConsumableBlocks = 2
+obj4 : NumberOfBlocks = 2
+obj4 : PartitionType = 2 (Extended)
+obj4 : PrimaryPartition = False
+
+object "LMI_DiskPartition\n/dev/sda5" as obj5
+obj5 : DeviceID = /dev/sda5
+obj5 : BlockSize = 512
+obj5 : ConsumableBlocks = 204800
+obj5 : NumberOfBlocks = 204800
+obj5 : PartitionType = 3 (Logical)
+obj5 : PrimaryPartition = False
+
+object "LMI_DiskPartition\n/dev/sda6" as obj6
+obj6 : DeviceID = /dev/sda6
+obj6 : BlockSize = 512
+obj6 : ConsumableBlocks = 1269760
+obj6 : NumberOfBlocks = 1269760
+obj6 : PartitionType = 3 (Logical)
+obj6 : PrimaryPartition = False
+
+object "LMI_DiskPartitionConfigurationCapabilities" as obj8
+obj8 : InstanceID = LMI:LMI_DiskPartitionConfigurationCapabilities:EMBR
+obj8 : Caption = Capabilities of MS-DOS style logical partitions.
+obj8 : MaxNumberOfPartitions = 32768
+obj8 : OverlapAllowed = False
+obj8 : PartitionStyle = 4100
+obj8 : PartitionTableSize = 1
+obj8 : ValidSubPartitionStyles = None
+
+object "LMI_DiskPartitionConfigurationCapabilities" as obj10
+obj10 : InstanceID = LMI:LMI_DiskPartitionConfigurationCapabilities:MBR
+obj10 : Caption = Capabilities of MS-DOS style primary partitions.
+obj10 : MaxNumberOfPartitions = 4
+obj10 : OverlapAllowed = False
+obj10 : PartitionStyle = 2
+obj10 : PartitionTableSize = 1
+obj10 : ValidSubPartitionStyles = [4100]
+
+object "LMI_StorageExtent\n/dev/sda" as obj19
+obj19 : DeviceID = /dev/sda
+obj19 : BlockSize = 512
+obj19 : ConsumableBlocks = 2097151
+obj19 : NumberOfBlocks = 2097152
+
+obj19 -left- obj10 : LMI_InstalledPartitionTable
+obj4 -left- obj8 : LMI_InstalledPartitionTable
+obj1 -- obj19 : LMI_PartitionBasedOn
+obj2 -- obj19 : LMI_PartitionBasedOn
+obj3 -- obj19 : LMI_PartitionBasedOn
+obj4 -- obj19 : LMI_PartitionBasedOn
+obj5 -- obj4 : LMI_PartitionBasedOn
+obj6 -- obj4 : LMI_PartitionBasedOn
+
+@enduml

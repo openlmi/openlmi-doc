@@ -1,0 +1,13 @@
+    * :ref:`openlmi-scripts-account-cmd`
+    * :ref:`openlmi-scripts-hardware-cmd`
+    * :ref:`openlmi-scripts-journald-cmd`
+    * :ref:`openlmi-scripts-locale-cmd`
+    * :ref:`openlmi-scripts-logicalfile-cmd`
+    * :ref:`openlmi-scripts-networking-cmd`
+    * :ref:`openlmi-scripts-powermanagement-cmd`
+    * :ref:`openlmi-scripts-realmd-cmd`
+    * :ref:`openlmi-scripts-service-cmd`
+    * :ref:`openlmi-scripts-software-cmd`
+    * :ref:`openlmi-scripts-sssd-cmd`
+    * :ref:`openlmi-scripts-storage-cmd`
+    * :ref:`openlmi-scripts-system-cmd`

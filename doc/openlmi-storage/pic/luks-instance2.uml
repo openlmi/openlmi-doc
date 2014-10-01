@@ -1,0 +1,31 @@
+@startuml
+object "LMI_DiskPartition" as obj2
+obj2 : BlockSize = 512
+obj2 : ConsumableBlocks = 2093056
+obj2 : ElementName = sda1
+obj2 : Name = /dev/sda1
+obj2 : NumberOfBlocks = 2093056
+obj2 : PrimaryPartition = True
+obj2 : Primordial = False
+
+object "LMI_LocalFileSystem" as obj5
+obj5 : FileSystemType = ext3
+obj5 : Name = UUID=3049b5d7-d2d5-45a7-b770-705b6d399b36
+obj5 : UUID = 3049b5d7-d2d5-45a7-b770-705b6d399b36
+
+object "LMI_LUKSFormat" as obj6
+obj6 : SlotStatus = [1, 0, 0, 0, 0, 0, 0, 0]
+obj6 : UUID = a288c012-9dd8-4ebe-95d1-3cc19d6119e0
+
+object "LMI_LUKSStorageExtent" as obj7
+obj7 : BlockSize = 512
+obj7 : ConsumableBlocks = 2088960
+obj7 : ElementName = secret_data
+obj7 : Name = /dev/mapper/secret_data
+obj7 : NumberOfBlocks = 2088960
+obj7 : Primordial = False
+
+obj7 -- obj2 : LMI_LUKSBasedOn
+obj5 -- obj7 : LMI_ResidesOnExtent
+obj6 -- obj2 : LMI_ResidesOnExtent
+@enduml

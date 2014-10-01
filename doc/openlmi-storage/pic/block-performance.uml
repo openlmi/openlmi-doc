@@ -1,0 +1,68 @@
+@startuml
+object "LMI_BlockStorageStatisticalData" as obj2
+obj2 : ElementName = /dev/sdb1
+obj2 : ElementType = 9
+obj2 : IOTimeCounter = 30
+obj2 : IdleTimeCounter = None
+obj2 : KBytesRead = 6092
+obj2 : KBytesTransferred = 6612
+obj2 : KBytesWritten = 520
+obj2 : ReadIOs = 1287
+obj2 : SampleInterval = None
+obj2 : StartStatisticTime = None
+obj2 : StatisticTime = 20130513113520.737884+000
+obj2 : TotalIOs = 1291
+obj2 : WriteIOs = 4
+
+object "LMI_BlockStorageStatisticalData" as obj1
+obj1 : ElementName = /dev/sdb
+obj1 : ElementType = 9
+obj1 : IOTimeCounter = 117
+obj1 : IdleTimeCounter = None
+obj1 : KBytesRead = 72708
+obj1 : KBytesTransferred = 78804
+obj1 : KBytesWritten = 6096
+obj1 : ReadIOs = 15358
+obj1 : SampleInterval = None
+obj1 : StartStatisticTime = None
+obj1 : StatisticTime = 20130513113520.419521+000
+obj1 : TotalIOs = 15950
+obj1 : WriteIOs = 592
+
+
+object "LMI_StorageExtent" as obj32
+obj32 : BlockSize = 512
+obj32 : ConsumableBlocks = 2097016
+obj32 : DataRedundancy = 1
+obj32 : ElementName = sdb
+obj32 : ExtentDiscriminator = []
+obj32 : ExtentStatus = []
+obj32 : ExtentStripeLength = 1
+obj32 : IsComposite = False
+obj32 : Name = /dev/sdb
+obj32 : NoSinglePointOfFailure = False
+obj32 : NumberOfBlocks = 2097152
+obj32 : OperationalStatus = [2L]
+obj32 : PackageRedundancy = 0
+obj32 : Primordial = True
+
+object "LMI_GenericDiskPartition" as obj21
+obj21 : BlockSize = 512
+obj21 : ConsumableBlocks = 192512
+obj21 : DataRedundancy = 1
+obj21 : ElementName = sdb1
+obj21 : ExtentDiscriminator = []
+obj21 : ExtentStatus = []
+obj21 : ExtentStripeLength = 1
+obj21 : Name = /dev/sdb1
+obj21 : NoSinglePointOfFailure = False
+obj21 : NumberOfBlocks = 192512
+obj21 : OperationalStatus = [2L]
+obj21 : PackageRedundancy = 0
+obj21 : Primordial = False
+
+
+obj1 -up- obj32 : LMI_StorageElementStatisticalData
+obj2 -up- obj21 : LMI_StorageElementStatisticalData
+
+@enduml
