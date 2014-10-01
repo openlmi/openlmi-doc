@@ -14,7 +14,6 @@ In Fedora Linux, one just needs to install OpenLMI packages:
     $ yum install openlmi-networking openlmi-storage <any other providers>
 
 
-.. _common-configuration:
 
 From source code
 ^^^^^^^^^^^^^^^^
@@ -23,6 +22,7 @@ Please refer to README of individual providers, either in git
 or in released tarballs.
 
 
+.. _common-configuration:
 
 Configuration files
 -------------------
