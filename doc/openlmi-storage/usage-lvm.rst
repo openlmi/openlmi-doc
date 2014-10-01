@@ -48,7 +48,7 @@ three Physical Volumes ``/dev/sda1``, ``/dev/sdb1`` and ``/dev/sdc1`` and two
 Logical Volumes ``myVol1`` and ``myVol2``.
 
 .. figure:: pic/lvm-instance.svg
-   :target: _images/lvm-instance.svg
+   :target: ../_images/lvm-instance.svg
 
 Note that the diagram is simplified and does not show
 :ref:`LMI_LVBasedOn <LMI-LVBasedOn>` association, which associates every
@@ -63,7 +63,7 @@ association. :ref:`LMI_LVAllocatedFromStoragePool
 <LMI-LVAllocatedFromStoragePool>` association joins the TP/TLV pair.
 
 .. figure:: pic/lvm-thin.svg
-   :target: _images/lvm-thin.svg
+   :target: ../_images/lvm-thin.svg
 
 Currently the LVM support is limited to creation and removal of VGs and LVs and
 to adding/removing devices to/from a VG. It is not possible to modify existing

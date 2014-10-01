@@ -2,7 +2,7 @@ Usage
 =====
 
 .. figure:: pic/powermanagement.svg
-   :target: _images/powermanagement.svg
+   :target: ../../_images/powermanagement.svg
 
    Class diagram for Power Management provider.
 

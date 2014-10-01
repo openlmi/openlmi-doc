@@ -44,7 +44,7 @@ opened, which means that there is no clear-text device on the system.
 
 
 .. figure:: pic/luks-instance1.svg
-   :target: _images/luks-instance1.svg
+   :target: ../_images/luks-instance1.svg
 
    Instance diagram of closed LUKS format on a partition.
 
@@ -55,7 +55,7 @@ That means any data written to ``/dev/mapper/cleartext`` are automatically
 encrypted and stored on the partition.
 
 .. figure:: pic/luks-instance2.svg
-   :target: _images/luks-instance2.svg
+   :target: ../_images/luks-instance2.svg
 
    Instance diagram of opened LUKS format on a partition.
 

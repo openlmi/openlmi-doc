@@ -12,7 +12,7 @@ Following instance diagram shows two block devices and their associated
 statistics:
 
 .. figure:: pic/block-performance.svg
-   :target: _images/block-performance.svg
+   :target: ../_images/block-performance.svg
 
 There are many more classes related to block device performance, but these are
 provided mainly for compatibility with SMI-S. See following instance diagram,
@@ -20,7 +20,7 @@ which shows the same two block devices, but now with all SMI-S classes:
 
 
 .. figure:: pic/block-performance-full.svg
-   :target: _images/block-performance-full.svg
+   :target: ../_images/block-performance-full.svg
 
 The only useful method is
 :ref:`LMI_BlockStatisticsService.GetStatisticsCollection<LMI-BlockStatisticsService-GetStatisticsCollection>`,

@@ -28,7 +28,7 @@ Following instance diagram shows four block devices:
   associated.
 
 .. figure:: pic/fs-instance.svg
-   :target: _images/fs-instance.svg
+   :target: ../_images/fs-instance.svg
 
 .. Note::
 

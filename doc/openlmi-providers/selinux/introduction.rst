@@ -5,7 +5,7 @@ SELinux provider model is displayed in the following figure. Classes with the
 blue mark are part of the provider.
 
 .. figure:: pic/selinux.svg
-   :target: _images/selinux.svg
+   :target: ../../_images/selinux.svg
 
    SELinux provider model
 

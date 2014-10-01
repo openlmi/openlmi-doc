@@ -20,7 +20,7 @@ Each block device is represented by instance of
 :ref:`CIM_StorageExtent<CIM-StorageExtent>` or its subclasss.
 
 .. figure:: generated/extent-inherit.svg
-   :target: _images/extent-inherit.svg
+   :target: ../_images/extent-inherit.svg
 
 :ref:`LMI_StorageExtent<LMI-storageextent>` represents all devices, which do not
 have any specific :ref:`CIM_StorageExtent<CIM-StorageExtent>` subclass.
@@ -28,7 +28,7 @@ have any specific :ref:`CIM_StorageExtent<CIM-StorageExtent>` subclass.
 Each volume group is represented by :ref:`LMI_VGStoragePool<LMI-VGStoragePool>`.
 
 .. figure:: generated/pool-inherit.svg
-   :target: _images/pool-inherit.svg
+   :target: ../_images/pool-inherit.svg
 
 Instances of :ref:`LMI_VGStoragePool<LMI-VGStoragePool>`,
 :ref:`CIM_StorageExtent<CIM-StorageExtent>` and its subclasses
@@ -47,7 +47,7 @@ these associations or their subclasses:
   associates logical volumes to their volume groups.
 
 .. figure:: pic/raid-lvm-simple.svg
-   :target: _images/raid-lvm-simple.svg
+   :target: ../_images/raid-lvm-simple.svg
 
    Example of two logical volumes allocated from volume group created on top of
    MD RAID with three devices.

@@ -50,7 +50,7 @@ used to suspend, resume and cancel a job, while following rules apply:
    Running job cannot be terminated in any way.
 
 .. figure:: pic/job-states.svg
-   :target: _images/job-states.svg
+   :target: ../_images/job-states.svg
 
    Job state machine.
 
@@ -81,12 +81,12 @@ can be also used to find created/modified element of a
 :ref:`LMI_StorageJob <LMI-StorageJob>` instance.
 
 .. figure:: pic/job-affected-before.svg
-   :target: _images/job-affected-before.svg
+   :target: ../_images/job-affected-before.svg
 
    Instance diagram of a job before finishing.
 
 .. figure:: pic/job-affected-after.svg
-   :target: _images/job-affected-after.svg
+   :target: ../_images/job-affected-after.svg
 
    Instance diagram of a job after finishing.
 
