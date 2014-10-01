@@ -15,15 +15,52 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
+# This script prepares the doc/ directory in order to generate OpenLMI
+# documentation out of it. It expects _ext/ is populated with git
+# repositories, as created by setup.sh
+
+function usage()
+{
+    cat <<_EOF_
+Usage:  build.sh [-P] [-b]
+    -P          Do not refresh the repositories in _ext/ with 'git pull'.
+    -b          Build the populated doc/ directory with sphinx.
+_EOF_
+    exit $1
+}
+
+
+DO_PULL=1
+DO_BUILD=0
+while getopts "Pbh" opt; do
+    case $opt in
+        P)
+            DO_PULL=0
+            ;;
+        b)
+            DO_BUILD=1
+            ;;
+        h)
+            usage 0
+            ;;
+        \?)
+            echo "Invalid option"
+            usage 1
+            ;;
+    esac
+done
+
 # Crash on first error!
 set -e
 
-# Update the submodules to the latest HEAD
-for i in _ext/openlmi-providers _ext/openlmi-networking _ext/openlmi-storage _ext/openlmi-tools _ext/openlmi-scripts; do
-    pushd $i
-#   git pull
-    popd
-done
+if [ $DO_PULL == "1" ]; then
+    # Update the submodules to the latest HEAD
+    for i in _ext/openlmi-providers _ext/openlmi-networking _ext/openlmi-storage _ext/openlmi-tools _ext/openlmi-scripts; do
+        pushd $i
+        git pull
+        popd
+    done
+fi
 
 # Prepare directories
 rm -rf _build/providers _build/networking _build/mof
@@ -161,7 +198,9 @@ pushd doc/mof
 PATH=../../_ext/openlmi-providers/tools:$PATH make
 popd
 
-pushd doc
-rm -rf _build
-PYTHONPATH=python/:$PYTHONPATH make html
-popd
+if [ "$DO_BUILD" == "1" ]; then
+    pushd doc
+    rm -rf _build
+    PYTHONPATH=python/:$PYTHONPATH make html
+    popd
+fi
