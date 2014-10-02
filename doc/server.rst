@@ -1,3 +1,5 @@
+.. _lmi_server_components:
+
 OpenLMI server components
 =========================
 
