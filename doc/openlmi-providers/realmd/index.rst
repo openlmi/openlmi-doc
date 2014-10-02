@@ -1,3 +1,5 @@
+.. _openlmi-realmd-provider:
+
 Realmd Provider
 ===============
 

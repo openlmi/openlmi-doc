@@ -1,4 +1,5 @@
 .. _openlmi-tools:
+.. _openlmi-client-components:
 
 OpenLMI Tools documentation
 ===========================

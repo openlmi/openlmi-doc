@@ -1,5 +1,3 @@
-.. _openlmi-config:
-
 Configuration
 =============
 

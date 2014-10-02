@@ -1,3 +1,5 @@
+.. _openlmi-hardware-provider:
+
 Hardware Provider
 =================
 

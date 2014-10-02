@@ -1,3 +1,5 @@
+.. _openlmi-account-provider:
+
 Account Provider
 ================
 

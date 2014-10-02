@@ -1,4 +1,4 @@
-.. _logicalfile-index:
+.. _openlmi-logicalfile-provider:
 
 LogicalFile Provider
 ====================

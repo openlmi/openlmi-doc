@@ -1,3 +1,5 @@
+.. _openlmi-selinux-provider:
+
 SELinux Provider
 ================
 

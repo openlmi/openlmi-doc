@@ -1,3 +1,5 @@
+.. _openlmi-storage-provider:
+
 Storage Provider
 ================
 
@@ -7,9 +9,16 @@ OpenLMI-Storage is a CIM provider which manages storage on a Linux machine.
 It exposes remotely accessible object-oriented API using
 `WBEM <http://www.openlmi.org/node/1785>`_ set of protocols and technologies.
 
-OpenLMI-Storage is part of `OpenLMI project <http://www.openlmi.org>`_. For
-a client-side API and command line tool usage see `documentation of OpenLMI
-storage scripts <http://pythonhosted.org/openlmi-scripts-storage/index.html>`_.
+.. rubric:: Clients
+
+The API can be accessed by any WBEM-capable client. OpenLMI already provides:
+
+* Python module :ref:`lmi.scripts.storage <openlmi-scripts-storage-python>`,
+  part of
+  :ref:`OpenLMI scripts <openlmi-scripts-python>`.
+
+* Command line tool: :ref:`LMI metacommand <lmi_metacommand>`, with
+  :ref:`'storage' <openlmi-scripts-storage-cmd>` subcommand.
 
 .. rubric:: Features
 

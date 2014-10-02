@@ -1,3 +1,5 @@
+.. _openlmi-sssd-provider:
+
 SSSD Provider
 =============
 

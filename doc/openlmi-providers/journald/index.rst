@@ -1,3 +1,5 @@
+.. _openlmi-journald-provider:
+
 Journald Provider
 =================
 

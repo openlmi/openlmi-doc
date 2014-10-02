@@ -1,3 +1,5 @@
+.. _openlmi-fan-provider:
+
 Fan Provider
 ============
 
