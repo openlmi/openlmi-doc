@@ -74,7 +74,7 @@ copyright = u'OpenLMI authors'
 # built documents.
 #
 # The short X.Y version.
-version = 'PROVIDERSVER'
+version = 'latest'
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -192,7 +192,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'OpenLMIStorageProviderdoc'
+htmlhelp_basename = 'OpenLMI'
 
 # -- Options for LaTeX output --------------------------------------------------
 
