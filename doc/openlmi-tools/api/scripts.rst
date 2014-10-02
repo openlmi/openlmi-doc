@@ -1,3 +1,5 @@
+.. _openlmi-scripts-python:
+
 LMI Scripts API reference
 =========================
 

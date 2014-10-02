@@ -1,3 +1,5 @@
+.. _openlmi-networking-provider:
+
 Networking Provider
 ===================
 

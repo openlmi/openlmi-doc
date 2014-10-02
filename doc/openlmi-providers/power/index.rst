@@ -1,3 +1,5 @@
+.. _openlmi-power-provider:
+
 Power Management
 ================
 

@@ -46,7 +46,7 @@ Implemented SMI-S classes:
    docs, but the links is useful in overall documentation.
 
 * :ref:`CIM_LogicalFile <CIM-LogicalFile>` using separate
-  :ref:`LogicalFile provider <logicalfile-index>`
+  :ref:`LogicalFile provider <openlmi-logicalfile-provider>`
   from OpenLMI-Providers package.
 
 Not implemented classes:

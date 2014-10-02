@@ -1,3 +1,5 @@
+.. _openlmi-software-provider:
+
 Software Provider
 =================
 

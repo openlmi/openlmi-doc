@@ -1,3 +1,5 @@
+.. _openlmi-locale-provider:
+
 Locale Provider
 ===============
 
