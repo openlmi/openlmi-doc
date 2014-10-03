@@ -33,6 +33,7 @@ Local properties
 
 ``string[]`` **StartupParameters**
 
+    **Deprecated!** 
     This is a free-form array of strings that specify any specific parameters that must be supplied to the StartService() method in order for this service to start correctly. It was expected that subclasses would refine the inherited StartService() methods to suit their specific needs. To-date, this refinement has not been necessary. If indeed the method were refined, then its parameters would more formally convey this information. Therefore, the property is deprecated.
 
     

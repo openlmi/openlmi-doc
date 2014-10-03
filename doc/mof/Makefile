@@ -29,5 +29,5 @@ MOFS=$(PROVIDERSDIR)/mof/05_LMI_Qualifiers.mof \
     $(STORAGEDIR)/mof/LMI_Storage-Mounting.mof  \
     $(NETWORKDIR)/mof/60_LMI_Networking.mof
 
-index.rst: $(MOFS)
-	openlmi-doc-class2rst -C -H header.txt -M `echo $(MOFS) | sed 's/ / -M /g'` -S /usr/share/mof/cim-current/CIM_Schema.mof `cat $(MOFS) | grep "^class" | cut -d ' ' -f 2 | sed 's/://'`
+index.rst: $(MOFS) tree_header.txt header.txt Makefile
+	openlmi-doc-class2rst -C -H header.txt -T tree_header.txt -M `echo $(MOFS) | sed 's/ / -M /g'` -S /usr/share/mof/cim-current/CIM_Schema.mof `cat $(MOFS) | grep "^class" | cut -d ' ' -f 2 | sed 's/://'`

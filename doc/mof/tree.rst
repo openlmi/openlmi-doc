@@ -1,5 +1,12 @@
-Inheritance tree
-================
+CIM classes
+===========
+
+As described :ref:`elsewhere <openlmi-overview>`, WBEM just provides remote
+API over set of protocols. This API is object oriented and here you can
+find list of all classes that are remotely accessible.
+
+The list is organized into inheritance tree(s).
+
 
 .. |nbsp| unicode:: 0xA0
     :trim:

@@ -33,7 +33,7 @@ Table of contents:
 OpenLMI Classes:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   classes
+   mof/tree
    

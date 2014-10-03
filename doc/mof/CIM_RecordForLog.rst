@@ -21,7 +21,6 @@ Local properties
 
 ``string`` **Locale**
 
-    **Deprecated!** 
     This property is being deprecated to avoid conflicts with localization implementations using CIM/XML over HTTP protocol, the preferred mechanism. 
 
     A locale indicates a particular geographical, political, or cultural region. The Locale specifies the language used in creating the RecordForLog data. If the Locale property is empty, it is assumed that the default locale is en_US (English). 

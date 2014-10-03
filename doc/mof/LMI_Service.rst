@@ -50,7 +50,6 @@ Local methods
 
 ``uint32`` **StopService** ()
 
-    **Deprecated!** 
     Stop (deactivate) the service.
 
     
@@ -101,7 +100,6 @@ Local methods
 
 ``uint32`` **StartService** ()
 
-    **Deprecated!** 
     Start (activate) the service.
 
     

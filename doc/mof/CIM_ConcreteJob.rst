@@ -254,7 +254,6 @@ Local methods
 
 ``uint32`` **GetError** (``string`` Error)
 
-    **Deprecated!** 
     GetError is deprecated because Error should be an array,not a scalar.
 
     When the job is executing or has terminated without error, then this method returns no CIM_Error instance. However, if the job has failed because of some internal problem or because the job has been terminated by a client, then a CIM_Error instance is returned.

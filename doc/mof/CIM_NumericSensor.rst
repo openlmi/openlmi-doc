@@ -347,7 +347,6 @@ Local methods
 
 ``uint32`` **GetNonLinearFactors** (``sint32`` SensorReading, ``sint32`` Accuracy, ``uint32`` Resolution, ``sint32`` Tolerance, ``uint32`` Hysteresis)
 
-    **Deprecated!** 
     The use of this method is being deprecated, since Current senor reading can be retrieved through the GetInstance operation. 
 
     For a non-linear Sensor, the resolution, accuracy, tolerance and hysteresis vary as the current reading moves. This method can be used to get these factors for a given reading. It returns 0 if successful, 1 if unsupported, and any other value if an error occurred. In a subclass, the set of possible return codes could be specified, using a ValueMap qualifier on the method. The strings to which the ValueMap contents are 'translated' may also be specified in the subclass as a Values array qualifier.

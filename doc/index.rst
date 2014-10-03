@@ -1,3 +1,5 @@
+.. _openlmi-overview:
+
 OpenLMI
 =======
 

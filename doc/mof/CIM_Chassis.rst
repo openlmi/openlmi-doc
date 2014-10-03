@@ -121,6 +121,7 @@ Local properties
 
 ``string[]`` **TypeDescriptions**
 
+    **Deprecated!** 
     The use of this property is deprecated in lieu of a single value property, ChassisTypeDescription. 
 
     An array of free-form strings providing more information on the ChassisTypes array entries. Note, each entry of this array is related to the entry in ChassisTypes that is located at the same index.

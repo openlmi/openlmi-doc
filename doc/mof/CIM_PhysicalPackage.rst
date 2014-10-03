@@ -23,6 +23,7 @@ Local properties
 
 ``boolean`` **HotSwappable**
 
+    **Deprecated!** 
     The use of this property is being deprecated. Instead RemovalConditions should be used. The RemovalConditions property addresses whether a PhysicalPackage is removable with or without power being applied. 
 
     
