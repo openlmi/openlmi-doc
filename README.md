@@ -13,8 +13,11 @@ Prerequisities
 
 During the processing, various cmake and make targets are called. Therefore
 it's necessary to have all installed packages, that OpenLMI depends on.
-Following list was gathered using ``yum-builddeps *.spec`` on Fedora 21:
+Following list was gathered on Fedora 21:
 
+* python-pip
+* gcc
+* git
 * cmake
 * plantuml
 * graphviz
