@@ -48,7 +48,6 @@ Local properties
 
 ``string[]`` **Keywords**
 
-    **Deprecated!** 
     This is a free-form array of strings that provide descriptive words and phrases that can be used in queries. To-date, this property has not been implemented, since it is not standardized. Also, if this was a necessary query construct, then it would be required higher in the inheritance hierarchy. The latter has not proven necessary. Therefore, the property is deprecated.
 
     

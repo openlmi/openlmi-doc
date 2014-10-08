@@ -1,16 +1,28 @@
 Indications
 ===========
-Indication is a reaction to some specific event that occurs in response to a
-particular change in data. LMIShell can perform an indication subscription, by
-which we can receive such event responses.
+From CIM point of view, an *indication* is the representation of the occurrence
+of an event.  Indications are classes so they can have properties and methods.
+Instances of an indication are transient and can not be obtained by using CIM
+Operations, such as ``GetInstance()`` or ``EnumerateInstances()``. Indications
+can only be received by subscribing to them.
 
+An indication subscription is performed by the creation of an
+*CIM_IndicationSubscription* association instance that references an
+*CIM_IndicationFilter* (a filter) instance, and an *CIM_IndicationHandler*
+(a handler) instance. The filter contains the query that selects an *Indication*
+class or classes. The size and complexity of the result delivered to the
+destination is defined by the query.
+
+LMIShell can perform an indication subscription, by which we can receive such
+event responses.  The shell also provides a mechanism for the indication
+reception.
 
 
 Indication handler
 ------------------
-The first step is to set up an indication handler. This is a routine that will
-be triggered when the OpenLMI sends us an indication for which we have
-registered (see below). It is important to set up the handler first so that we
+When working with indications, the first step is to set up an indication handler. This is a routine that will
+be triggered when the CIMOM sends us an indication for which we have
+subscribed (see below). It is important to set up the handler first so that we
 can generate a unique registration name and avoid conflicts with other clients
 that may wish to register for the same indication. The indication handler may
 be part of the same process that will initiate the provider registration or it
@@ -26,18 +38,18 @@ indication:
     ...    """
     ...    Indication handler.
     ...
-    ...    :param CIMInstance indication: exported lmiwbem.CIMInstance
+    ...    :param wbem.CIMInstance indication: exported wbem.CIMInstance
     ...    :param arg1: ...
     ...    :param arg2: ...
     ...    ...
     ...    """
     ...    do_something_with(indication)
-    > listener = LMIIndicationListener()
+    > listener = LMIIndicationListener(listening_address, listening_port, certfile, keyfile, trust_store)
     > unique_name = listener.add_handler("indication-name-XXXXXXXX", handler, arg1, arg2, **kwargs)
-    > listener.start(listening_port, cert_file, key_file)
+    > listener.start()
     >
 
-The first argument of the handler is a :py:class:`lmiwbem.CIMInstance` object;
+The first argument of the handler is a :py:class:`wbem.CIMInstance` object;
 the exported indication. The other arguments are handler-specific; Any number of
 arguments may be specified as necessary; those arguments must then be provided
 to the :py:meth:`.LMIIndicationListener.add_handler` method of the listener. In
@@ -50,40 +62,37 @@ substituted name is returned as the result of the
 :py:meth:`.LMIIndicationListener.add_handler` method so it can be used later.
 
 When all necessary handlers are registered, the listener can be started by
-calling :py:meth:`.LMIIndicationListener.start`, which takes up to three
-arguments, one mandatory (port) and two optional when using SSL (cert_file and
-key_file; paths to X509 certificate and private key in PEM format).
+calling :py:meth:`.LMIIndicationListener.start`.
+
+When a secure connection is desired, :py:class:`.LMIIndicationListener` can be
+constructed with `keyfile`, `certfile` and `trust_store` (paths to X509
+certificate, private key in PEM format and trust store).
 
 
 Subscribing to an indication
 ----------------------------
-The LMIShell is capable of creating an indication subscription with the filter and
-handler objects in one single step. This example is based upon `sblim-cmpi-base`
-provider.
+Now, when the indication listener is up and running, the indication
+subscription can be done.  The LMIShell is capable of creating an indication
+subscription with the filter and handler objects in one single step.
 
-How to subscribe to an indication, please, follow the next example:
+Example of indication subscription with 3 mandatory arguments:
 
 .. code-block:: python
 
-    > c = connect("host", "privileged_user", "password")
-    > c.subscribe_indication(
-    ...    QueryLanguage="WQL",
-    ...    Query='SELECT * FROM CIM_InstModification',
-    ...    Name=unique_name,
-    ...    CreationNamespace="root/interop",
-    ...    SubscriptionCreationClassName="CIM_IndicationSubscription",
-    ...    FilterCreationClassName="CIM_IndicationFilter",
-    ...    FilterSystemCreationClassName="CIM_ComputerSystem",
-    ...    FilterSourceNamespace="root/cimv2",
-    ...    HandlerCreationClassName="CIM_IndicationHandlerCIMXML",
-    ...    HandlerSystemCreationClassName="CIM_ComputerSystem",
-    ...    # destination computer, where the indications will be delivered
-    ...    Destination="http://192.168.122.1:%d" % listening_port
-    ...  )
-    LMIReturnValue(rval=True, rparams={}, errorstr="")
-    >
+   > c = connect("host", "privileged_user", "password")
+   > c.subscribe_indication(
+   ...    Name=unique_name,
+   ...    Query='SELECT * FROM CIM_InstModification',
+   ...    Destination="http://192.168.122.1:%d" % listening_port
+   ...  )
+   LMIReturnValue(rval=True, rparams={}, errorstr="")
+   >
 
-The previous code can be simplified by omitting some optional parameters:
+**NOTE:** Make sure, that you an account which has write privileges in the
+*root/interop* namespace.
+
+The indication subscription can created with an extensive list of arguments,
+where optional arguments can be specified:
 
 * *QueryLanguage*: *DMTF:CQL*
 * *CreationNamespace*: *root/interop*
@@ -94,23 +103,28 @@ The previous code can be simplified by omitting some optional parameters:
 * *HandlerCreationClassName*: *CIM_IndicationHandlerCIMXML*
 * *HandlerSystemCreationClassName*: *CIM_ComputerSystem*
 
-Simplified subscription:
-
 .. code-block:: python
 
    > c = connect("host", "privileged_user", "password")
    > c.subscribe_indication(
-   ...    Name=unique_name,
+   ...    QueryLanguage="WQL",
    ...    Query='SELECT * FROM CIM_InstModification',
-   ...    Destination="http://192.168.122.1:5988"
+   ...    Name=unique_name,
+   ...    CreationNamespace="root/interop",
+   ...    SubscriptionCreationClassName="CIM_IndicationSubscription",
+   ...    FilterCreationClassName="CIM_IndicationFilter",
+   ...    FilterSystemCreationClassName="CIM_ComputerSystem",
+   ...    FilterSourceNamespace="root/cimv2",
+   ...    HandlerCreationClassName="CIM_IndicationHandlerCIMXML",
+   ...    HandlerSystemCreationClassName="CIM_ComputerSystem",
+   ...    Destination="http://192.168.122.1:%d" % listening_port
    ...  )
    LMIReturnValue(rval=True, rparams={}, errorstr="")
    >
 
-**NOTE:** Make sure, that you are logged-in with an account, which has write
-privileges in the *root/interop* namespace.
 
 In this state, we have a indication subscription created.
+
 
 Auto-delete subscriptions
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -118,6 +132,7 @@ By default all subscriptions created by LMIShell will be **auto-deleted**, when
 the shell quits. To change this behavior, you can pass :samp:`Permanent=True`
 keyword parameter to :py:meth:`.LMIConnection.subscribe_indication` call, which
 will prevent LMIShell from deleting the subscription.
+
 
 Listing subscribed indications
 ------------------------------
@@ -129,6 +144,7 @@ To list all the subscribed indications, run following code:
     ...
     > subscribed_ind_lst = c.subscribed_indications()
     >
+
 
 Unsubscribing from an indication
 ---------------------------------

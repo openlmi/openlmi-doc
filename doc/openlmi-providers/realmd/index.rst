@@ -15,13 +15,3 @@ Contents:
    :maxdepth: 2
 
    usage
-
-.. ifconfig:: includeClasses
-
-    CIM Classes:
-
-    .. toctree::
-       :maxdepth: 1
-
-       mof/tree
-       mof/index

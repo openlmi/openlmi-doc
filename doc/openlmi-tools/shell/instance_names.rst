@@ -104,7 +104,7 @@ instance name (refer to :ref:`startup_connection`). See next example:
 
 Wrapped Object
 ^^^^^^^^^^^^^^
-This property returns a wrapped :py:mod:`lmiwbem` object. See the example:
+This property returns a wrapped :py:mod:`wbem` object. See the example:
 
 .. code-block:: python
 

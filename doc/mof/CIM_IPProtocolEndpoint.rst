@@ -25,6 +25,7 @@ Local properties
 
 ``uint16`` **AddressType**
 
+    **Deprecated!** 
     An enumeration that describes the format of the Address property. It is deprecated since it is not needed, as the class contains both IPv4 and v6 addresses).
 
     

@@ -1,9 +1,9 @@
 Classes
 =======
-Each class in LMIShell represents a class provided by a CIMOM. You can get a
-list of its properties, methods, instances, instance names and ValueMap
-properties. It is also possible to print a documentation string, create a new
-instance or new instance name.
+Each :py:class:`.LMIClass` in LMIShell represents a class implemented by a
+certain provider. You can get a list of its properties, methods, instances,
+instance names and ValueMap properties. It is also possible to print a
+documentation string, create a new instance or new instance name.
 
 Getting a class object
 ----------------------
@@ -19,16 +19,16 @@ To get a class which is provided by a broker, you can do following:
 Fetching a class
 ----------------
 Objects of :py:class:`.LMIClass` use lazy fetching method, because some methods
-do not need the :py:class:`lmiwbem.CIMClass` object.
+do not need the :py:class:`wbem.CIMClass` object.
 
-To manually fetch the :py:class:`lmiwbem.CIMClass` object, call following:
+To manually fetch the :py:class:`wbem.CIMClass` object, call following:
 
 .. code-block:: python
 
     > cls.fetch()
     >
 
-The methods, which need the :py:class:`lmiwbem.CIMClass` object to be fetched
+The methods, which need the :py:class:`wbem.CIMClass` object to be fetched
 from CIMOM, do this action automatically, without the need of calling
 :py:meth:`.LMIClass.fetch` method by hand.
 
@@ -87,8 +87,8 @@ To get :py:class:`.LMIInstance` object, execute the following example:
 
 Get Instance Names
 ^^^^^^^^^^^^^^^^^^
-The :py:class:`lmiwbem.CIMInstanceName` objects clearly identify
-:py:class:`lmiwbem.CIMInstance` objects. LMIShell can retrieve
+The :py:class:`wbem.CIMInstanceName` objects clearly identify
+:py:class:`wbem.CIMInstance` objects. LMIShell can retrieve
 :py:class:`.LMIInstanceName` objects, by calling following:
 
 .. code-block:: python
@@ -116,7 +116,7 @@ following example:
 
 New Instance Name
 ^^^^^^^^^^^^^^^^^
-LMIShell is able to create a new wrapped :py:class:`lmiwbem.CIMInstanceName`, if
+LMIShell is able to create a new wrapped :py:class:`wbem.CIMInstanceName`, if
 you know all the primary keys of a remote object. This instance name object can
 be then used to retrieve the whole instance object.
 
@@ -242,7 +242,7 @@ class (refer to :ref:`startup_connection`). See next example:
 
 Wrapped Object
 ^^^^^^^^^^^^^^
-This property returns a wrapped :py:mod:`lmiwbem` object. See the example:
+This property returns a wrapped :py:mod:`wbem` object. See the example:
 
 .. code-block:: python
 

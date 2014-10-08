@@ -19,13 +19,3 @@ The knowledge of this standard is not necessary, but it can help a lot.
     :maxdepth: 2
 
     usage
-
-.. ifconfig:: includeClasses
-
-   CIM classes:
-
-   .. toctree::
-      :maxdepth: 1
-
-      mof/tree
-      mof/index

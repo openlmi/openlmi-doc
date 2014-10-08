@@ -25,7 +25,6 @@ Local properties
 
 ``string`` **OtherNetworkPortType**
 
-    **Deprecated!** 
     Note: The use of this property is deprecated in lieu of CIM_LogicalPort.PortType. 
 
     Deprecated description: The type of module, when PortType is set to 1 ("Other".)

@@ -1,7 +1,15 @@
 Associated Objects
 ==================
-CIM defines an association relationship between managed objects. Following text
-describes the means of retrieving associated objects within a given one.
+An association from CIM perspective is a type of class that contains two or
+more references. Associations represent relationships between two or more
+classes.
+
+Associations are classes which establish a relationship between classes without
+affecting any of the related classes. In other words, the addition of an
+association has no effect on any of the related classes.
+
+Following text describes the means of retrieving associated objects within
+a given one.
 
 .. _associators_instances:
 

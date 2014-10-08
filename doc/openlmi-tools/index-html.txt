@@ -6,11 +6,12 @@ OpenLMI Tools documentation
 `OpenLMI Tools` is a part of `OpenLMI Project`_. It is a collection of
 client-side utilities for interacting with OpenLMI Providers.
 
-It consists of LMIShell_ and `LMI metacommand`_.
+It consists of and `LMI metacommand`_ and LMIShell_.
+
+.. include:: metacommand-heading.txt
 
 .. include:: shell-heading.txt
 
-.. include:: metacommand-heading.txt
 
 Contents
 --------

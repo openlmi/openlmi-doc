@@ -92,14 +92,19 @@ Local properties
     20             Bus Expansion Chassis
     21             Peripheral Chassis   
     22             Storage Chassis      
-    23             SMBIOS Reseved       
+    23             SMBIOS Reserved      
     24             Sealed-Case PC       
     25             SMBIOS Reserved      
     26             CompactPCI           
     27             AdvancedTCA          
     28             Blade Enclosure      
+    29             SMBIOS Reserved      
+    30             Tablet               
+    31             Convertible          
+    32             Detachable           
     ..             DMTF Reserved        
-    0x8000..0xFFFF Vendor Reserved      
+    32768          Virtual Machine      
+    0x8001..0xFFFF Vendor Reserved      
     ============== =====================
     
 .. _LMI-Chassis-ElementName:

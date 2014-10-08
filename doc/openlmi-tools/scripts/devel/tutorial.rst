@@ -180,7 +180,7 @@ OpenLMI LogicalFile introduction
 information about files and directories. The provider also allows to
 traverse the file hierarchy, create and remove empty directories.
 
-.. figure:: ../../static/logicalfile.png
+.. figure:: ../../_static/logicalfile.png
    :align: center
    :alt: LogicalFile model
 
@@ -659,7 +659,7 @@ Now that the script is ready and tested, we may commit it, push it, do a
 
 
 Source code of this example is available as a
-:download:`tarball <../../static/mylf.tar.gz>`.
+:download:`tarball <../../_static/mylf.tar.gz>`.
 
 .. _LMIShell: http://www.openlmi.org/using_lmishell
 .. _This short tutorial: http://fedorahosted.org/openlmi/wiki/ProviderTutorialIntroduction

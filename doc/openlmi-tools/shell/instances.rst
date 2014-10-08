@@ -1,8 +1,9 @@
 Instances
 =========
-Each instance in LMIShell represents a CIM instance provided by a CIMOM.
+Each :py:class:`.LMIInstance` in LMIShell represents a CIM instance provided by
+a certain provider.
 
-Operations, that can be done within a :py:class:`.LMIInstance`:
+Operations that can be performed within a :py:class:`.LMIInstance`:
 
 * get and set properties
 * list/print/execute its methods
@@ -61,10 +62,16 @@ Synchronous methods
 ^^^^^^^^^^^^^^^^^^^
 LMIShell can perform synchronous method call, which means, that the LMIShell is
 able to synchronously wait for a Job object to change its state to `Finished`
-state and then return the job's return parameters. LMIShell can perform the
-synchronous method call, if the given method returns a object of following
-classes:
+state and then return the job's return parameters.
 
+Most of the implemented methods in OpenLMI providers are *asynchronous*
+methods, which means that user can execute such method and do other desired
+actions while waiting for the result(s).
+
+LMIShell can perform the synchronous method call, if the given method returns a
+object of following classes:
+
+* :py:class:`LMI_SELinuxJob`
 * :py:class:`LMI_StorageJob`
 * :py:class:`LMI_SoftwareInstallationJob`
 * :py:class:`LMI_SoftwareVerificationJob`
@@ -317,7 +324,7 @@ instance (refer to :ref:`startup_connection`). See next example:
 
 Wrapped Object
 ^^^^^^^^^^^^^^
-This property returns a wrapped :py:mod:`lmiwbem` object. See the example:
+This property returns a wrapped :py:mod:`wbem` object. See the example:
 
 .. code-block:: python
 

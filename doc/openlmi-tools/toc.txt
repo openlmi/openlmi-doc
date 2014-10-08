@@ -1,6 +1,6 @@
 .. toctree::
     :maxdepth: 2
 
-    shell-index
     metacommand-index
+    shell-index
     api

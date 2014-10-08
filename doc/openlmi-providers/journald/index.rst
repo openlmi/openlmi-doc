@@ -41,13 +41,3 @@ The provider also comes with a test suite covering most of its functionality.
 
    caveats
    usage
-
-.. ifconfig:: includeClasses
-
-   CIM Classes:
-
-   .. toctree::
-      :maxdepth: 1
-
-      mof/tree
-      mof/index

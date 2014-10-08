@@ -14,40 +14,39 @@ metacommand* and a package (rpm/python egg) containing it. In this
 documentation you'll encounter another words seemingly meaning the same.
 Following dictionary tries to clear out any confusion:
 
-  +-----------------------+----------------------------------------------------------------+
-  | Term                  | Description                                                    |
-  +=======================+================================================================+
-  | *command*             | Either a subcommand of *LMI metacommand* or a software         |
-  |                       | package containing a *script*. It may have several             |
-  |                       | *subcommands*.                                                 |
-  +-----------------------+----------------------------------------------------------------+
-  | *script*              | Python library utilizing :ref:`lmi_shell` for instrumenting    |
-  |                       | CIM providers through a CIMOM broker comming with one          |
-  |                       | or more *commands* for *LMI metacommand*.                      |
-  +-----------------------+----------------------------------------------------------------+
-  | *subcommand*          | Same as *command* used in relation to either                   |
-  |                       | *metacommand* or another *command*.                            |
-  +-----------------------+----------------------------------------------------------------+
-  | *command wrapper*     | Implementation of a *command* in a *script* as a subclass of   |
-  |                       | :py:class:`~lmi.scripts.common.command.base.LmiBaseCommand`.   |
-  +-----------------------+----------------------------------------------------------------+
-  | *top-level command*   | Direct *subcommand* of *LMI metacommand*. It appers in its     |
-  |                       | help message.                                                  |
-  +-----------------------+----------------------------------------------------------------+
-  | *end-point command*   | *command* without any *subcommand*. It handles command-line    |
-  |                       | arguments and renders output.                                  |
-  +-----------------------+----------------------------------------------------------------+
-  | *command multiplexer* | *command* with one or more *subcommands*. They do not handle   |
-  |                       | command line arguments.                                        |
-  +-----------------------+----------------------------------------------------------------+
-  | *command name*        | Is a single word denoting *command* on a command line.         |
-  +-----------------------+----------------------------------------------------------------+
-  | *command's full name* | All *command names* leading up to the *command* optionally     |
-  |                       | including the ``lmi``. For example in statement                |
-  |                       | ``lmi -h myhost.example.org storage fs create ext4 /dev/vda5`` |
-  |                       | the full name of *command* ``create`` is                       |
-  |                       | ``lmi storage fs create``.                                     |
-  +-----------------------+----------------------------------------------------------------+
+  +-----------------------+------------------------------------------------------------------+
+  | Term                  | Description                                                      |
+  +=======================+==================================================================+
+  | *command*             | | Either a subcommand of *LMI metacommand* or a software package |
+  |                       |   containing a *script*. It may have several *subcommands*.      |
+  +-----------------------+------------------------------------------------------------------+
+  | *script*              | | Python library utilizing :ref:`lmi_shell` for instrumenting    |
+  |                       |   CIM providers through a CIMOM broker comming with one          |
+  |                       |   or more *commands* for *LMI metacommand*.                      |
+  +-----------------------+------------------------------------------------------------------+
+  | *subcommand*          | | Same as *command* used in relation to either                   |
+  |                       |   *metacommand* or another *command*.                            |
+  +-----------------------+------------------------------------------------------------------+
+  | *command wrapper*     | | Implementation of a *command* in a *script* as a subclass of   |
+  |                       |   :py:class:`~lmi.scripts.common.command.base.LmiBaseCommand`.   |
+  +-----------------------+------------------------------------------------------------------+
+  | *top-level command*   | | Direct *subcommand* of *LMI metacommand*. It appers in its     |
+  |                       |   help message.                                                  |
+  +-----------------------+------------------------------------------------------------------+
+  | *end-point command*   | | *command* without any *subcommand*. It handles command-line    |
+  |                       |   arguments and renders output.                                  |
+  +-----------------------+------------------------------------------------------------------+
+  | *command multiplexer* | | *command* with one or more *subcommands*. They do not handle   |
+  |                       |   command line arguments.                                        |
+  +-----------------------+------------------------------------------------------------------+
+  | *command name*        | | Is a single word denoting *command* on a command line.         |
+  +-----------------------+------------------------------------------------------------------+
+  | *command's full name* | | All *command names* leading up to the *command* optionally     |
+  |                       |   including the ``lmi``. For example in statement                |
+  |                       |   ``lmi -h myhost.example.org storage fs create ext4 /dev/vda5`` |
+  |                       |   the full name of *command* ``create`` is                       |
+  |                       |   ``lmi storage fs create``.                                     |
+  +-----------------------+------------------------------------------------------------------+
 
 .. only:: html
 

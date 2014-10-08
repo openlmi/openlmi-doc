@@ -25,7 +25,6 @@ Local properties
 
 ``boolean`` **PowerManagementSupported**
 
-    **Deprecated!** 
     Note: The use of this property has been deprecated. Instead, the existence of an associated PowerManagementCapabilities class (associated using the ElementCapabilities relationship) indicates that power management is supported. Deprecated description: Boolean that indicates that the Device can use power management.
 
     
@@ -176,6 +175,7 @@ Local properties
 
 ``uint64`` **TotalPowerOnHours**
 
+    **Deprecated!** 
     Note: The use of this method is deprecated. 
 
     Deprecated description: The total number of hours that this Device has been powered on.
@@ -185,6 +185,7 @@ Local properties
 
 ``string`` **ErrorDescription**
 
+    **Deprecated!** 
     Note: The use of this method is deprecated. 
 
     Deprecated description: ErrorDescription is a free-form string that supplies more information about the error recorded in LastErrorCode and information on any corrective actions that can be taken.
@@ -211,7 +212,6 @@ Local properties
 
 ``uint16`` **Availability**
 
-    **Deprecated!** 
     Note: The use of this property has been deprecated. 
 
     Deprecated description: The primary availability and status of the Device. (Additional status information can be specified using the Additional Availability array property.) For example, the Availability property indicates that the Device is running and has full power (value=3), or is in a warning (4), test (5), degraded (10) or power save state (values 13-15 and 17). The Power Save states are defined as follows: Value 13 ("Power Save - Unknown") indicates that the Device is known to be in a power save mode, but its exact status in this mode is unknown; value 14 ("Power Save - Low Power Mode") indicates that the Device is in a power save state but still functioning, and might exhibit degraded performance; value 15 ("Power Save - Standby") indicates that the Device is not functioning but could be brought to full power 'quickly'; and value 17 ("Power Save - Warning") indicates that the Device is in a warning state, but is also in a power save mode.
@@ -319,6 +319,7 @@ Local methods
 
 ``uint32`` **EnableDevice** (``boolean`` Enabled)
 
+    **Deprecated!** 
     Note: The use of this method has been deprecated in lieu of the more general RequestStateChange method that directly overlaps with the functionality provided by this method. 
 
     Deprecated description: Requests that the LogicalDevice be enabled ("Enabled" input parameter=TRUE) or disabled (=FALSE). If successful, the StatusInfo or EnabledState properties of the Device should reflect the desired state (enabled or disabled). Note that this function overlaps with the RequestedState property. RequestedState was added to the model to maintain a record (for example, a persisted value) of the last state request. Invoking the EnableDevice method should set the RequestedState property appropriately. 
@@ -376,7 +377,6 @@ Local methods
 
 ``uint32`` **RestoreProperties** ()
 
-    **Deprecated!** 
     Note: The use of this method is deprecated. Its function is handled more generally by the ConfigurationData subclass of SettingData. 
 
     Requests that the Device re-establish its configuration, setup or state information, or both from a backing store. The information would have been captured at an earlier time (using the SaveProperties method). This method might not be supported by all Devices. The method should return 0 if successful, 1 if the request is not supported, and some other value if any other error occurred. In a subclass, the set of possible return codes could be specified using a ValueMap qualifier on the method. The strings to which the ValueMap contents are 'translated' can also be specified in the subclass as a Values array qualifier.

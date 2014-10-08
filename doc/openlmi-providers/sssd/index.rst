@@ -13,13 +13,3 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
-
-.. ifconfig:: includeClasses
-
-    CIM Classes:
-
-    .. toctree::
-       :maxdepth: 1
-
-       mof/tree
-       mof/index
