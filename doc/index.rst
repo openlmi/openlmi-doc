@@ -53,7 +53,7 @@ transport protocols, however some knowledge about the aforementioned remote
 API becomes necessary. In the example above, the script author must know that
 system services are exposed as instances of :ref:`LMI_Service<LMI-Service>`
 class with property :ref:`Name <CIM-Service-Name>` (the service name) and
-method :ref:`StartService() <_CIM-Service-StartService>` that starts the
+method :ref:`StartService() <CIM-Service-StartService>` that starts the
 service.
 
 :ref:`Server components <lmi_server_components>`

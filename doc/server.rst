@@ -14,7 +14,7 @@ Table of contents:
 .. toctree::
    :maxdepth: 2
 
-   admin
+   openlmi-providers/admin
    openlmi-providers/account/index
    openlmi-providers/fan/index
    openlmi-providers/hardware/index

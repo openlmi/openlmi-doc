@@ -78,6 +78,7 @@ popd
 # Copy docs to the right place
 # (copy all directories except CMakeFiles)
 find _build/providers/doc/admin -maxdepth 1 -type d ! -name "CMakeFiles" ! -name "admin" -exec cp -rv {} doc/openlmi-providers \;
+cp -v _build/providers/doc/admin/*.{rst,txt} doc/openlmi-providers
 
 # Copy MOF files to the right place
 cp -v _ext/openlmi-providers/mof/*.mof _build/mof/
