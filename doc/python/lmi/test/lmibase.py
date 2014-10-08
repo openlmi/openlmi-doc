@@ -226,7 +226,10 @@ class LmiTestCase(base.BaseLmiTestCase):
                     (CIMError is not wbem.CIMError or
                         not isinstance(cm, wbem.CIMError)):
                 raise cm
-        self.assertEqual(cim_err_code, cm.args[0])
+            self.assertEqual(cim_err_code, cm.args[0],
+                    "got unexpected cim_err_code %d" %cm.args[0])
+        else:
+            raise self.failureException("CIMError not raised")
 
     def assertCIMNameEqual(self, fst, snd, msg=None):
         """

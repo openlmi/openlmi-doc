@@ -246,10 +246,15 @@ class TableFormatter(ListFormatter):
 
     The command must be provided as content of one row. This row is then not
     printed and the command is executed.
+
+    :param dictionary min_column_sizes: Dictionary of minimal column sizes, where
+        keys are column numbers starting from 0, and values are minimal column
+        sizes.
     """
-    def __init__(self, stream, padding=0, no_headings=False):
+    def __init__(self, stream, padding=0, no_headings=False, min_column_sizes=False):
         super(TableFormatter, self).__init__(stream, padding, no_headings)
         self.stash = []
+        self.min_column_sizes = min_column_sizes
 
     def print_text_row(self, row, column_sizes):
         for i in xrange(len(row)):
@@ -276,7 +281,11 @@ class TableFormatter(ListFormatter):
             else:
                 row = self.column_names
             for i in xrange(len(row)):
-                column_sizes.append(len(row[i]))
+                if self.min_column_sizes and i in self.min_column_sizes \
+                        and self.min_column_sizes[i] > len(row[i]):
+                    column_sizes.append(self.min_column_sizes[i])
+                else:
+                    column_sizes.append(len(row[i]))
         except StopIteration:
             pass # empty stash
 

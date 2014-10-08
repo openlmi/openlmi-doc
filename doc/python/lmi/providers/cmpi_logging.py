@@ -98,6 +98,7 @@ class CMPILogHandler(logging.Handler):
 
     def emit(self, record):
         msg = self.format(record)
+        msg = msg.encode('utf-8') if isinstance(msg, unicode) else str(msg)
         if record.levelno >= logging.ERROR:
             self.cmpi_logger.log_error(msg)
         elif record.levelno >= logging.WARNING:
