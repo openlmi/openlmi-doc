@@ -62,6 +62,13 @@ service.
 OpenLMI focuses on implementation of missing providers for networking, storage,
 system services, packages and so on.
 
+Versions
+^^^^^^^^
+
+This documentation was generated using following releases:
+
+.. include:: version.rst
+
 Table of Contents
 -----------------
 
