@@ -72,6 +72,8 @@ Useful methods
 Use cases
 ---------
 
+.. note::
+   All example scripts expect :ref:`properly initialized lmishell <storage-shell-setup>`.
 
 List supported partition table types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -81,10 +83,6 @@ later. Enumerate instances of
 :ref:`LMI_DiskPartitionConfigurationCapabilities <LMI-DiskPartitionConfigurationCapabilities>`
 class to get list of all of them, together with their basic properties like
 partition table size and maximum number of partitions::
-
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
 
     part_styles = ns.LMI_DiskPartitionConfigurationCapabilities.instances()
     for style in part_styles:
@@ -102,9 +100,6 @@ method.
 
 Sample code to create GPT partition table on ``/dev/sda``::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     partitioning_service = ns.LMI_DiskPartitionConfigurationService.first_instance()
 
     # Find the disk
@@ -135,9 +130,6 @@ method.
 Following code creates several partitions on ``/dev/sda``. The code is the same
 for GPT and MS-DOS partitions::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     partitioning_service = ns.LMI_DiskPartitionConfigurationService.first_instance()
     MEGABYTE = 1024*1024
 
@@ -191,10 +183,6 @@ disk.
 Following code lists all partitions on ``/dev/sda``, together with their
 location::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
-
     # Find the disk
     sda = ns.LMI_StorageExtent.first_instance({"Name": "/dev/sda"})
 
@@ -210,10 +198,6 @@ Find the largest continuous unpartitioned space on a disk
 Using side-effect of
 :ref:`FindPartitionLocation <LMI-DiskPartitionConfigurationCapabilities-FindPartitionLocation>`,
 we can find size of the largest partition that can be created on ``/dev/sda``::
-
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
 
     # Find the disk
     sda = ns.LMI_StorageExtent.first_instance({"Name": "/dev/sda"})
@@ -234,9 +218,6 @@ Delete partition
 Call
 :ref:`LMI_DeletePartition <LMI-DiskPartitionConfigurationService-LMI-DeletePartition>`::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     partitioning_service = ns.LMI_DiskPartitionConfigurationService.first_instance()
 
     sda1 = ns.CIM_StorageExtent.first_instance({"Name": "/dev/sda1"})

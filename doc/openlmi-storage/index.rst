@@ -35,10 +35,21 @@ and FCoE devices, as long as appropriate block device is present.
 In future, it may include configuration of iSCSI and FC initiators,
 multipath and other remote-storage management.
 
+.. warning::
+   Current version of OpenLMi-Storage does **not** refresh device list when a
+   device is created/removed/modified outside of OpenLMI.
+
+   That means, if a system administrator physically plugs in a new disk,
+   removes a logical volume using command line and/or resizes a partition using
+   an specialized application, OpenLMI-Storage provider will not recognize this
+   change until it is restarted.
+
+   Future versions will address this and will update device list dynamically.
+
 .. rubric:: Examples
 
 There is plenty of examples how to use OpenLMI-Storage provider remotely
-from `LMIShell <http://pythonhosted.org/openlmi-tools/index.html#lmishell>`_:
+from :ref:`LMIShell <lmi_shell>`:
 
 * :ref:`Create a partition table on a device<example-create-partition-table>`.
 * :ref:`Create a new partition<example-create-partition>`.

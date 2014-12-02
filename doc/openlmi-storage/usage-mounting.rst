@@ -180,6 +180,9 @@ set to 2.
 
 Use cases
 =========
+.. note::
+   All example scripts expect :ref:`properly initialized lmishell <storage-shell-setup>`.
+
 Typical use of the mounting API could be like the following:
 
 Use an
@@ -214,10 +217,6 @@ This example demonstrates mounting /dev/sda partition with a customized setting.
 
 ::
 
-   # Connect to the remote system and prepare some local variables
-   connection = connect("remote.host.org", "root", "opensesame")
-   ns = connection.root.cimv2  # ns as NameSpace
-
    cap = ns.LMI_MountedFileSystemCapabilities.first_instance()
 
    # Create an LMI_MountedFileSystemSetting instance
@@ -251,9 +250,6 @@ In this example, /mnt, that was mounted in Example 1, is unmounted.
 
 ::
 
-   # Connect to the remote system and prepare some local variables
-   connection = connect("remote.host.org", "root", "opensesame")
-   ns = connection.root.cimv2  # ns as NameSpace
    mount_service = ns.LMI_MountConfigurationService.first_instance()
 
    mnt = ns.LMI_MountedFileSystem.first_instance({"MountPointPath": "/mnt/test"})

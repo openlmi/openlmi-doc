@@ -234,6 +234,7 @@ Function invocation
 Influencing properties:
 
     * ``NAMESPACE`` (namespace_)
+    * ``CONNECTION_TIMEOUT`` (timeout_)
 
 Property descriptions
 ~~~~~~~~~~~~~~~~~~~~~
@@ -256,11 +257,17 @@ Property descriptions
 
     This usually won't need any modification. Sometimes perhaps associated
     function might want to access more than one namespace, in that case an
-    instance of :py:class:`lmi.shell.LMIConnection.LMIConnection` might prove more useful.
+    instance of :py:class:`~lmi.shell.LMIConnection.LMIConnection` might prove more useful.
 
     Namespace can also be overriden globally in a configuration file or with
     an option on command line.
 
+.. _timeout:
+
+``CONNECTION_TIMEOUT`` : ``int`` (defaults to ``None``)
+    Specifies maximum number of seconds we should wait for broker's reply. If
+    reached, :py:class:`~lmi.shell.LMIExceptions.ConnectionError` will be
+    raised. The default value is provided by underlying library [#]_.
 
 Output rendering
 ----------------
@@ -565,6 +572,7 @@ method.
        have nothing to do with arguments.
 .. [#] Application object is accessible through ``app`` property of each
        command instance.
+.. [#] *lmiwbem*'s default timeout is 1 minute as of now.
 
 .. ****************************************************************************
 

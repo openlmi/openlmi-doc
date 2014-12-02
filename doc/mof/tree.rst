@@ -17,12 +17,17 @@ The list is organized into inheritance tree(s).
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_OrderedIPAssignmentComponent <LMI-OrderedIPAssignmentComponent>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_DirectoryContainsFile <CIM-DirectoryContainsFile>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_DirectoryContainsFile <LMI-DirectoryContainsFile>`
+|   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_SoftwareFeatureSoftwareElements <CIM-SoftwareFeatureSoftwareElements>`
+|   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_BIOSFeatureBIOSElements <CIM-BIOSFeatureBIOSElements>`
+|   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_BIOSFeatureBIOSElements <LMI-BIOSFeatureBIOSElements>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_SettingsDefineCapabilities <CIM-SettingsDefineCapabilities>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SettingsDefineManagementCapabilities <LMI-SettingsDefineManagementCapabilities>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_SettingsDefineAccountCapabilities <LMI-SettingsDefineAccountCapabilities>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_SystemComponent <CIM-SystemComponent>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_HostedFileSystem <CIM-HostedFileSystem>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_HostedFileSystem <LMI-HostedFileSystem>`
+|   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_SystemBIOS <CIM-SystemBIOS>`
+|   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_SystemBIOS <LMI-SystemBIOS>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_AccountOnSystem <CIM-AccountOnSystem>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_AccountOnSystem <LMI-AccountOnSystem>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_SystemDevice <CIM-SystemDevice>`
@@ -30,6 +35,7 @@ The list is organized into inheritance tree(s).
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PCIDeviceSystemDevice <LMI-PCIDeviceSystemDevice>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SystemStorageDevice <LMI-SystemStorageDevice>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_MemorySystemDevice <LMI-MemorySystemDevice>`
+|   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PCIPortSystemDevice <LMI-PCIPortSystemDevice>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_BatterySystemDevice <LMI-BatterySystemDevice>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_ProcessorSystemDevice <LMI-ProcessorSystemDevice>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PCIBridgeSystemDevice <LMI-PCIBridgeSystemDevice>`
@@ -72,33 +78,21 @@ The list is organized into inheritance tree(s).
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_AssociatedStorageJobMethodResult <LMI-AssociatedStorageJobMethodResult>`
 |   
 |  :ref:`CIM_Dependency <CIM-Dependency>`
-|  ├── :ref:`CIM_RemoteAccessAvailableToElement <CIM-RemoteAccessAvailableToElement>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_NetworkRemoteAccessAvailableToElement <LMI-NetworkRemoteAccessAvailableToElement>`
 |  ├── :ref:`LMI_SELinuxServiceHasElement <LMI-SELinuxServiceHasElement>`
-|  ├── :ref:`CIM_AbstractBasedOn <CIM-AbstractBasedOn>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_BasedOn <CIM-BasedOn>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_MDRAIDBasedOn <LMI-MDRAIDBasedOn>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PartitionBasedOn <LMI-PartitionBasedOn>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_LVBasedOn <LMI-LVBasedOn>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_LUKSBasedOn <LMI-LUKSBasedOn>`
 |  ├── :ref:`CIM_MediaPresent <CIM-MediaPresent>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_MediaPresent <LMI-MediaPresent>`
-|  ├── :ref:`CIM_RouteUsesEndpoint <CIM-RouteUsesEndpoint>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_RouteUsesEndpoint <LMI-RouteUsesEndpoint>`
-|  ├── :ref:`CIM_AssociatedSensor <CIM-AssociatedSensor>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_FanAssociatedSensor <LMI-FanAssociatedSensor>`
-|  ├── :ref:`CIM_Realizes <CIM-Realizes>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PhysicalMemoryRealizes <LMI-PhysicalMemoryRealizes>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_ProcessorChipRealizes <LMI-ProcessorChipRealizes>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PhysicalBatteryRealizes <LMI-PhysicalBatteryRealizes>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_DiskDriveRealizes <LMI-DiskDriveRealizes>`
-|  ├── :ref:`CIM_DeviceSAPImplementation <CIM-DeviceSAPImplementation>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_DiskDriveDeviceSAPImplementation <LMI-DiskDriveDeviceSAPImplementation>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_NetworkDeviceSAPImplementation <LMI-NetworkDeviceSAPImplementation>`
-|  ├── :ref:`LMI_MountPoint <LMI-MountPoint>`
+|  ├── :ref:`CIM_AssociatedMemory <CIM-AssociatedMemory>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_AssociatedCacheMemory <CIM-AssociatedCacheMemory>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_AssociatedProcessorCacheMemory <LMI-AssociatedProcessorCacheMemory>`
+|  ├── :ref:`CIM_ResidesOnExtent <CIM-ResidesOnExtent>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_ResidesOnExtent <LMI-ResidesOnExtent>`
+|  ├── :ref:`LMI_AttachedFileSystem <LMI-AttachedFileSystem>`
 |  ├── :ref:`CIM_ElementInConnector <CIM-ElementInConnector>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_PackageInConnector <CIM-PackageInConnector>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_MemoryPhysicalPackageInConnector <LMI-MemoryPhysicalPackageInConnector>`
+|  ├── :ref:`CIM_AssociatedSensor <CIM-AssociatedSensor>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_FanAssociatedSensor <LMI-FanAssociatedSensor>`
+|  ├── :ref:`LMI_MountPoint <LMI-MountPoint>`
 |  ├── :ref:`CIM_ElementSoftwareIdentity <CIM-ElementSoftwareIdentity>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_DiskDriveElementSoftwareIdentity <LMI-DiskDriveElementSoftwareIdentity>`
 |  ├── :ref:`CIM_AbstractElementAllocatedFromPool <CIM-AbstractElementAllocatedFromPool>`
@@ -106,28 +100,6 @@ The list is organized into inheritance tree(s).
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_AllocatedFromStoragePool <CIM-AllocatedFromStoragePool>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_LVAllocatedFromStoragePool <LMI-LVAllocatedFromStoragePool>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_VGAllocatedFromStoragePool <LMI-VGAllocatedFromStoragePool>`
-|  ├── :ref:`LMI_AttachedFileSystem <LMI-AttachedFileSystem>`
-|  ├── :ref:`CIM_SAPSAPDependency <CIM-SAPSAPDependency>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_EndpointForIPNetworkConnection <CIM-EndpointForIPNetworkConnection>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_EndpointForIPNetworkConnection <LMI-EndpointForIPNetworkConnection>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_BindsTo <CIM-BindsTo>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_BindsToLANEndpoint <CIM-BindsToLANEndpoint>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_BindsToLANEndpoint <LMI-BindsToLANEndpoint>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_LinkAggregationBindsTo <LMI-LinkAggregationBindsTo>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_NetworkSAPSAPDependency <LMI-NetworkSAPSAPDependency>`
-|  ├── :ref:`CIM_ServiceSAPDependency <CIM-ServiceSAPDependency>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_ForwardsAmong <CIM-ForwardsAmong>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_SwitchesAmong <CIM-SwitchesAmong>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_SwitchesAmong <LMI-SwitchesAmong>`
-|  ├── :ref:`CIM_SystemPackaging <CIM-SystemPackaging>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_ComputerSystemPackage <CIM-ComputerSystemPackage>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_ChassisComputerSystemPackage <LMI-ChassisComputerSystemPackage>`
-|  ├── :ref:`CIM_AssociatedMemory <CIM-AssociatedMemory>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_AssociatedCacheMemory <CIM-AssociatedCacheMemory>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_AssociatedProcessorCacheMemory <LMI-AssociatedProcessorCacheMemory>`
-|  ├── :ref:`LMI_HostedMount <LMI-HostedMount>`
-|  ├── :ref:`CIM_ResidesOnExtent <CIM-ResidesOnExtent>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_ResidesOnExtent <LMI-ResidesOnExtent>`
 |  ├── :ref:`CIM_HostedDependency <CIM-HostedDependency>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_HostedAccessPoint <CIM-HostedAccessPoint>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_HostedSoftwareIdentityResource <LMI-HostedSoftwareIdentityResource>`
@@ -143,8 +115,46 @@ The list is organized into inheritance tree(s).
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_HostedRealmdService <LMI-HostedRealmdService>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_HostedPowerManagementService <LMI-HostedPowerManagementService>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_HostedCollection <CIM-HostedCollection>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PCIPortHostedCollection <LMI-PCIPortHostedCollection>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_HostedSoftwareCollection <LMI-HostedSoftwareCollection>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_HostedStorageStatisticsCollection <LMI-HostedStorageStatisticsCollection>`
+|  ├── :ref:`LMI_HostedMount <LMI-HostedMount>`
+|  ├── :ref:`CIM_RouteUsesEndpoint <CIM-RouteUsesEndpoint>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_RouteUsesEndpoint <LMI-RouteUsesEndpoint>`
+|  ├── :ref:`CIM_AbstractBasedOn <CIM-AbstractBasedOn>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_BasedOn <CIM-BasedOn>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_MDRAIDBasedOn <LMI-MDRAIDBasedOn>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PartitionBasedOn <LMI-PartitionBasedOn>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_LVBasedOn <LMI-LVBasedOn>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_LUKSBasedOn <LMI-LUKSBasedOn>`
+|  ├── :ref:`CIM_Realizes <CIM-Realizes>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PhysicalMemoryRealizes <LMI-PhysicalMemoryRealizes>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_ProcessorChipRealizes <LMI-ProcessorChipRealizes>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PhysicalBatteryRealizes <LMI-PhysicalBatteryRealizes>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_DiskDriveRealizes <LMI-DiskDriveRealizes>`
+|  ├── :ref:`CIM_RemoteAccessAvailableToElement <CIM-RemoteAccessAvailableToElement>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_NetworkRemoteAccessAvailableToElement <LMI-NetworkRemoteAccessAvailableToElement>`
+|  ├── :ref:`CIM_SystemPackaging <CIM-SystemPackaging>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_ComputerSystemPackage <CIM-ComputerSystemPackage>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_ChassisComputerSystemPackage <LMI-ChassisComputerSystemPackage>`
+|  ├── :ref:`CIM_DeviceConnection <CIM-DeviceConnection>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_ControlledBy <CIM-ControlledBy>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_PCIControlledBy <LMI-PCIControlledBy>`
+|  ├── :ref:`CIM_SAPSAPDependency <CIM-SAPSAPDependency>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_EndpointForIPNetworkConnection <CIM-EndpointForIPNetworkConnection>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_EndpointForIPNetworkConnection <LMI-EndpointForIPNetworkConnection>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_BindsTo <CIM-BindsTo>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_BindsToLANEndpoint <CIM-BindsToLANEndpoint>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_BindsToLANEndpoint <LMI-BindsToLANEndpoint>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_LinkAggregationBindsTo <LMI-LinkAggregationBindsTo>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_NetworkSAPSAPDependency <LMI-NetworkSAPSAPDependency>`
+|  ├── :ref:`CIM_ServiceSAPDependency <CIM-ServiceSAPDependency>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_ForwardsAmong <CIM-ForwardsAmong>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_SwitchesAmong <CIM-SwitchesAmong>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_SwitchesAmong <LMI-SwitchesAmong>`
+|  ├── :ref:`CIM_DeviceSAPImplementation <CIM-DeviceSAPImplementation>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_DiskDriveDeviceSAPImplementation <LMI-DiskDriveDeviceSAPImplementation>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_NetworkDeviceSAPImplementation <LMI-NetworkDeviceSAPImplementation>`
 |  └── :ref:`CIM_InstalledPartitionTable <CIM-InstalledPartitionTable>`
 |   |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_InstalledPartitionTable <LMI-InstalledPartitionTable>`
 |   
@@ -381,6 +391,8 @@ The list is organized into inheritance tree(s).
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_NumericSensor <CIM-NumericSensor>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_FanSensor <LMI-FanSensor>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_LogicalPort <CIM-LogicalPort>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_PCIPort <CIM-PCIPort>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_PCIPort <LMI-PCIPort>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_NetworkPort <CIM-NetworkPort>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_EthernetPort <CIM-EthernetPort>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_EthernetPort <LMI-EthernetPort>`
@@ -412,24 +424,30 @@ The list is organized into inheritance tree(s).
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_LocalFileSystem <CIM-LocalFileSystem>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_LocalFileSystem <LMI-LocalFileSystem>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_TransientFileSystem <LMI-TransientFileSystem>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_SoftwareIdentity <CIM-SoftwareIdentity>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SoftwareIdentity <LMI-SoftwareIdentity>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_DiskDriveSoftwareIdentity <LMI-DiskDriveSoftwareIdentity>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_SoftwareFeature <CIM-SoftwareFeature>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_BIOSFeature <CIM-BIOSFeature>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_BIOSFeature <LMI-BIOSFeature>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_ResourcePool <CIM-ResourcePool>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_StoragePool <CIM-StoragePool>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_VGStoragePool <LMI-VGStoragePool>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_SoftwareElement <CIM-SoftwareElement>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_BIOSElement <CIM-BIOSElement>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_BIOSElement <LMI-BIOSElement>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_UnixFile <CIM-UnixFile>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_UnixFile <LMI-UnixFile>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_Job <CIM-Job>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_ConcreteJob <CIM-ConcreteJob>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PowerConcreteJob <LMI-PowerConcreteJob>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_ConcreteJob <LMI-ConcreteJob>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_NetworkJob <LMI-NetworkJob>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SoftwareJob <LMI-SoftwareJob>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SoftwareInstallationJob <LMI-SoftwareInstallationJob>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_SoftwareVerificationJob <LMI-SoftwareVerificationJob>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SELinuxJob <LMI-SELinuxJob>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_StorageJob <LMI-StorageJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_Job <CIM-Job>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_ConcreteJob <CIM-ConcreteJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_PowerConcreteJob <LMI-PowerConcreteJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_ConcreteJob <LMI-ConcreteJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_NetworkJob <LMI-NetworkJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SoftwareJob <LMI-SoftwareJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SoftwareInstallationJob <LMI-SoftwareInstallationJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_SoftwareVerificationJob <LMI-SoftwareVerificationJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SELinuxJob <LMI-SELinuxJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_StorageJob <LMI-StorageJob>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_SoftwareIdentity <CIM-SoftwareIdentity>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SoftwareIdentity <LMI-SoftwareIdentity>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_DiskDriveSoftwareIdentity <LMI-DiskDriveSoftwareIdentity>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_PhysicalElement <CIM-PhysicalElement>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_PhysicalPackage <CIM-PhysicalPackage>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_DiskPhysicalPackage <LMI-DiskPhysicalPackage>`
@@ -459,9 +477,12 @@ The list is organized into inheritance tree(s).
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_SystemSpecificCollection <CIM-SystemSpecificCollection>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_BlockStatisticsManifestCollection <CIM-BlockStatisticsManifestCollection>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_BlockStatisticsManifestCollection <LMI-BlockStatisticsManifestCollection>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_StatisticsCollection <CIM-StatisticsCollection>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_StorageStatisticsCollection <LMI-StorageStatisticsCollection>`
-|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_SystemSoftwareCollection <LMI-SystemSoftwareCollection>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_LogicalPortGroup <CIM-LogicalPortGroup>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_PCIPortGroup <CIM-PCIPortGroup>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_PCIPortGroup <LMI-PCIPortGroup>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`LMI_SystemSoftwareCollection <LMI-SystemSoftwareCollection>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`CIM_StatisticsCollection <CIM-StatisticsCollection>`
+|  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| └── :ref:`LMI_StorageStatisticsCollection <LMI-StorageStatisticsCollection>`
 |  ├── :ref:`CIM_StatisticalData <CIM-StatisticalData>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`PCP_MetricValue <PCP-MetricValue>`
 |  │ |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp|  |nbsp| ├── :ref:`CIM_NetworkPortStatistics <CIM-NetworkPortStatistics>`
@@ -482,6 +503,7 @@ The list is organized into inheritance tree(s).
 |  ├── :ref:`LMI_MemberOfGroup <LMI-MemberOfGroup>`
 |  ├── :ref:`LMI_MemberOfStorageStatisticsCollection <LMI-MemberOfStorageStatisticsCollection>`
 |  ├── :ref:`LMI_MemberOfBlockStatisticsManifestCollection <LMI-MemberOfBlockStatisticsManifestCollection>`
+|  ├── :ref:`LMI_PCIPortMemberOfCollection <LMI-PCIPortMemberOfCollection>`
 |  └── :ref:`LMI_MemberOfSoftwareCollection <LMI-MemberOfSoftwareCollection>`
 |   
 |  :ref:`CIM_OwningCollectionElement <CIM-OwningCollectionElement>`

@@ -10,7 +10,7 @@ everything under :py:mod:`lmi.scripts` namespace.
 development. Various scripts share this directory in order to provide
 command-line interface through *LMI metacommand*.
 
-Generated from version: ``0.10.1``
+Generated from version: ``0.10.2``
 
 .. ifconfig:: with_commands
 
@@ -32,6 +32,7 @@ Generated from version: ``0.10.1``
     ../scripts/commands/networking/python
     ../scripts/commands/powermanagement/python
     ../scripts/commands/realmd/python
+    ../scripts/commands/selinux/python
     ../scripts/commands/service/python
     ../scripts/commands/software/python
     ../scripts/commands/sssd/python

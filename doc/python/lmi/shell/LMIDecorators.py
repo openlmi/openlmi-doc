@@ -283,27 +283,25 @@ class lmi_instance_name_fetch_lazy(object):
             return fn(self_wr, *args, **kwargs)
         return wrapped
 
-# Default lmi_process_cim_exceptions error handler
-def return_lmi_rval(rval, exc):
-    errorstr = exc.args[1] if len(exc.args) > 1 else exc.args[0]
-    return LMIReturnValue(rval=rval, errorstr=errorstr)
 
-
-class lmi_process_cim_exceptions(object):
+class lmi_wrap_cim_exceptions(object):
     """
-    Decorator used for CIM-XML exception processing.
+    Decorator used for CIM-XML exception wrapping.
 
     :param rval: rval passed to :py:meth:`.LMIReturnValue.__init__`
     :param error_callable: callable used for processing
         :py:exc:`wbem.CIMError` and :py:exc:`.ConnectionError`
+    :param str prefix: string prefix for wrapped exception's args
 
     **NOTE:** callables need to take 2 arguments: return value and error
     string.
     """
 
-    def __init__(self, rval=None, error_callable=return_lmi_rval):
+    def __init__(self, rval=None, error_callable=None, prefix=""):
         self._rval = rval
-        self._error_callable = error_callable
+        self._error_callable = self.default_error_callable \
+            if error_callable is None else error_callable
+        self._prefix = prefix
 
     def __call__(self, fn):
         """
@@ -317,72 +315,75 @@ class lmi_process_cim_exceptions(object):
             try:
                 rval = fn(*args, **kwargs)
             except wbem.CIMError, e:
-                lmi_raise_or_dump_exception(CIMError(e))
-                return self._error_callable(self._rval, e)
+                cim_error = self.make_cim_error(e)
+                lmi_raise_or_dump_exception(cim_error)
+                return self._error_callable(self._rval, cim_error)
             except wbem.ConnectionError, e:
-                lmi_raise_or_dump_exception(ConnectionError(e))
-                return self._error_callable(self._rval, e)
+                conn_error = self.make_connection_error(e)
+                lmi_raise_or_dump_exception(conn_error)
+                return self._error_callable(self._rval, conn_error)
             except wbem.AuthError, e:
                 # PyWBEM's AuthError does not have HTTP error code in the
                 # exception args. We add the code by hand.
-                e = ConnectionError(401, "Unauthorized")
-                lmi_raise_or_dump_exception(e)
-                return self._error_callable(self._rval, e)
+                conn_error = ConnectionError(401, self.make_prefix() + "Unauthorized")
+                lmi_raise_or_dump_exception(conn_error)
+                return self._error_callable(self._rval, conn_error)
             return rval
         return wrapped
 
+    @staticmethod
+    def default_error_callable(rval, exc):
+        """
+        Default exception handler, which translates exception into
+        :py:class:`.LMIReturnValue`.
+        """
+        errorstr = exc.args[1] if len(exc.args) > 1 else exc.args[0]
+        return LMIReturnValue(rval=rval, errorstr=errorstr)
 
-class lmi_process_cim_exceptions_rval(lmi_process_cim_exceptions):
+    def make_prefix(self):
+        """
+        Returns prefix string for a CIM exception.
+        """
+        if not self._prefix:
+            return ""
+        return self._prefix + ": "
+
+    def make_exception_args(self, exc, prefix):
+        """
+        Returns a list of exception arguments. String argument is prefixed by
+        :py:meth:`make_prefix`.
+        """
+        def prefix_arg(arg):
+            if isinstance(arg, basestring):
+                return self.make_prefix() + arg
+            else:
+                return arg
+
+        return [prefix_arg(arg) for arg in exc.args]
+
+    def make_cim_error(self, cim_error):
+        """
+        Returns wrapped CIMError from wbem.CIMError.
+        """
+        return CIMError(
+            *self.make_exception_args(
+                cim_error, self.make_prefix()))
+
+    def make_connection_error(self, conn_error):
+        """
+        Returns wrapped ConnectionError from wbem.ConnectionError.
+        """
+        return ConnectionError(
+            *self.make_exception_args(
+                conn_error, self.make_prefix()))
+
+
+class lmi_wrap_cim_exceptions_rval(lmi_wrap_cim_exceptions):
     """
-    Decorator used for CIM-XML exception processing.
+    Decorator used for CIM-XML exception wrapping.
 
     :param rval: return value of a decorated method in case of exception
     """
-    def __init__(self, rval=None):
-        super(lmi_process_cim_exceptions_rval, self).__init__(
-            rval, lambda r, e: r)
-
-
-class lmi_process_wsman_exceptions(object):
-    """
-    Decorator used for wsman exception processing.
-
-    :param rval: rval passed to :py:meth:`.LMIReturnValue.__init__`
-    :param error_callable: callable used for processing
-        :py:exc:`wbem.CIMError` and :py:exc:`.ConnectionError`
-
-    **NOTE:** callables need to take 2 arguments: return value and error
-    string.
-    """
-    def __init__(self, rval=None, error_callable=return_lmi_rval):
-        self._rval = rval
-        self._error_callable = error_callable
-
-    def __call__(self, fn):
-        """
-        Execute a wrapped method.
-
-        :param instancemethod fn: decorated method
-        :raises: :py:exc:`.CIMError`
-        """
-        @wraps(fn)
-        def wrapped(*args, **kwargs):
-            try:
-                rval = fn(*args, **kwargs)
-            except wbem.CIMError, e:
-                x = CIMError(e)
-                lmi_raise_or_dump_exception(CIMError(e))
-                return self._error_callable(self._rval, e)
-            return rval
-        return wrapped
-
-
-class lmi_process_wsman_exceptions_rval(lmi_process_wsman_exceptions):
-    """
-    Decorator used for wsman exception processing.
-
-    :param rval: return value of a decorated method in case of exception
-    """
-    def __init__(self, rval=None):
-        super(lmi_process_wsman_exceptions_rval, self).__init__(
-            rval, lambda r, e: r)
+    def __init__(self, rval=None, prefix=""):
+        super(lmi_wrap_cim_exceptions_rval, self).__init__(
+            rval, lambda r, e: r, prefix)

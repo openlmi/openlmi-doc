@@ -1,4 +1,4 @@
-.. _dmtf-profile:
+.. _account-dmtf-profile:
 
 DMTF profile
 =============

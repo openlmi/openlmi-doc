@@ -25,6 +25,7 @@ Local properties
 
 ``boolean`` **PowerManagementSupported**
 
+    **Deprecated!** 
     Note: The use of this property has been deprecated. Instead, the existence of an associated PowerManagementCapabilities class (associated using the ElementCapabilities relationship) indicates that power management is supported. Deprecated description: Boolean that indicates that the Device can use power management.
 
     
@@ -46,6 +47,7 @@ Local properties
 
 ``boolean`` **ErrorCleared**
 
+    **Deprecated!** 
     Note: The use of this method is deprecated. 
 
     Deprecated description: ErrorCleared is a Boolean property that indicates that the error reported in LastErrorCode is now cleared.
@@ -146,6 +148,7 @@ Local properties
 
 ``uint16[]`` **PowerManagementCapabilities**
 
+    **Deprecated!** 
     Note: The use of this property has been deprecated. Instead, use the PowerCapabilites property in an associated PowerManagementCapabilities class. Deprecated description: An enumerated array describing the power management capabilities of the Device.
 
     
@@ -166,6 +169,7 @@ Local properties
 
 ``uint64`` **MaxQuiesceTime**
 
+    **Deprecated!** 
     Note: The use of this property has been deprecated. When evaluating the use of Quiesce, it was determined that this single property is not adequate for describing when a device will automatically exit a quiescent state. In fact, the most likely scenario for a device to exit a quiescent state was determined to be based on the number of outstanding requests queued rather than on a maximum time. This decision will be re-evaluated and repositioned later. 
 
     Deprecated description: Maximum time, in milliseconds, that a Device can run in a "Quiesced" state. The state is defined in its Availability and AdditionalAvailability properties, where "Quiesced" is conveyed by the value 21. What occurs at the end of the time limit is device-specific. The Device can unquiesce, can be offline, or can take other actions. A value of 0 indicates that a Device can remain quiesced indefinitely.
@@ -339,7 +343,6 @@ Local methods
 
 ``uint32`` **OnlineDevice** (``boolean`` Online)
 
-    **Deprecated!** 
     Note: The use of this method has been deprecated in lieu of the more general RequestStateChange method that directly overlaps with the functionality provided by this method. 
 
     Deprecated description: Requests that the LogicalDevice be brought online ("Online" input parameter=TRUE) or taken offline (=FALSE). "Online" indicates that the Device is ready to accept requests, and is operational and fully functioning. In this case, the Availability property of the Device would be set to a value of 3 ("Running/Full Power"). "Offline" indicates that a Device is powered on and operational, but is not processing functional requests. In an offline state, a Device might be capable of running diagnostics or generating operational alerts. For example, when the "Offline" button is pushed on a Printer, the Device is no longer available to process print jobs, but it could be available for diagnostics or maintenance. 
@@ -363,6 +366,7 @@ Local methods
 
 ``uint32`` **SaveProperties** ()
 
+    **Deprecated!** 
     Note: The use of this method is deprecated. Its function is handled more generally by the ConfigurationData subclass of SettingData. 
 
     Deprecated description: Requests that the Device capture its current configuration, setup or state information, or both in a backing store. 

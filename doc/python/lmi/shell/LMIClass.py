@@ -25,7 +25,7 @@ from lmi.shell.LMIObjectFactory import LMIObjectFactory
 from lmi.shell.LMIExceptions import LMIUnknownPropertyError
 
 from lmi.shell.LMIDecorators import lmi_class_fetch_lazy
-from lmi.shell.LMIDecorators import lmi_process_cim_exceptions
+from lmi.shell.LMIDecorators import lmi_wrap_cim_exceptions_rval
 from lmi.shell.LMIDecorators import lmi_return_val_if_fail
 from lmi.shell.LMIDecorators import lmi_return_if_fail
 
@@ -157,9 +157,7 @@ class LMIClass(LMIWrapperBaseObject):
         return bool(self._cim_class) and \
             (not full_fetch or self._cim_class_full_fetch)
 
-    @lmi_process_cim_exceptions(
-        lambda x, y: None,
-        lambda x, y: None)
+    @lmi_wrap_cim_exceptions_rval(None)
     def fetch(self, full_fetch=False):
         """
         Manually fetches a wrapped :py:class:`wbem.CIMClass` object.

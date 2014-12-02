@@ -1,6 +1,13 @@
 Logical Volume management
 =========================
 
+OpenLMI storage provider supports basic LVM operations, incl. thin pool
+management. See `Red Hat documentation`_ for LVM terminology, architecture and
+usage from command line (note that the information there apply also to
+other Linux distributions).
+
+.. _Red Hat documentation: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Logical_Volume_Manager_Administration/LVM_overview.html
+
 Volume Groups (VG) and Thin Pools (TP) are represented by
 :ref:`LMI_VGStoragePool <LMI-VGStoragePool>` class. To differentiate between the
 two, `SpaceLimitDetermination` and `SpaceLimit` are both set or both empty.
@@ -118,6 +125,9 @@ Useful methods
 Use cases
 ---------
 
+.. note::
+   All example scripts expect :ref:`properly initialized lmishell <storage-shell-setup>`.
+
 Create Volume Group
 ^^^^^^^^^^^^^^^^^^^
 
@@ -125,9 +135,6 @@ Use :ref:`CreateOrModifyVG <LMI-StorageConfigurationService-CreateOrModifyVG>`
 method. Following example creates a VG '/dev/myGroup' with three members and
 with default extent size (4MiB)::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     storage_service = ns.LMI_StorageConfigurationService.first_instance()
 
     # Find the devices we want to add to VG
@@ -156,9 +163,6 @@ The VG from the previous example can be used to create a TP on. This example
 script creates a Thin Pool 'myThinPool' on the VG 'myGroup'. The TP is 100 MiB
 in size::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     storage_service = ns.LMI_StorageConfigurationService.first_instance()
     MEGABYTE = 1024*1024
 
@@ -183,9 +187,6 @@ SMI-S applications can use
 method. Following example creates a VG '/dev/myGroup' with three members and
 with default extent size (4MiB)::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     storage_service = ns.LMI_StorageConfigurationService.first_instance()
 
     # Find the devices we want to add to VG
@@ -218,9 +219,6 @@ from a VG, all its data are safely moved to a free PV.
 Continuing with previous example, let's remove '/dev/sda1' from the VG and
 add '/dev/sdd1' to it::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     storage_service = ns.LMI_StorageConfigurationService.first_instance()
 
     # Find all the devices we want to be in VG
@@ -258,9 +256,6 @@ extent size and finally call
 the setting as ``Goal`` parameter. Following example creates a VG
 '/dev/myGroup' with three members and with 1MiB extent size (4MiB)::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     storage_service = ns.LMI_StorageConfigurationService.first_instance()
     MEGABYTE = 1024*1024
 
@@ -300,10 +295,6 @@ associations of the VG.
 
 Following code lists all PVs of ``/dev/myGroup``::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
-
     # Find the VG
     vg = ns.LMI_VGStoragePool.first_instance({"Name": "/dev/mapper/myGroup"})
     pvs = vg.associators(AssocClass="LMI_VGAssociatedComponentExtent")
@@ -316,9 +307,6 @@ Create Logical Volume
 Use :ref:`CreateOrModifyLV <LMI-StorageConfigurationService-CreateOrModifyLV>`
 method. Following example creates two 100MiB volumes::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     storage_service = ns.LMI_StorageConfigurationService.first_instance()
     MEGABYTE = 1024*1024
 
@@ -356,9 +344,6 @@ There already is a TP (100 MiB) in the system. This snippet of code creates a 10
 GiB Thin Logical Volume and prints some information about it. Note that this TLV
 causes the underlying TP to be overcommited::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     storage_service = ns.LMI_StorageConfigurationService.first_instance()
 
     # Find the thin pool
@@ -381,9 +366,6 @@ Use
 method. The code is the same as in previous sample, just different method is
 used::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     storage_service = ns.LMI_StorageConfigurationService.first_instance()
     MEGABYTE = 1024*1024
 
@@ -415,9 +397,6 @@ Delete VG
 
 Call :ref:`DeleteVG <LMI-StorageConfigurationService-DeleteVG>` method::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     storage_service = ns.LMI_StorageConfigurationService.first_instance()
 
     vg = ns.LMI_VGStoragePool.first_instance({"Name": "/dev/mapper/myGroup"})
@@ -429,9 +408,6 @@ Delete LV
 
 Call :ref:`DeleteLV <LMI-StorageConfigurationService-DeleteLV>` method::
 
-   # Connect to the remote system and prepare some local variables
-   connection = connect("remote.host.org", "root", "opensesame")
-   ns = connection.root.cimv2  # ns as NameSpace
    storage_service = ns.LMI_StorageConfigurationService.first_instance()
 
    lv = ns.LMI_LVStorageExtent.first_instance({"Name": "/dev/mapper/myGroup-Vol2"})

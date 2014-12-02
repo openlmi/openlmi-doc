@@ -1,7 +1,7 @@
 Usage
 =====
 
-OpenLMI Hardware provider contains hardware information, it does not
+OpenLMI-Hardware exposes hardware information, it does not
 implement any methods. List of provided information divided by DMTF profiles
 can be found below.
 
@@ -32,7 +32,7 @@ Used Resources
 * dmidecode program *[from dmidecode package]*
 * lscpu program *[from util-linux package]*
 * /proc/cpuinfo file
-* /sys/devices/system/cpu/* files
+* /sys/devices/system/cpu/\* files
 
 System Memory Profile
 ---------------------
@@ -61,38 +61,9 @@ Used Resources
 ^^^^^^^^^^^^^^
 * dmidecode program *[from dmidecode package]*
 * /proc/meminfo file
-* /sys/devices/system/node/* files
-* /sys/kernel/mm/hugepages/* files
-* /sys/kernel/mm/transparent_hugepage/* files
-
-Physical Asset Profile
-----------------------
-Physical Asset Profile provides basic information about physical assets
-in system, usually with FRU data, currently for following hardware
-(with associations):
-
-* System chassis
-* Baseboard (motherboard)
-* Chassis ports (USB, LAN, VGA..)
-* Chassis slots (Media card slot, Express card slot..)
-* Pointing devices on chassis (Touch pad, Track point..)
-
-Used Resources
-^^^^^^^^^^^^^^
-* dmidecode program *[from dmidecode package]*
-
-Battery Profile
----------------
-Battery Profile provides basic information about battery:
-
-* Capacity
-* Voltage
-* Chemistry
-* FRU data
-
-Used Resources
-^^^^^^^^^^^^^^
-* dmidecode program *[from dmidecode package]*
+* /sys/devices/system/node/\* files
+* /sys/kernel/mm/hugepages/\* files
+* /sys/kernel/mm/transparent_hugepage/\* files
 
 PCI Device Profile
 ------------------
@@ -136,29 +107,62 @@ PCI Device Profile provides information about PCI devices:
   - Prefetch Memory Base
   - Prefetch Memory Limit
 
+* PCI bus modelled with :ref:`LMI_PCIPortGroup <lmi-pciportgroup>`
+
 Used Resources
 ^^^^^^^^^^^^^^
 * libpci library *[from pciutils package, pci/pci.h header file]*
+
+Physical Asset Profile
+----------------------
+Physical Asset Profile provides basic information about physical assets
+in system, usually with FRU data, currently for following hardware
+(with associations):
+
+* System chassis
+* Baseboard (motherboard)
+* Chassis ports (USB, LAN, VGA..)
+* Chassis slots (Media card slot, Express card slot..)
+* Pointing devices on chassis (Touch pad, Track point..)
+
+Used Resources
+^^^^^^^^^^^^^^
+* dmidecode program *[from dmidecode package]*
+
+BIOS Profile
+------------
+BIOS Profile provides information about BIOS:
+
+* Version
+* Manufacturer
+* BIOS Release
+* Embedded Controller Firmware Release
+* Release Date
+* Current Language
+* Available languages
+* Characteristics
+
+Used Resources
+^^^^^^^^^^^^^^
+* dmidecode program *[from dmidecode package]*
 
 Disk Drive Profile
 ------------------
 Disk Drive Profile provides information about disk drives:
 
-* Disk Drive:
-
-  - Overall S.M.A.R.T. status
-  - Temperature
-  - Capacity
-  - Manufacturer
-  - Model
-  - Serial Number
-  - Firmware version
-  - Form Factor (disk size: 2.5", 3.5"..)
-  - RPM
-  - Port Type (ATA/SATA/SATA2)
-  - Max Port Speed
-  - Current Port Speed
-  - Disk Type (HDD/SSD)
+* Overall S.M.A.R.T. status
+* Temperature
+* Capacity
+* Manufacturer
+* Model
+* Serial Number
+* Firmware version
+* Form Factor (disk size: 2.5", 3.5"..)
+* RPM
+* Port Type (ATA/SATA/SATA2)
+* Max Port Speed
+* Current Port Speed
+* Disk Type (HDD/SSD)
 
 Used Resources
 ^^^^^^^^^^^^^^
@@ -166,3 +170,22 @@ Used Resources
 * smartctl program *[from smartmontools package]*
 * /sys/class/block/\*/device/vendor file
 * /sys/class/block/\*/queue/rotational file
+
+Battery Profile
+---------------
+Battery Profile provides information about battery:
+
+* Capacity
+* Voltage
+* Chemistry
+* FRU data
+* Battery Status
+* Charging Status
+* Estimated Run Time
+* Estimated Time to Full Charge
+* Remaining Health Percentage
+
+Used Resources
+^^^^^^^^^^^^^^
+* dmidecode program *[from dmidecode package]*
+* /sys/class/power_supply/BAT\*/\* files

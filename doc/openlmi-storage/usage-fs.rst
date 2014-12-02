@@ -65,6 +65,9 @@ Useful methods
 Use cases
 ---------
 
+.. note::
+   All example scripts expect :ref:`properly initialized lmishell <storage-shell-setup>`.
+
 .. _example-create-filesystem:
 
 Create File System
@@ -74,9 +77,6 @@ Use
 :ref:`LMI_CreateFileSystem <LMI-FileSystemConfigurationService-LMI-CreateFileSystem>`
 method. Following example formats ``/dev/sda3`` with ext3::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     filesystem_service = ns.LMI_FileSystemConfigurationService.first_instance()
 
     # Find the /dev/sda3 device
@@ -98,9 +98,6 @@ Use the same
 method as above. Following example formats ``/dev/sda1`` and ``dev/sda2`` as
 one btrfs volume::
 
-   # Connect to the remote system and prepare some local variables
-   connection = connect("remote.host.org", "root", "opensesame")
-   ns = connection.root.cimv2  # ns as NameSpace
    filesystem_service = ns.LMI_FileSystemConfigurationService.first_instance()
 
    # Find the /dev/sda1+2 devices
@@ -122,9 +119,6 @@ Use
 :ref:`LMI_CreateFileSystem <LMI-FileSystemConfigurationService-DeleteFileSystem>`
 method::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     filesystem_service = ns.LMI_FileSystemConfigurationService.first_instance()
 
     sda1 = ns.CIM_StorageExtent.first_instance({"Name": "/dev/sda1"})

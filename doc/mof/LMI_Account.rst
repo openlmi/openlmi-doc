@@ -57,6 +57,13 @@ Local properties
     When the underlying account does not have a valid password, the CIM_Account.UserPassword property shall be NULL.
 
     
+.. _LMI-Account-GroupID:
+
+``string`` **GroupID**
+
+    The ID of a primary group that represents the identity.
+
+    
 .. _LMI-Account-LoginShell:
 
 ``string`` **LoginShell**
@@ -156,7 +163,7 @@ Inherited properties
 | ``uint16`` :ref:`RequestedState <CIM-EnabledLogicalElement-RequestedState>`
 | ``uint16`` :ref:`HealthState <CIM-ManagedSystemElement-HealthState>`
 | ``string[]`` :ref:`OrganizationName <CIM-Account-OrganizationName>`
-| ``string[]`` :ref:`StatusDescriptions <CIM-ManagedSystemElement-StatusDescriptions>`
+| ``string[]`` :ref:`OU <CIM-Account-OU>`
 | ``string`` :ref:`InstanceID <CIM-ManagedElement-InstanceID>`
 | ``string`` :ref:`UserID <CIM-Account-UserID>`
 | ``uint16`` :ref:`MaximumSuccessiveLoginFailures <CIM-Account-MaximumSuccessiveLoginFailures>`
@@ -169,6 +176,7 @@ Inherited properties
 | ``string[]`` :ref:`SeeAlso <CIM-Account-SeeAlso>`
 | ``string`` :ref:`Status <CIM-ManagedSystemElement-Status>`
 | ``string`` :ref:`ElementName <CIM-ManagedElement-ElementName>`
+| ``string[]`` :ref:`StatusDescriptions <CIM-ManagedSystemElement-StatusDescriptions>`
 | ``string`` :ref:`Description <CIM-ManagedElement-Description>`
 | ``uint16`` :ref:`TransitioningToState <CIM-EnabledLogicalElement-TransitioningToState>`
 | ``string[]`` :ref:`ObjectClass <CIM-Account-ObjectClass>`
@@ -186,7 +194,6 @@ Inherited properties
 | ``uint32`` :ref:`UserPasswordEncoding <CIM-Account-UserPasswordEncoding>`
 | ``string`` :ref:`OtherUserPasswordEncryptionAlgorithm <CIM-Account-OtherUserPasswordEncryptionAlgorithm>`
 | ``string`` :ref:`CreationClassName <CIM-Account-CreationClassName>`
-| ``string[]`` :ref:`OU <CIM-Account-OU>`
 | ``datetime`` :ref:`PasswordExpiration <CIM-Account-PasswordExpiration>`
 | ``uint64`` :ref:`Generation <CIM-ManagedElement-Generation>`
 | ``string`` :ref:`OtherEnabledState <CIM-EnabledLogicalElement-OtherEnabledState>`

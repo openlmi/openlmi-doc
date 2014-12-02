@@ -217,6 +217,7 @@ Local properties
 
 ``datetime`` **ScheduledStartTime**
 
+    **Deprecated!** 
     The time that the current Job is scheduled to start. This time can be represented by the actual date and time, or an interval relative to the time that this property is requested. A value of all zeroes indicates that the Job is already executing. The property is deprecated in lieu of the more expressive scheduling properties, RunMonth, RunDay, RunDayOfWeek, and RunStartInterval.
 
     
@@ -249,7 +250,6 @@ Local methods
 
 ``uint32`` **KillJob** (``boolean`` DeleteOnKill)
 
-    **Deprecated!** 
     KillJob is being deprecated because there is no distinction made between an orderly shutdown and an immediate kill. CIM_ConcreteJob.RequestStateChange() provides 'Terminate' and 'Kill' options to allow this distinction. 
 
     A method to kill this job and any underlying processes, and to remove any 'dangling' associations.

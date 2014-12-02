@@ -126,8 +126,9 @@ def check_inames_equal(fst, snd):
     if fst.classname != snd.classname or fst.namespace != snd.namespace:
         return False
 
-    snd_keys = dict((k, v) for (k, v) in snd.keybindings.iteritems())
+    snd_keys = dict((k.lower(), v) for (k, v) in snd.keybindings.iteritems())
     for key, value in fst.keybindings.iteritems():
+        key = key.lower()    # Property names are case-insensitive
         if key not in snd_keys:
             return False
         snd_value = snd_keys.pop(key)
@@ -136,8 +137,8 @@ def check_inames_equal(fst, snd):
                 return False
 
         # accept also aliases in the Name attribute of ComputerSystem
-        elif ((isa_cs(fst) and key.lower() == 'name')
-              or (key.lower() == 'systemname'
+        elif ((isa_cs(fst) and key == 'name')
+              or (key == 'systemname'
                   and 'SystemCreationClassName' in fst)
               ):
             if (value != snd_value
@@ -145,7 +146,7 @@ def check_inames_equal(fst, snd):
                      or not is_this_system(snd_value))):
                 return False
 
-        elif (isa_cs(fst) and key.lower() == 'creationclassname'):
+        elif (isa_cs(fst) and key == 'creationclassname'):
             if (value != snd_value
                 and 'CIM_ComputerSystem' not in [
                     p['CreationClassName'] for p in (fst, snd)]):

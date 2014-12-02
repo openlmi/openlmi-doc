@@ -81,6 +81,7 @@ Local properties
 
 ``uint16`` **ErrorDataOrder**
 
+    **Deprecated!** 
     The ordering for data stored in the ErrorData property. "Least Significant Byte First" (value=1) or "Most Significant Byte First" (2) can be specified. If ErrorTransferSize is 0, then this property has no meaning.
 
     
@@ -126,7 +127,6 @@ Local properties
 
 ``string`` **OtherErrorDescription**
 
-    **Deprecated!** 
     Free form string providing more information if the Error Type property is set to 1, "Other". If not set to 1, this string has no meaning.
 
     

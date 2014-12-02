@@ -82,6 +82,9 @@ Useful methods
 Use cases
 ---------
 
+.. note::
+   All example scripts expect :ref:`properly initialized lmishell <storage-shell-setup>`.
+
 Create encrypted file system.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -89,9 +92,6 @@ Use
 :ref:`CreateEncryptionFormat<LMI-ExtentEncryptionConfigurationService-CreateEncryptionFormat>`
 to create LUKS format, open it and create ext3 filesystem on it::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     encryption_service = ns.LMI_ExtentEncryptionConfigurationService.first_instance()
     filesystem_service = ns.LMI_FileSystemConfigurationService.first_instance()
 
@@ -127,9 +127,6 @@ The clear-text device must be unmounted first!
 
 ::
 
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
     encryption_service = ns.LMI_ExtentEncryptionConfigurationService.first_instance()
 
     # Find the LUKS format
@@ -153,11 +150,6 @@ methods.
 
 Following code can be used to replace weak 'opensesame' password with something
 stronger::
-
-    # Connect to the remote system and prepare some local variables
-    connection = connect("remote.host.org", "root", "opensesame")
-    ns = connection.root.cimv2  # ns as NameSpace
-    encryption_service = ns.LMI_ExtentEncryptionConfigurationService.first_instance()
 
     # Find the LUKS format
     sda1 = ns.CIM_StorageExtent.first_instance({"Name": "/dev/sdb1"})

@@ -137,6 +137,13 @@ Local properties
     Note that the Name property of ManagedSystemElement is also defined as a user-friendly name. But, it is often subclassed to be a Key. It is not reasonable that the same property can convey both identity and a user-friendly name, without inconsistencies. Where Name exists and is not a Key (such as for instances of LogicalDevice), the same information can be present in both the Name and ElementName properties. Note that if there is an associated instance of CIM_EnabledLogicalElementCapabilities, restrictions on this properties may exist as defined in ElementNameMask and MaxElementNameLen properties defined in that class.
 
     
+.. _LMI-PCIDevice-Description:
+
+``string`` **Description**
+
+    The Description property provides a textual description of the object.
+
+    
 .. _LMI-PCIDevice-RevisionID:
 
 ``uint8`` **RevisionID**
@@ -328,11 +335,9 @@ Inherited properties
 | ``uint16`` :ref:`CommunicationStatus <CIM-ManagedSystemElement-CommunicationStatus>`
 | ``boolean`` :ref:`SelfTestEnabled <CIM-PCIController-SelfTestEnabled>`
 | ``datetime`` :ref:`TimeOfLastStateChange <CIM-EnabledLogicalElement-TimeOfLastStateChange>`
-| ``string`` :ref:`Description <CIM-ManagedElement-Description>`
 | ``uint16`` :ref:`Availability <CIM-LogicalDevice-Availability>`
 | ``string`` :ref:`Status <CIM-ManagedSystemElement-Status>`
 | ``string[]`` :ref:`StatusDescriptions <CIM-ManagedSystemElement-StatusDescriptions>`
-| ``datetime`` :ref:`InstallDate <CIM-ManagedSystemElement-InstallDate>`
 | ``uint16`` :ref:`TransitioningToState <CIM-EnabledLogicalElement-TransitioningToState>`
 | ``uint64`` :ref:`Generation <CIM-ManagedElement-Generation>`
 | ``boolean`` :ref:`ErrorCleared <CIM-LogicalDevice-ErrorCleared>`
@@ -361,6 +366,7 @@ Inherited properties
 | ``uint16`` :ref:`LocationIndicator <CIM-LogicalDevice-LocationIndicator>`
 | ``uint16[]`` :ref:`OperationalStatus <CIM-ManagedSystemElement-OperationalStatus>`
 | ``uint32`` :ref:`LastErrorCode <CIM-LogicalDevice-LastErrorCode>`
+| ``datetime`` :ref:`InstallDate <CIM-ManagedSystemElement-InstallDate>`
 | ``uint8`` :ref:`MinGrantTime <CIM-PCIDevice-MinGrantTime>`
 
 Inherited methods

@@ -1,3 +1,5 @@
+.. _power-usage:
+
 Usage
 =====
 

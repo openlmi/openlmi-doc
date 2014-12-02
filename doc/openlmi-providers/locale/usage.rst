@@ -1,3 +1,5 @@
+.. _locale-usage:
+
 Usage
 =====
 
@@ -20,6 +22,14 @@ Print what you're interested in::
     print locale.X11Layouts
     # get VConsoleKeymap
     print locale.VConsoleKeymap
+    # get system timezone
+    print locale.timezone
+    # get whether the RTC is maintained in local time
+    print locale.LocalRTC
+    # get whether the system can be synchronized by NTP
+    # and whether synchronization is enabled/disabled at the moment
+    print locale.CanNTP
+    print locale.NTP
 
 Or print everything::
 
@@ -28,10 +38,10 @@ Or print everything::
 
 Setting system locale
 ---------------------
-Set LANG and/or set individual locale variables. Lang, LCCType, LCAddress, LCNumeric,
-LCTelephone, LCCollate, LCPaper, LCMonetary, LCTime, LCMessages, LCIdentification,
-LCName and LCMeasurement properties correspond to likewise named Linux locale
-environmental variables::
+Set LANG and/or set individual locale variables. Lang, Language, LCCType, LCAddress,
+LCNumeric, LCTelephone, LCCollate, LCPaper, LCMonetary, LCTime, LCMessages,
+LCIdentification, LCName and LCMeasurement properties correspond to likewise named
+Linux locale environmental variables::
 
     # set LANG (LANG value is used also for all other locale categories by default)
     locale.SetLocale(Lang="en_US.UTF-8")
@@ -69,3 +79,43 @@ Again, setting Convert to 'True' will set the nearest X11 keyboard setting for
 the chosen console setting::
 
     locale.SetVConsoleKeyboard(Keymap="us",Convert="True")
+
+Setting system time
+-------------------
+There are two possibilities of setting the system time. You can pass
+a value of microseconds (sic!) since 1 Jan 1970 UTC (Unix time a.k.a.
+POSIX time or Epoch time)::
+
+    # set system time to Wed Nov 26 13:50:20 2014
+    locale.SetTime(UsecUTC=1417006220000000,Relative=False)
+
+Or you can set Relative parameter to 'True' and the passed usec value will be
+added to the current system time::
+
+    # move the system time 15 second backwards from current system time
+    locale.SetTime(UsecUTC=-15000000,Relative=True)
+
+Setting system timezone
+-----------------------
+Set the system timezone::
+
+    locale.SetTimezone(Timezone="Europe/Prague")
+
+Note that if the RTC is configured to be maintained in local time it will
+be updated accordingly.
+
+Setting whether the RTC is maintained in local time/UTC
+-------------------------------------------------------
+Set that the RTC is maintained in local time::
+
+    locale.SetLocalRTC(LocalRTC=True,FixSystem=False)
+
+If the FixSystem parameter is set to 'True', the time from the RTC is read
+again and the system clock adjusted according to the new setting. (This is
+useful in cases where the RTC is probably more reliable than the system time.)
+
+Setting whether the system clock is syncrhonized with a remote NTP server
+-------------------------------------------------------------------------
+Enable synchronization of the system clock with a remote NTP server::
+
+    locale.SetNTP(UseNTP=True)

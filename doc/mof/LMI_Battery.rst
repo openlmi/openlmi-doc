@@ -21,6 +21,40 @@ Key properties
 Local properties
 ^^^^^^^^^^^^^^^^
 
+.. _LMI-Battery-BatteryStatus:
+
+``uint16`` **BatteryStatus**
+
+    Description of the charge status of the Battery. Values such as "Fully Charged" (value=3) or "Partially Charged" (value=11) can be specified. The value, 10, is not valid in the CIM Schema because in DMI it represents that no battery is installed. In this case, this object should not be instantiated. The valuemaps: 6(Charging), 7(Charging and High), 8(Charging and Low), and 9(Charing and Critical) has been deprecated in lieu of the ChargingStatus property. 10(Undefined) has been deprecated in lieu of 2(Unknown).
+
+    
+    ============ =====================
+    ValueMap     Values               
+    ============ =====================
+    1            Other                
+    2            Unknown              
+    3            Fully Charged        
+    4            Low                  
+    5            Critical             
+    6            Charging             
+    7            Charging and High    
+    8            Charging and Low     
+    9            Charging and Critical
+    10           Undefined            
+    11           Partially Charged    
+    12           Learning             
+    13           Overcharged          
+    ..           DMTF Reserved        
+    32768..65535 Vendor Specific      
+    ============ =====================
+    
+.. _LMI-Battery-Capacity:
+
+``uint8`` **Capacity**
+
+    Percentage of the current battery capacity.
+
+    
 .. _LMI-Battery-InstanceID:
 
 ``string`` **InstanceID**
@@ -61,12 +95,44 @@ Local properties
     Note that the Name property of ManagedSystemElement is also defined as a user-friendly name. But, it is often subclassed to be a Key. It is not reasonable that the same property can convey both identity and a user-friendly name, without inconsistencies. Where Name exists and is not a Key (such as for instances of LogicalDevice), the same information can be present in both the Name and ElementName properties. Note that if there is an associated instance of CIM_EnabledLogicalElementCapabilities, restrictions on this properties may exist as defined in ElementNameMask and MaxElementNameLen properties defined in that class.
 
     
+.. _LMI-Battery-TimeToFullCharge:
+
+``uint32`` **TimeToFullCharge**
+
+    The remaining time in minutes to charge the battery fully at the current charging rate and usage.
+
+    
 .. _LMI-Battery-Description:
 
 ``string`` **Description**
 
     The Description property provides a textual description of the object.
 
+    
+.. _LMI-Battery-RemainingCapacity:
+
+``uint32`` **RemainingCapacity**
+
+    The Battery's remaining charge capacity in mWatt-hours.
+
+    
+.. _LMI-Battery-ChargingStatus:
+
+``uint16`` **ChargingStatus**
+
+    ChargingStatus indicates whether the battery is charging. Charging - the battery is charging. Discharging - the battery is discharging. Idle - the batter is neither charging nor discharging.
+
+    
+    ============ ================
+    ValueMap     Values          
+    ============ ================
+    0            Unknown         
+    2            Charging        
+    3            Discharging     
+    4            Idle            
+    ..           DMTF Reserved   
+    32768..65535 Vendor Specified
+    ============ ================
     
 .. _LMI-Battery-Name:
 
@@ -82,6 +148,13 @@ Local properties
     The design voltage of the battery in mVolts. If this attribute is not supported, enter 0.
 
     
+.. _LMI-Battery-EstimatedChargeRemaining:
+
+``uint16`` **EstimatedChargeRemaining**
+
+    An estimate of the percentage of full charge remaining.
+
+    
 .. _LMI-Battery-Caption:
 
 ``string`` **Caption**
@@ -94,6 +167,13 @@ Local properties
 ``string`` **DeviceID**
 
     An address or other identifying information used to uniquely name the LogicalDevice.
+
+    
+.. _LMI-Battery-HealthPercent:
+
+``uint8`` **HealthPercent**
+
+    An estimate of the percentage of the overall battery health. It indicates how much the battery has deteriorated over time. It can take values 0 to 100; 255 if it is unknown.
 
     
 .. _LMI-Battery-Chemistry:
@@ -125,6 +205,20 @@ Local properties
     CreationClassName indicates the name of the class or the subclass used in the creation of an instance. When used with the other key properties of this class, this property allows all instances of this class and its subclasses to be uniquely identified.
 
     
+.. _LMI-Battery-EstimatedRunTime:
+
+``uint32`` **EstimatedRunTime**
+
+    EstimatedRunTime is an estimate in minutes of the time that battery charge depletion will occur under the present load conditions if the utility power is off, or is lost and remains off, or a Laptop is disconnected from a power source.
+
+    
+.. _LMI-Battery-FullChargeCapacity:
+
+``uint32`` **FullChargeCapacity**
+
+    The full charge capacity of the battery in mWatt-hours. Comparison of this value to the Battery DesignCapacity determines when the Battery requires replacement. The end of life of a Battery is typically when the FullCharge Capacity falls below 80% of the DesignCapacity. If this property is not supported, enter 0.
+
+    
 .. _LMI-Battery-SystemCreationClassName:
 
 ``string`` **SystemCreationClassName**
@@ -141,7 +235,6 @@ Local methods
 Inherited properties
 ^^^^^^^^^^^^^^^^^^^^
 
-| ``uint16`` :ref:`BatteryStatus <CIM-Battery-BatteryStatus>`
 | ``uint16`` :ref:`RequestedState <CIM-EnabledLogicalElement-RequestedState>`
 | ``uint16`` :ref:`HealthState <CIM-ManagedSystemElement-HealthState>`
 | ``string[]`` :ref:`StatusDescriptions <CIM-ManagedSystemElement-StatusDescriptions>`
@@ -154,7 +247,6 @@ Inherited properties
 | ``uint16`` :ref:`PermanentErrorInfo <CIM-Battery-PermanentErrorInfo>`
 | ``uint16`` :ref:`Availability <CIM-LogicalDevice-Availability>`
 | ``string`` :ref:`Status <CIM-ManagedSystemElement-Status>`
-| ``uint32`` :ref:`TimeToFullCharge <CIM-Battery-TimeToFullCharge>`
 | ``uint16`` :ref:`TransitioningToState <CIM-EnabledLogicalElement-TransitioningToState>`
 | ``string[]`` :ref:`IdentifyingDescriptions <CIM-LogicalDevice-IdentifyingDescriptions>`
 | ``uint64`` :ref:`Generation <CIM-ManagedElement-Generation>`
@@ -163,21 +255,17 @@ Inherited properties
 | ``boolean`` :ref:`PowerManagementSupported <CIM-LogicalDevice-PowerManagementSupported>`
 | ``uint16`` :ref:`LocationIndicator <CIM-LogicalDevice-LocationIndicator>`
 | ``uint32`` :ref:`MaxRechargeCount <CIM-Battery-MaxRechargeCount>`
-| ``uint32`` :ref:`RemainingCapacity <CIM-Battery-RemainingCapacity>`
 | ``uint16`` :ref:`EnabledState <CIM-EnabledLogicalElement-EnabledState>`
-| ``uint16`` :ref:`ChargingStatus <CIM-Battery-ChargingStatus>`
 | ``uint16`` :ref:`DetailedStatus <CIM-ManagedSystemElement-DetailedStatus>`
 | ``string[]`` :ref:`OtherIdentifyingInfo <CIM-LogicalDevice-OtherIdentifyingInfo>`
 | ``uint32`` :ref:`TimeOnBattery <CIM-Battery-TimeOnBattery>`
 | ``uint16`` :ref:`EnabledDefault <CIM-EnabledLogicalElement-EnabledDefault>`
-| ``uint16`` :ref:`EstimatedChargeRemaining <CIM-Battery-EstimatedChargeRemaining>`
 | ``uint16`` :ref:`OperatingStatus <CIM-ManagedSystemElement-OperatingStatus>`
 | ``uint16[]`` :ref:`AdditionalAvailability <CIM-LogicalDevice-AdditionalAvailability>`
 | ``uint32`` :ref:`RatedMaxOutputPower <CIM-PowerSource-RatedMaxOutputPower>`
 | ``uint16`` :ref:`CommunicationStatus <CIM-ManagedSystemElement-CommunicationStatus>`
 | ``uint16`` :ref:`StatusInfo <CIM-LogicalDevice-StatusInfo>`
 | ``uint16[]`` :ref:`PowerManagementCapabilities <CIM-LogicalDevice-PowerManagementCapabilities>`
-| ``uint8`` :ref:`HealthPercent <CIM-Battery-HealthPercent>`
 | ``uint64`` :ref:`PowerOnHours <CIM-LogicalDevice-PowerOnHours>`
 | ``uint32`` :ref:`ExpectedLife <CIM-Battery-ExpectedLife>`
 | ``uint32`` :ref:`RechargeCount <CIM-Battery-RechargeCount>`
@@ -189,9 +277,7 @@ Inherited properties
 | ``string`` :ref:`OtherEnabledState <CIM-EnabledLogicalElement-OtherEnabledState>`
 | ``uint16[]`` :ref:`OperationalStatus <CIM-ManagedSystemElement-OperationalStatus>`
 | ``uint32`` :ref:`LastErrorCode <CIM-LogicalDevice-LastErrorCode>`
-| ``uint32`` :ref:`EstimatedRunTime <CIM-Battery-EstimatedRunTime>`
 | ``datetime`` :ref:`InstallDate <CIM-ManagedSystemElement-InstallDate>`
-| ``uint32`` :ref:`FullChargeCapacity <CIM-Battery-FullChargeCapacity>`
 
 Inherited methods
 ^^^^^^^^^^^^^^^^^

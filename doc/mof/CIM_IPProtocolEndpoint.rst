@@ -191,6 +191,7 @@ Local properties
 
 ``uint16`` **IPVersionSupport**
 
+    **Deprecated!** 
     This property explicitly defines support for different versions of the IP protocol, for this Endpoint. It is deprecated since the ProtocolIFType also provides this functionality by describing an endpoint as IPv4 only (value=4096), IPv6 only (value=4097), or IPv4/v6 (value=4098).
 
     

@@ -97,6 +97,7 @@ Local properties
 
 ``string`` **OtherLANType**
 
+    **Deprecated!** 
     A free-form string that describes the type of technology used on the LAN when the value of the LANType property is equal to 1 (i.e., "Other"). This property is deprecated since its purpose overlaps with OtherTypeDescription, which which is inherited from ProtocolEndpoint.
 
     

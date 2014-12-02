@@ -6,6 +6,7 @@
     * :ref:`openlmi-scripts-networking-cmd`
     * :ref:`openlmi-scripts-powermanagement-cmd`
     * :ref:`openlmi-scripts-realmd-cmd`
+    * :ref:`openlmi-scripts-selinux-cmd`
     * :ref:`openlmi-scripts-service-cmd`
     * :ref:`openlmi-scripts-software-cmd`
     * :ref:`openlmi-scripts-sssd-cmd`

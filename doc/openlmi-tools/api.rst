@@ -3,7 +3,7 @@ OpenLMI Tools API reference
 
 This is a generated documentation from *OpenLMI Tools* sources.
 
-Generated from version: ``0.10.1``
+Generated from version: ``0.10.2``
 
 .. only:: html
 

@@ -2,15 +2,16 @@
     :maxdepth: 2
 
     admin
+    provider_registration
     account/index
     fan/index
     hardware/index
     journald/index
+    locale/index
     logicalfile/index
     power/index
     realmd/index
+    selinux/index
     service-dbus/index
     software/index
-    locale/index
     sssd/index
-    selinux/index

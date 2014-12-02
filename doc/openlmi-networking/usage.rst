@@ -3,8 +3,7 @@
 Usage
 =====
 
-All example scripts are for ``lmishell``. See it's documentation_ on OpenLMI_
-page.
+All example scripts are written using `LMIShell <http://pythonhosted.org/openlmi-tools/index.html#lmishell>`_.
 
 .. _documentation: https://fedorahosted.org/openlmi/wiki/shell
 .. _OpenLMI: https://fedorahosted.org/openlmi/

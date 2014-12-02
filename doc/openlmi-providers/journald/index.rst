@@ -3,8 +3,13 @@
 Journald Provider
 =================
 
-OpenLMI Journald is a CIM provider exposing `systemd <http://freedesktop.org/wiki/Software/systemd/>`_
+.. rubric:: Overview
+
+OpenLMI Journald is a CIM provider which manages
+`systemd <http://freedesktop.org/wiki/Software/systemd/>`_
 journald log records and basic means of iteration and log writing.
+It exposes remotely accessible object-oriented API using
+`WBEM <http://www.openlmi.org/node/1785>`_ set of protocols and technologies.
 
 Journald is a daemon working with journals. Journal is a log, a set of log
 records, chronologically ordered. Records are structured, able to carry multiple
@@ -20,21 +25,37 @@ which may be subject to extension of this provider in the future.
 As a benefit, by using the parent classes (e.g. :ref:`CIM_LogRecord<CIM-LogRecord>`), one is able
 to mix log records from orthodox syslog and journald together.
 
-
-*Provider features*
-
-This is a short list of provider features:
- * log records reading
- * log record iteration using persistent iterators
- * new records indication
- * writing new log records
-
 For the moment, global journal is used, all journal files are mixed together.
 
-The provider also comes with a test suite covering most of its functionality.
+.. rubric:: Clients
+
+The API can be accessed by any WBEM-capable client. OpenLMI already provides:
+
+* Python module :ref:`lmi.scripts.journald <openlmi-scripts-journald-python>`,
+  part of :ref:`OpenLMI scripts <openlmi-scripts-python>`.
+
+* Command line tool: :ref:`LMI metacommand <lmi_metacommand>`, with
+  :ref:`'journald' <openlmi-scripts-journald-cmd>` subcommand.
+
+.. rubric:: Features
+
+* Log records reading.
+* Log record iteration using persistent iterators.
+* New records indication.
+* Writing new log records.
+
+.. rubric:: Examples
+
+Following :ref:`LMIShell <lmi_shell>` example prints last 1000 entries in the system log::
+
+    c = connect("localhost", "pegasus", "mypassword")
+    for rec in c.root.cimv2.LMI_JournalMessageLog.first_instance().associators():
+        print "%s %s %s" % (rec.MessageTimestamp.datetime.ctime(), rec.HostName, rec.DataFormat)
 
 
-*Contents*
+More examples can be found in the :ref:`Usage <journald-usage>` chapter.
+
+.. rubric:: Table of Contents
 
 .. toctree::
    :maxdepth: 2

@@ -2,7 +2,7 @@
 
 DMTF profiles
 =============
-OpenLMI Software providers implement two *DMTF* profiles:
+OpenLMI-Software providers implement two *DMTF* profiles:
 
     * `Software Inventory Profile`_
     * `Software Update Profile`_
@@ -21,16 +21,16 @@ software in a managed system. This profile also describes the CIM schema
 elements required to represent the software that can be installed on a
 managed system.
 
-
 Not implemented optional features
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This implementation does not support:
 
     Representing a Software Bundle
-        Software bundle is represented by LMI_SoftwareIndentity instance
-        having ``"Software Bundle"`` value present in its ``Classifications``
-        property. It shall prepresent software groups. It extends the profile
-        for subclasses of ``CIM_OrderedComponent``.
+        Software bundle is represented by :ref:`LMI_SoftwareIndentity
+        <LMI-SoftwareIdentity>` instance having ``"Software Bundle"`` value
+        present in its ``Classifications`` property. It shall represent
+        software groups. It extends the profile for subclasses of
+        ``CIM_OrderedComponent``.
 
     Representing Installation Dependencies
         Dependencies between software packages are also unimplemented. This
@@ -51,7 +51,7 @@ package version:
     * ``uint16`` :ref:`BuildNumber<CIM-SoftwareIdentity-BuildNumber>`
 
 And also a :ref:`VersionString<LMI-SoftwareIdentity-VersionString>` property
-which is a composition of previous ones separed with dots.
+which is a composition of previous ones separated with dots.
 
 Unfortunately versioning of RPM packages is incompatible with this scheme.
 Version of RPM package is composed of following properties:
@@ -67,11 +67,11 @@ These attributes were added to ``LMI_SoftwareIdentity`` class and will be
 filled for every RPM package. On the other hand ``MajorVersion``,
 ``MinorVersion``, ``RevisionNumber`` and ``BuildNumber`` will not be filled.
 
-This implementetion composes ``VersionString`` in following way: ::
+This implementation composes ``VersionString`` in following way: ::
 
     <Epoch>:<Version>-<Release>.<Architecture>
 
-The algorithm for comparing two RPM packages version is following:
+The algorithm for comparing two RPM package versions is following:
 
     1. Compare the ``Epoch`` (which is a number) of both packages. The one
        with higher epoch is newer. If they match, continue to point 2.
@@ -109,8 +109,8 @@ representing RPM packages. It's composed of following strings: ::
 Where the prefix ``"LMI:LMI_SoftwareIdentity:"`` is compared
 case-insensitively. The rest is also known as a *NEVRA*. When calling
 ``GetInstance()`` on this class, the ``"<Epoch>:"`` part can be omitted in the
-``InstanceID`` key property of passed ``InstanceName`` in case the epoch is
-zero.
+:ref:`InstanceID <LMI-SoftwareIdentity-InstanceID>` key property of passed reference
+in case the epoch is zero.
 
 Example
 ^^^^^^^
@@ -127,27 +127,28 @@ Take for example package ``vim-enhanced`` installed on Fedora 18: ::
     Repo        : installed
     From repo   : updates-testing
 
-The output has been shortened. This package is represented by
-an instance of ``LMI_SoftwareIdentity`` with ``InstanceID`` equal to: ::
+The output has been shortened. This package is represented by an instance of
+:ref:`LMI_SoftwareIdentity <LMI-SoftwareIdentity>` with :ref:`InstanceID
+<LMI-SoftwareIdentity-InstanceID>` equal to::
 
     LMI:LMI_SoftwareIdentity:vim-enhanced-2:7.4.027-2.fc18.x86_64
 
 Profile extensions
 ~~~~~~~~~~~~~~~~~~
-List of additional attributes of ``LMI_SoftwareIdentity``:
+List of additional attributes of `LMI_SoftwareIdentity <LMI-SoftwareIdentity>`:
 
     * version properties mentioned above (`version_properties`_)
-    * ``string Architecture`` - Target machine architecture. Packages
-      with architecture independent content will have ``"noarch"`` value
-      set.
+    * ``string`` :ref:`Architecture <LMI-SoftwareIdentity-Architecture>` - Target
+      machine architecture. Packages with architecture independent content will
+      have ``"noarch"`` value set.
 
 List of additional attributes of ``LMI_SoftwareIdentityResource``:
 
-    ``Cost`` : sint32
+    ``Cost`` : ``sint32``
         Relative cost of accessing this repository.
-    ``GPGCheck`` : boolean
+    ``GPGCheck`` : ``boolean``
         Whether the GPG signature check should be performed.
-    ``TimeOfLastUpdate`` : datetime
+    ``TimeOfLastUpdate`` : ``datetime``
         Time of repository's last update on server.
 
 Class overview
@@ -174,7 +175,7 @@ Class overview
     +-------------------------------------------------------------------------------+---------------------------------------------------------------------+------------------+
 
     .. seealso::
-        Class model in :ref:`software_introduction` where above classes are coloured blue.
+        Class model in :ref:`software-api-concept` where above classes are coloured blue.
 
 .. _software_update_profile:
 
@@ -188,7 +189,6 @@ The Software Update Profile describes the classes, associations, properties,
 and methods used to support the installation and update of BIOS, firmware,
 drivers and related software on a managed element within a managed system.
 
-
 Implemented optional features
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This implementation supports:
@@ -196,7 +196,7 @@ This implementation supports:
     Advertising the Location Information of a Software Identity
         This optional feature provides association of *Software Identity* to
         its resource. In other words each available package is associated to
-        a corresponding repository defined in configuration files of *YUM*.
+        a corresponding repository defined in configuration files of `yum`_.
         Repositories are represented with
         :ref:`LMI_SoftwareIdentityResource<LMI-SoftwareIdentityResource>` and
         are associated to :ref:`LMI_SoftwareIdentity<LMI-SoftwareIdentity>`
@@ -217,7 +217,7 @@ RPM package verification
 ^^^^^^^^^^^^^^^^^^^^^^^^
 *Software Inventory* and *Softare Update* profiles don't allow for software
 verification. That is quite useful and desired operation done on RPM packages.
-Following additions has been added to provide such a functionality.
+Following additions are provided for this purpose.
 
 Following classes have been added:
 
@@ -241,11 +241,11 @@ Following methods have been added:
 
 Package searching
 ^^^^^^^^^^^^^^^^^
-On modern Linux distributions we have thousands of software packages
-available for installation making it nearly impossible for *CIMOM* to
-enumerate them all because it consumes a lot of resources. That's why
-the ``EnumerateInstances()`` and ``EnumerateInstanceNames()`` calls have been
-disabled *Software Identities*. As a consequence the ``ExecQuery()`` call is prohibited also.
+On modern Linux distributions we have thousands of software packages available
+for installation making it nearly impossible for *CIMOM* to enumerate them all
+because it consumes a lot of resources. That's why the ``EnumerateInstances()``
+and ``EnumerateInstanceNames()`` calls have been disabled *Software
+Identities*. As a consequence the ``ExecQuery()`` call is prohibited as well.
 
 But the ability to search for packages is so important that a fallback
 solution has been provided. Method
@@ -286,13 +286,14 @@ Class overview
     +-----------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+--------------------+
 
     .. seealso::
-        Class model in :ref:`software_introduction` where above classes are coloured blue.
+        Class model in :ref:`software-api-concept` where above classes are coloured blue.
 
 ..
     ***************************************************************************
 .. _DSP1023: http://www.dmtf.org/sites/default/files/standards/documents/DSP1023_1.0.1.pdf
 .. _DSP1025: http://www.dmtf.org/sites/default/files/standards/documents/DSP1025_1.0.0.pdf
 .. _rpmvercmp: http://fedoraproject.org/wiki/Tools/RPM/VersionComparison
+.. _yum: http://yum.baseurl.org/
 
 ------------------------------------------------------------------------------
 

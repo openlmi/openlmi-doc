@@ -161,7 +161,6 @@ Local methods
 
 ``uint32`` **IsCompatible** (:ref:`CIM_PhysicalElement <CIM-PhysicalElement>` ElementToCheck)
 
-    **Deprecated!** 
     This method is being deprecated. A PhysicalPackage cannot determine if it is compatible with another object. The IsCompatible method verifies whether the referenced PhysicalElement may be contained by or inserted into the PhysicalPackage. The return value should be 0 if the request was successfully executed, 1 if the request is not supported and some other value if an error occurred. In a subclass, the set of possible return codes could be specified, using a ValueMap qualifier on the method. The strings to which the ValueMap contents are 'translated' may also be specified in the subclass as a Values array qualifier.
 
     

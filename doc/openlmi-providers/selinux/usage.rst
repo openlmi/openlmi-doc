@@ -1,3 +1,5 @@
+.. _selinux-usage:
+
 Usage
 =====
 All further code assumes that a connection object has been created and the

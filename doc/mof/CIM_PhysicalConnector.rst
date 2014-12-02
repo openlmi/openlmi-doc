@@ -113,7 +113,6 @@ Local properties
 
 ``uint16[]`` **ConnectorType**
 
-    **Deprecated!** 
     An array of integers defining the type of PhysicalConnector. An array is specified to allow the description of 'combinations' of Connector information. For example, one array entry could specify RS-232 (value=25), another DB-25 (value=23) and a third entry define the Connector as "Male" (value=2). 
 
     This single property is being deprecated in lieu of using separate properties to describe the various aspects of the connector. The separation allows for a more generic means of describing the connectors. Obsolete connectors were intentionally removed from the new list.
@@ -251,6 +250,7 @@ Local properties
 
 ``string`` **OtherTypeDescription**
 
+    **Deprecated!** 
     A string describing the Connector - used when the ConnectorType property is set to 1 ("Other"). OtherType Description should be set to NULL when ConnectorType is any value other than 1. 
 
     The use of this property is deprecated in lieu of Connector Description.

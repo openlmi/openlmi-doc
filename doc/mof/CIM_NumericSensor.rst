@@ -108,6 +108,7 @@ Local properties
 
 ``sint32`` **Tolerance**
 
+    **Deprecated!** 
     This property is being deprecated in lieu of using the Resolution and Accuracy properties. 
 
     Indicates the tolerance of the Sensor for the measured property. Tolerance, along with Resolution and Accuracy, is used to calculate the actual value of the measured physical property. Tolerance may vary depending on whether the Device is linear over its dynamic range.

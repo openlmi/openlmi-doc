@@ -30,6 +30,7 @@ Local methods
 
 ``uint32`` **SetPowerState** (``uint16`` PowerState, :ref:`CIM_ManagedElement <CIM-ManagedElement>` ManagedElement, ``datetime`` Time)
 
+    **Deprecated!** 
     The CIM_PowerManagementService.RequestPowerStateChange method should be used instead of SetPowerState method, which is deprecated. SetPowerState defines the desired power state of the managed element and when the element should be put into that state. The SetPowerState method has three input parameters, no output parameters, and a result. 
 
     - PowerState indicates the desired power state. 

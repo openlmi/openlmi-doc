@@ -19,6 +19,7 @@
     scripts/commands/networking/cmdline.rst
     scripts/commands/powermanagement/cmdline.rst
     scripts/commands/realmd/cmdline.rst
+    scripts/commands/selinux/cmdline.rst
     scripts/commands/service/cmdline.rst
     scripts/commands/software/cmdline.rst
     scripts/commands/sssd/cmdline.rst

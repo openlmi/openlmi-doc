@@ -1,3 +1,5 @@
+.. _fan-dmtf-profile:
+
 DMTF profiles
 =============
 *OpenLMI Fan* provider implements *Fan Profile*

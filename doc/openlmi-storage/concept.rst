@@ -13,7 +13,6 @@ No SMI-S knowledge is necessary, but it can help a lot.
    :maxdepth: 2
 
    concept-generic
-   concept-conventions
    concept-devices
    concept-id
    concept-overwrite

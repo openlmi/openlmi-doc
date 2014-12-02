@@ -23,7 +23,6 @@ Local properties
 
 ``boolean`` **Powered**
 
-    **Deprecated!** 
     A boolean indicating whether the Slot is currently powered (TRUE) or not (FALSE).
 
     

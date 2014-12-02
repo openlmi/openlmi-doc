@@ -367,6 +367,13 @@ Local properties
     5        DMTF Reserved
     ======== =============
     
+.. _LMI-PCIBridge-Description:
+
+``string`` **Description**
+
+    The Description property provides a textual description of the object.
+
+    
 .. _LMI-PCIBridge-RevisionID:
 
 ``uint8`` **RevisionID**
@@ -489,7 +496,7 @@ Inherited properties
 | ``uint16`` :ref:`StatusInfo <CIM-LogicalDevice-StatusInfo>`
 | ``string[]`` :ref:`CapabilityDescriptions <CIM-PCIController-CapabilityDescriptions>`
 | ``uint32`` :ref:`MaxNumberControlled <CIM-Controller-MaxNumberControlled>`
-| ``uint64`` :ref:`Generation <CIM-ManagedElement-Generation>`
+| ``string`` :ref:`ErrorDescription <CIM-LogicalDevice-ErrorDescription>`
 | ``uint32`` :ref:`LastErrorCode <CIM-LogicalDevice-LastErrorCode>`
 | ``uint8`` :ref:`MinGrantTime <CIM-PCIDevice-MinGrantTime>`
 | ``uint16`` :ref:`RequestedState <CIM-EnabledLogicalElement-RequestedState>`
@@ -500,11 +507,10 @@ Inherited properties
 | ``boolean`` :ref:`PowerManagementSupported <CIM-LogicalDevice-PowerManagementSupported>`
 | ``uint16`` :ref:`LocationIndicator <CIM-LogicalDevice-LocationIndicator>`
 | ``string[]`` :ref:`OtherIdentifyingInfo <CIM-LogicalDevice-OtherIdentifyingInfo>`
-| ``string`` :ref:`ErrorDescription <CIM-LogicalDevice-ErrorDescription>`
+| ``uint64`` :ref:`Generation <CIM-ManagedElement-Generation>`
 | ``uint16[]`` :ref:`OperationalStatus <CIM-ManagedSystemElement-OperationalStatus>`
 | ``datetime`` :ref:`TimeOfLastReset <CIM-Controller-TimeOfLastReset>`
 | ``uint16`` :ref:`DetailedStatus <CIM-ManagedSystemElement-DetailedStatus>`
-| ``string`` :ref:`Description <CIM-ManagedElement-Description>`
 | ``uint16`` :ref:`TransitioningToState <CIM-EnabledLogicalElement-TransitioningToState>`
 | ``uint16[]`` :ref:`PowerManagementCapabilities <CIM-LogicalDevice-PowerManagementCapabilities>`
 | ``uint64`` :ref:`PowerOnHours <CIM-LogicalDevice-PowerOnHours>`

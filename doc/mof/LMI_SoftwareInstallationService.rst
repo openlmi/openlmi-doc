@@ -655,7 +655,7 @@ Local methods
     
     .. _LMI-SoftwareInstallationService-FindIdentity:
 
-``uint32`` **FindIdentity** (``string`` Name, ``uint32`` Epoch, ``string`` Version, ``string`` Release, ``string`` Architecture, :ref:`LMI_SoftwareIdentityResource <LMI-SoftwareIdentityResource>` Repository, ``boolean`` AllowDuplicates, ``boolean`` ExactMatch, :ref:`LMI_SoftwareIdentity[] <LMI-SoftwareIdentity>` Matches)
+``uint32`` **FindIdentity** (``string`` Name, ``uint32`` Epoch, ``string`` Version, ``string`` Release, ``string`` Architecture, :ref:`LMI_SoftwareIdentityResource <LMI-SoftwareIdentityResource>` Repository, ``boolean`` AllowDuplicates, ``boolean`` ExactMatch, ``boolean`` Installed, :ref:`LMI_SoftwareIdentity[] <LMI-SoftwareIdentity>` Matches)
 
     Search for installed or available software identity matching specified properties. In case "Repository" is given, only available packages of this repository will be browsed. "AllowDuplicates" causes, that packages of the name <name>.<arch> will be listed multiple times if more versions are available. Other input parameters with non-NULL values are compared to corresponding properties of LMI_SoftwareIdentity instances. 0 is returned if any matching package is found, 1 otherwise.
 
@@ -680,6 +680,8 @@ Local methods
         *IN* :ref:`LMI_SoftwareIdentityResource <LMI-SoftwareIdentityResource>` **Repository**
             Allows to specify particular software repository, where the search shall take place. If given, only available packages will be browsed.
 
+            Using this parameter in conjunction with "Installed" parameter makes perfect sense. Just those packages available in given repository and installed at the same time will be queried in case of "Installed=True". And just those available and not installed at the same time will be queried in case of "Installed=False".
+
             
         
         *IN* ``boolean`` **AllowDuplicates**
@@ -689,6 +691,11 @@ Local methods
         
         *IN* ``boolean`` **ExactMatch**
             Whether to compare "Name" for exact match. If "False", package name and its summary string ("Caption") will be searched for occurences of "Name" parameter's value. Defaults to "False".
+
+            
+        
+        *IN* ``boolean`` **Installed**
+            Limit the query just to installed packages by setting this paramater to True. Or make it search just not installed ones by setting it to False. All packages will be queried by default.
 
             
         

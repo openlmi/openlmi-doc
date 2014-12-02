@@ -20,6 +20,9 @@ Class reference
 * :ref:`CIM_AssociatedMemory <CIM-AssociatedMemory>`
 * :ref:`CIM_AssociatedPowerManagementService <CIM-AssociatedPowerManagementService>`
 * :ref:`CIM_AssociatedSensor <CIM-AssociatedSensor>`
+* :ref:`CIM_BIOSElement <CIM-BIOSElement>`
+* :ref:`CIM_BIOSFeature <CIM-BIOSFeature>`
+* :ref:`CIM_BIOSFeatureBIOSElements <CIM-BIOSFeatureBIOSElements>`
 * :ref:`CIM_BasedOn <CIM-BasedOn>`
 * :ref:`CIM_Battery <CIM-Battery>`
 * :ref:`CIM_BindsTo <CIM-BindsTo>`
@@ -40,6 +43,7 @@ Class reference
 * :ref:`CIM_ConcreteIdentity <CIM-ConcreteIdentity>`
 * :ref:`CIM_ConcreteJob <CIM-ConcreteJob>`
 * :ref:`CIM_Container <CIM-Container>`
+* :ref:`CIM_ControlledBy <CIM-ControlledBy>`
 * :ref:`CIM_Controller <CIM-Controller>`
 * :ref:`CIM_CoolingDevice <CIM-CoolingDevice>`
 * :ref:`CIM_DHCPSettingData <CIM-DHCPSettingData>`
@@ -47,6 +51,7 @@ Class reference
 * :ref:`CIM_DNSSettingData <CIM-DNSSettingData>`
 * :ref:`CIM_DataFile <CIM-DataFile>`
 * :ref:`CIM_Dependency <CIM-Dependency>`
+* :ref:`CIM_DeviceConnection <CIM-DeviceConnection>`
 * :ref:`CIM_DeviceFile <CIM-DeviceFile>`
 * :ref:`CIM_DeviceSAPImplementation <CIM-DeviceSAPImplementation>`
 * :ref:`CIM_Directory <CIM-Directory>`
@@ -114,6 +119,7 @@ Class reference
 * :ref:`CIM_LogicalFile <CIM-LogicalFile>`
 * :ref:`CIM_LogicalIdentity <CIM-LogicalIdentity>`
 * :ref:`CIM_LogicalPort <CIM-LogicalPort>`
+* :ref:`CIM_LogicalPortGroup <CIM-LogicalPortGroup>`
 * :ref:`CIM_ManagedElement <CIM-ManagedElement>`
 * :ref:`CIM_ManagedSystemElement <CIM-ManagedSystemElement>`
 * :ref:`CIM_MediaAccessDevice <CIM-MediaAccessDevice>`
@@ -135,6 +141,8 @@ Class reference
 * :ref:`CIM_PCIBridge <CIM-PCIBridge>`
 * :ref:`CIM_PCIController <CIM-PCIController>`
 * :ref:`CIM_PCIDevice <CIM-PCIDevice>`
+* :ref:`CIM_PCIPort <CIM-PCIPort>`
+* :ref:`CIM_PCIPortGroup <CIM-PCIPortGroup>`
 * :ref:`CIM_PackageInConnector <CIM-PackageInConnector>`
 * :ref:`CIM_PhysicalComponent <CIM-PhysicalComponent>`
 * :ref:`CIM_PhysicalConnector <CIM-PhysicalConnector>`
@@ -170,6 +178,9 @@ Class reference
 * :ref:`CIM_SettingData <CIM-SettingData>`
 * :ref:`CIM_SettingsDefineCapabilities <CIM-SettingsDefineCapabilities>`
 * :ref:`CIM_Slot <CIM-Slot>`
+* :ref:`CIM_SoftwareElement <CIM-SoftwareElement>`
+* :ref:`CIM_SoftwareFeature <CIM-SoftwareFeature>`
+* :ref:`CIM_SoftwareFeatureSoftwareElements <CIM-SoftwareFeatureSoftwareElements>`
 * :ref:`CIM_SoftwareIdentity <CIM-SoftwareIdentity>`
 * :ref:`CIM_SoftwareIdentityResource <CIM-SoftwareIdentityResource>`
 * :ref:`CIM_SoftwareInstallationService <CIM-SoftwareInstallationService>`
@@ -187,6 +198,7 @@ Class reference
 * :ref:`CIM_SwitchService <CIM-SwitchService>`
 * :ref:`CIM_SwitchesAmong <CIM-SwitchesAmong>`
 * :ref:`CIM_SymbolicLink <CIM-SymbolicLink>`
+* :ref:`CIM_SystemBIOS <CIM-SystemBIOS>`
 * :ref:`CIM_SystemComponent <CIM-SystemComponent>`
 * :ref:`CIM_SystemDevice <CIM-SystemDevice>`
 * :ref:`CIM_SystemPackaging <CIM-SystemPackaging>`
@@ -223,6 +235,9 @@ Class reference
 * :ref:`LMI_AssociatedSoftwareJobMethodResult <LMI-AssociatedSoftwareJobMethodResult>`
 * :ref:`LMI_AssociatedStorageJobMethodResult <LMI-AssociatedStorageJobMethodResult>`
 * :ref:`LMI_AttachedFileSystem <LMI-AttachedFileSystem>`
+* :ref:`LMI_BIOSElement <LMI-BIOSElement>`
+* :ref:`LMI_BIOSFeature <LMI-BIOSFeature>`
+* :ref:`LMI_BIOSFeatureBIOSElements <LMI-BIOSFeatureBIOSElements>`
 * :ref:`LMI_Baseboard <LMI-Baseboard>`
 * :ref:`LMI_BaseboardContainer <LMI-BaseboardContainer>`
 * :ref:`LMI_Battery <LMI-Battery>`
@@ -385,8 +400,14 @@ Class reference
 * :ref:`LMI_OwningStorageJobElement <LMI-OwningStorageJobElement>`
 * :ref:`LMI_PCIBridge <LMI-PCIBridge>`
 * :ref:`LMI_PCIBridgeSystemDevice <LMI-PCIBridgeSystemDevice>`
+* :ref:`LMI_PCIControlledBy <LMI-PCIControlledBy>`
 * :ref:`LMI_PCIDevice <LMI-PCIDevice>`
 * :ref:`LMI_PCIDeviceSystemDevice <LMI-PCIDeviceSystemDevice>`
+* :ref:`LMI_PCIPort <LMI-PCIPort>`
+* :ref:`LMI_PCIPortGroup <LMI-PCIPortGroup>`
+* :ref:`LMI_PCIPortHostedCollection <LMI-PCIPortHostedCollection>`
+* :ref:`LMI_PCIPortMemberOfCollection <LMI-PCIPortMemberOfCollection>`
+* :ref:`LMI_PCIPortSystemDevice <LMI-PCIPortSystemDevice>`
 * :ref:`LMI_PVFormat <LMI-PVFormat>`
 * :ref:`LMI_PartitionBasedOn <LMI-PartitionBasedOn>`
 * :ref:`LMI_PhysicalBatteryContainer <LMI-PhysicalBatteryContainer>`
@@ -467,6 +488,7 @@ Class reference
 * :ref:`LMI_SwitchService <LMI-SwitchService>`
 * :ref:`LMI_SwitchesAmong <LMI-SwitchesAmong>`
 * :ref:`LMI_SymbolicLink <LMI-SymbolicLink>`
+* :ref:`LMI_SystemBIOS <LMI-SystemBIOS>`
 * :ref:`LMI_SystemSlot <LMI-SystemSlot>`
 * :ref:`LMI_SystemSlotContainer <LMI-SystemSlotContainer>`
 * :ref:`LMI_SystemSoftwareCollection <LMI-SystemSoftwareCollection>`

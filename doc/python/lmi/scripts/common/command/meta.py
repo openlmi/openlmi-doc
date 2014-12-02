@@ -125,6 +125,19 @@ def _handle_namespace(dcl):
             return namespace
         dcl['cim_namespace'] = classmethod(_new_cim_namespace)
 
+def _handle_connection_timeout(dcl):
+    """
+    Overrides ``connection_timeout()`` class method if ``CONNECTION_TIMEOUT``
+    property is given.
+
+    :param dictionary dcl: Class dictionary being modified by this method.
+    """
+    if 'CONNECTION_TIMEOUT' in dcl:
+        timeout = dcl.pop('CONNECTION_TIMEOUT')
+        def _new_connection_timeout(_cls):
+            return timeout
+        dcl['connection_timeout'] = classmethod(_new_connection_timeout)
+
 def _handle_callable(name, bases, dcl):
     """
     Process the ``CALLABLE`` property of end-point command. Create the
@@ -597,7 +610,7 @@ class EndPointCommandMetaClass(abc.ABCMeta):
 class SessionCommandMetaClass(EndPointCommandMetaClass):
     """
     Meta class for commands operating upon a session object.
-    All associated functions take as first argument an namespace abstraction
+    All associated functions take as first argument a namespace abstraction
     of type ``lmi.shell``.
 
     Handles following class properties:
@@ -607,10 +620,14 @@ class SessionCommandMetaClass(EndPointCommandMetaClass):
             function. Defaults to ``"root/cimv2"``. If ``False``, raw
             :py:class:`lmi.shell.LMIConnection` object will be passed to
             associated function.
+        ``CONNECTION_TIMEOUT`` : ``int``
+            Maximum number of seconds to wait for broker's response. If reached,
+            :py:class:`~lmi.shell.LMIExceptions.ConnectionError` will be raised.
     """
     def __new__(mcs, name, bases, dcl):
         _handle_usage(name, bases, dcl)
         _handle_namespace(dcl)
+        _handle_connection_timeout(dcl)
         _handle_callable(name, bases, dcl)
 
         return EndPointCommandMetaClass.__new__(mcs, name, bases, dcl)

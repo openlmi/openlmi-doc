@@ -60,6 +60,13 @@ Local properties
     System default keyboard mapping for X11 - the graphical UI before the user logs in, such as the display manager, as well as the default for users after login. The property should be a keyboard mapping name (such as 'de' or 'us'). Individual layouts are comma separated (e. g. 'us,cz,de').
 
     
+.. _LMI-Locale-CanNTP:
+
+``boolean`` **CanNTP**
+
+    Indicates whether there's avalilable NTP service on the system. If true, the NTP service is available. If false, the NTP service is not available. 
+
+    
 .. _LMI-Locale-LCAddress:
 
 ``string`` **LCAddress**
@@ -87,11 +94,11 @@ Local properties
     The property should be in format [language[_territory][.codeset][@modifier]], for example, 'en_AU.UTF-8' (Australian English using the UTF-8 encoding).
 
     
-.. _LMI-Locale-LCName:
+.. _LMI-Locale-LCPaper:
 
-``string`` **LCName**
+``string`` **LCPaper**
 
-    Defines the settings that describe the formats used to address persons. 
+    Defines the settings relating to the dimensions of the standard paper size (e.g., US letter versus A4). 
 
     The property should be in format [language[_territory][.codeset][@modifier]], for example, 'en_AU.UTF-8' (Australian English using the UTF-8 encoding).
 
@@ -121,6 +128,22 @@ Local properties
     The property should be in format [language[_territory][.codeset][@modifier]], for example, 'en_AU.UTF-8' (Australian English using the UTF-8 encoding).
 
     
+.. _LMI-Locale-Language:
+
+``string`` **Language**
+
+    Sets a priority list of languages.  GNU gettext gives preference to it over LC_ALL and LANG for the purpose of message handling.
+
+    The property should be in format [language][:[language]]..., for example, 'ru:en' (Russian preffered, but if it is not available, use English.)
+
+    
+.. _LMI-Locale-LocalRTC:
+
+``boolean`` **LocalRTC**
+
+    Indicates whether the system RTC is in local or UTC timezone. If true, the system RTC is in local timezone. If false, the system RTC is in UTC timezone.
+
+    
 .. _LMI-Locale-X11Options:
 
 ``string`` **X11Options**
@@ -144,11 +167,18 @@ Local properties
     Variant of default keyboard mapping for X11. The property should be a keyboard variant name (such as 'dvorak' or 'qwerty').
 
     
-.. _LMI-Locale-LCPaper:
+.. _LMI-Locale-NTP:
 
-``string`` **LCPaper**
+``boolean`` **NTP**
 
-    Defines the settings relating to the dimensions of the standard paper size (e.g., US letter versus A4). 
+    Indicates whether the NTP service is enabled/started or disabled/stopped. If true, the NTP service is enabled/started. If false, the NTP service is disabled/stopped.
+
+    
+.. _LMI-Locale-LCName:
+
+``string`` **LCName**
+
+    Defines the settings that describe the formats used to address persons. 
 
     The property should be in format [language[_territory][.codeset][@modifier]], for example, 'en_AU.UTF-8' (Australian English using the UTF-8 encoding).
 
@@ -160,6 +190,13 @@ Local properties
     Defines the way numbers are usually printed, with details such as decimal point versus decimal comma. 
 
     The property should be in format [language[_territory][.codeset][@modifier]], for example, 'en_AU.UTF-8' (Australian English using the UTF-8 encoding).
+
+    
+.. _LMI-Locale-Timezone:
+
+``string`` **Timezone**
+
+    The system timezone. The property should be a zone name in the uniform naming convention form used by tz database (e. g. 'Europe/Prague').
 
     
 .. _LMI-Locale-LCTime:
@@ -186,7 +223,7 @@ Local methods
 
     .. _LMI-Locale-SetLocale:
 
-``uint32`` **SetLocale** (``string`` Lang, ``string`` LCCType, ``string`` LCNumeric, ``string`` LCTime, ``string`` LCCollate, ``string`` LCMonetary, ``string`` LCMessages, ``string`` LCPaper, ``string`` LCName, ``string`` LCAddress, ``string`` LCTelephone, ``string`` LCMeasurement, ``string`` LCIdentification)
+``uint32`` **SetLocale** (``string`` Lang, ``string`` Language, ``string`` LCCType, ``string`` LCNumeric, ``string`` LCTime, ``string`` LCCollate, ``string`` LCMonetary, ``string`` LCMessages, ``string`` LCPaper, ``string`` LCName, ``string`` LCAddress, ``string`` LCTelephone, ``string`` LCMeasurement, ``string`` LCIdentification)
 
     Method used to set the system locale. If you set a new system locale, all old system locale settings will be dropped, and the new settings will be saved to disk. It will also be passed to the system manager, and subsequently started daemons will inherit the new system locale from it. Note that already running daemons will not learn about the new system locale.
 
@@ -197,6 +234,13 @@ Local methods
             Sets the Lang property. 
 
             The value should be in format [language[_territory][.codeset][@modifier]], for example, 'en_AU.UTF-8' (Australian English using the UTF-8 encoding).
+
+            
+        
+        *IN* ``string`` **Language**
+            Sets the LANGUAGE property. 
+
+            The value should be in format [language][:[language]]..., for example, 'ru:en' (Russian preffered, but if it is not available, use English).
 
             
         
@@ -320,6 +364,41 @@ Local methods
             
         
     
+    .. _LMI-Locale-SetNTP:
+
+``uint32`` **SetNTP** (``boolean`` UseNTP)
+
+    Method used to set whether the system clock is synchronized with the network using systemd-timesyncd. This will enable/start resp. disable/stop the systemd-timesyncd service.
+
+    
+    **Parameters**
+    
+        *IN* ``boolean`` **UseNTP**
+            If set to TRUE, systemd-timesyncd service will be will enabled/started. If it is FALSE, systemd-timesyncd service will be disableed/stopped.
+
+            
+        
+    
+    .. _LMI-Locale-SetTime:
+
+``uint32`` **SetTime** (``sint64`` UsecUTC, ``boolean`` Relative)
+
+    Method used to set the system clock.
+
+    
+    **Parameters**
+    
+        *IN* ``sint64`` **UsecUTC**
+            New system clock (microseconds since 1 Jan 1970 UTC).
+
+            
+        
+        *IN* ``boolean`` **Relative**
+            If set to TRUE, the passed UsecUTC value will be added to the current system time. If it is FALSE, the current system time will be set to the passed UsecUTC value.
+
+            
+        
+    
     .. _LMI-Locale-SetVConsoleKeyboard:
 
 ``uint32`` **SetVConsoleKeyboard** (``string`` Keymap, ``string`` KeymapToggle, ``boolean`` Convert)
@@ -345,18 +424,53 @@ Local methods
             
         
     
+    .. _LMI-Locale-SetTimezone:
+
+``uint32`` **SetTimezone** (``string`` Timezone)
+
+    Method used to set the system timezone. 
+
+    
+    **Parameters**
+    
+        *IN* ``string`` **Timezone**
+            New timezone (such as 'Europe/Prague').
+
+            
+        
+    
+    .. _LMI-Locale-SetLocalRTC:
+
+``uint32`` **SetLocalRTC** (``boolean`` LocalRTC, ``boolean`` FixSystem)
+
+    Method used to set whether the RTC is in local time or UTC.
+
+    
+    **Parameters**
+    
+        *IN* ``boolean`` **LocalRTC**
+            If set to TRUE, the RTC value is assumed to be stored in local time. If it is FALSE, the RTC value is assumed to be stored in UTC.
+
+            
+        
+        *IN* ``boolean`` **FixSystem**
+            If set to TRUE, the time from the RTC is read again and the system is clock adjusted according to the new setting. If it is FALSE, the system time is written to the RTC taking the new setting into account.
+
+            
+        
+    
 
 Inherited properties
 ^^^^^^^^^^^^^^^^^^^^
 
 | ``string`` :ref:`InstanceID <CIM-ManagedElement-InstanceID>`
 | ``string`` :ref:`SystemName <CIM-SystemSetting-SystemName>`
-| ``string`` :ref:`ElementName <CIM-ManagedElement-ElementName>`
 | ``string`` :ref:`Description <CIM-ManagedElement-Description>`
+| ``string`` :ref:`ElementName <CIM-ManagedElement-ElementName>`
 | ``string`` :ref:`Caption <CIM-ManagedElement-Caption>`
 | ``string`` :ref:`SettingID <CIM-SystemSetting-SettingID>`
-| ``uint64`` :ref:`Generation <CIM-ManagedElement-Generation>`
 | ``string`` :ref:`CreationClassName <CIM-SystemSetting-CreationClassName>`
+| ``uint64`` :ref:`Generation <CIM-ManagedElement-Generation>`
 | ``string`` :ref:`SystemCreationClassName <CIM-SystemSetting-SystemCreationClassName>`
 
 Inherited methods
@@ -368,6 +482,6 @@ Inherited methods
 | :ref:`ApplyToCollection <CIM-Setting-ApplyToCollection>`
 | :ref:`ApplyToMSE <CIM-Setting-ApplyToMSE>`
 | :ref:`ApplyIncrementalChangeToCollection <CIM-Setting-ApplyIncrementalChangeToCollection>`
-| :ref:`VerifyOKToApplyToMSE <CIM-Setting-VerifyOKToApplyToMSE>`
 | :ref:`ApplyIncrementalChangeToMSE <CIM-Setting-ApplyIncrementalChangeToMSE>`
+| :ref:`VerifyOKToApplyToMSE <CIM-Setting-VerifyOKToApplyToMSE>`
 

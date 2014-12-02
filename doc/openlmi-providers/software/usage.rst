@@ -1,19 +1,19 @@
 Usage
 =====
 
-Examples for common use cases listed below are written in `lmishell`_. Where
-appropriate, an example for ``lmi`` meta-command, which is a part of
-*OpenLMI-Scripts* project, is added. Please refer to its `documentation`_
-for installation notes and usage.
+Examples for common use cases listed below are written in `LMIShell`_. Where
+appropriate, an example for :ref:`LMI metacommand <lmi_metacommand>` is added.
 
 .. note::
-    Examples below are written for ``openlmi-tools`` version ``0.9``.
+    Examples below are written for ``openlmi-tools`` version ``0.9.2``.
+
+.. _example-list-installed-packages:
 
 Listing installed packages
 --------------------------
 Simple
 ~~~~~~
-Simple but very slow way: ::
+Simple but slow way: ::
 
     c = connect("host", "user", "pass")
     cs = c.root.cimv2.PG_ComputerSystem.first_instance()
@@ -25,10 +25,7 @@ Simple but very slow way: ::
         print(identity.ElementName)
 
 .. note::
-    Here we use ``PG_ComputerSystem`` as a class representing computer
-    system. It is part of ``sblim-cmpi-base`` package, which is obsoleted.
-    If you use *Pegasus* as your *CIMOM* you may safely switch to
-    ``PG_ComputerSystem``.
+    Here we use ``PG_ComputerSystem`` as a class representing computer system.
 
 .. seealso::
     :ref:`LMI_InstalledSoftwareIdentity<LMI-InstalledSoftwareIdentity>`
@@ -44,22 +41,17 @@ get information from its key properties. ::
             print(iname.InstalledSoftware.InstanceID
                     [len("LMI:LMI_SoftwareIdentity:"):])
 
-.. note::
-    Whole instance is not available. To get it from association instance name,
-    you need to add: ::
-
-        iname.InstalledSoftware.to_instance()
-
-
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
+LMI metacommand
+~~~~~~~~~~~~~~~
 ::
 
     lmi -h $HOST sw list pkgs
 
+.. _example-list-repositories:
+
 Listing repositories
 --------------------
-lmishell
+LMIShell
 ~~~~~~~~
 ::
 
@@ -70,20 +62,22 @@ lmishell
 .. seealso::
     :ref:`LMI_SoftwareIdentityResource<LMI-SoftwareIdentityResource>`
 
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
+LMI metacommand
+~~~~~~~~~~~~~~~
 ::
 
     lmi -h $HOST sw list pkgs
 
+.. _example-list-available-packages:
+
 Listing available packages
 --------------------------
-lmishell
+LMIShell
 ~~~~~~~~
 Enumerating of :ref:`LMI_SoftwareIdentity<LMI-SoftwareIdentity>` is
 disabled due to a huge amount of data being generated. That's why we
 enumerate them for particular repository represented by
-:ref:`LMI_SoftwareIdentityResource<LMI-SoftwareIdentityResource>`. ::
+:ref:`LMI_SoftwareIdentityResource<LMI-SoftwareIdentityResource>`::
 
     c = connect("host", "user", "pass")
     for repo in c.root.cimv2.LMI_SoftwareIdentityResource.instances():
@@ -106,24 +100,41 @@ enumerate them for particular repository represented by
     which outputs all available, not installed packages. The example above
     yields available packages without any regard to their installation status.
 
-.. seealso::
-    :ref:`LMI_ResourceForSoftwareIdentity<LMI-ResourceForSoftwareIdentity>`
+Using installation service
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+This method is both simpler and more effective. It also does not list installed
+packages.
 
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
 ::
 
-    lmi -h $HOST sw list --available pkgs
+    c = connect("host", "user", "pass")
+    service = c.root.cimv2.LMI_SoftwareInstallationService.first_instance()
+    ret = service.FindIdentity(Installed=False)
+    for iname in ret.rparams["Matches"]:
+        # we've got only references to instances
+        print iname.Name[len("LMI:LMI_SoftwareIdentity:"):]
+
+.. seealso::
+    :ref:`LMI_ResourceForSoftwareIdentity <LMI-ResourceForSoftwareIdentity>`
+    :ref:`FindIdentity() <LMI-SoftwareInstallationService-FindIdentity>`
+
+LMI metacommand
+~~~~~~~~~~~~~~~
+::
+
+    lmi -h $HOST sw list pkgs --available
+
+.. _example-list-package-files:
 
 Listing files of package
 ------------------------
 Let's list files of packages ``openlmi-tools``. Note that package must
 be installed on system in order to list its files.
 
-lmishell
+LMIShell
 ~~~~~~~~
 We need to know exact *NEVRA* [1]_ of package we want to operate on. If
-we don't know it, we can find out using
+we don't, we can find out using
 :ref:`FindIdentity()<LMI-SoftwareInstallationService-FindIdentity>` method.
 See example under `Searching for packages`_. ::
 
@@ -140,19 +151,21 @@ See example under `Searching for packages`_. ::
 .. seealso::
     :ref:`LMI_SoftwareIdentityFileCheck<LMI-SoftwareIdentityFileCheck>`
 
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
+LMI metacommand
+~~~~~~~~~~~~~~~
 ::
 
     lmi -h $HOST sw list files openlmi-tools
+
+.. _example-search-package:
 
 Searching for packages
 ----------------------
 If we know just a fraction of informations needed to identify a package,
 we may query package database in the following way.
 
-``lmishell``
-~~~~~~~~~~~~
+LMIShell
+~~~~~~~~
 ::
 
     c = connect("host", "user", "pass")
@@ -176,13 +189,13 @@ construct the instance name this way: ::
             {"InstanceID" : "LMI:LMI_SoftwareIdentity:openlmi-software-0:0.1.1-2.fc20.noarch"})
     identity = iname.to_instance()
 
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
+LMI metacommand
+~~~~~~~~~~~~~~~
 See help on ``sw`` command for more information on this. ::
 
     lmi -h $HOST sw list pkgs openlmi
 
-.. _package_installation:
+.. _example-install-package:
 
 Package installation
 --------------------
@@ -210,12 +223,16 @@ If the package is already installed, this operation will fail with
 the :py:class:`pywbem.CIMError` exception being raised initialized with
 ``CIM_ERR_ALREADY_EXISTS`` error code.
 
+Downside of this approach is its slowness. It may block for a long time.
+
+.. _example-install-package-async:
+
 Asynchronous installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 Method
 :ref:`InstallFromSoftwareIdentity()<LMI-SoftwareInstallationService-InstallFromSoftwareIdentity>`
 needs to be invoked with desired options. After the options are checked
-by provider, a job will be returned representing installation process running
+by provider, a job is returned representing installation process running
 at background. Please refer to `Asynchronous Jobs`_ for more details.
 
 ::
@@ -269,7 +286,7 @@ documentation of this method.
 
 Combined way
 ~~~~~~~~~~~~
-We can combine both approaches by utilizing a feature of lmishell_. Method
+We can combine both approaches by utilizing a feature of LMIShell_. Method
 above can be called in a synchronous way (from the perspective of script's
 code). It's done like this: ::
 
@@ -285,12 +302,11 @@ code). It's done like this: ::
     )
     print "result: %s" % ret.rval
 
-The value of
-:ref:`LMI_SoftwareMethodResult<LMI-SoftwareMethodResult>` ``.__ReturnValue`` is
-placed to the ``ret.rval`` attribute. Waiting for job's completion is taken care
-of by lmishell_. But we lose the reference to the job itself and we can not
-enumerate affected elements (that contain, among other things, installed
-package).
+The value of ``.__ReturnValue`` of :ref:`LMI_SoftwareMethodResult
+<LMI-SoftwareMethodResult>` is placed to the ``ret.rval`` attribute. Waiting
+for job's completion is taken care of by LMIShell_. But we lose the reference
+to the job itself and we can not enumerate affected elements (that contain,
+among other things, installed package).
 
 Installation from URI
 ~~~~~~~~~~~~~~~~~~~~~
@@ -311,9 +327,7 @@ Supported *URI* schemes are:
     * ``ftp``
     * ``file``
 
-In the last cast, the file must be located on the remote system hosting
-the *CIMOM*.
-
+In the last case, the file must be located on the managed system.
 
 .. seealso::
     :ref:`InstallFromURI()<LMI-SoftwareInstallationService-InstallFromURI>`
@@ -322,13 +336,13 @@ the *CIMOM*.
     Please refer to `Asynchronous installation`_ above for the consequent
     procedure and how to deal with ``ret`` value.
 
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
+LMI metacommand
+~~~~~~~~~~~~~~~
 ::
 
     lmi -h $HOST sw install sblim-sfcb
 
-.. _package_removal:
+.. _example-remove-package:
 
 Package removal
 ---------------
@@ -338,7 +352,7 @@ Synchronous removal
 ~~~~~~~~~~~~~~~~~~~
 The aim is achieved by issuing an opposite operation than before. The instance
 of :ref:`LMI_InstalledSoftwareIdentity<LMI-InstalledSoftwareIdentity>` is
-deleted here. ::
+deleted here::
 
     c = connect("host", "user", "pass")
     identity = c.root.cimv2.LMI_SoftwareIdentity.new_instance_name(
@@ -367,25 +381,25 @@ Asynchronous removal
             Target=cs,
             InstallOptions=[9])  # [Uninstall]
 
-Again please refer to `Asynchronous installation`_ for examples on how to
-deal with the ``ret`` value.
+Again please refer to `Asynchronous installation`_ for examples on how to deal
+with the ``ret`` value.
 
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
+LMI metacommand
+~~~~~~~~~~~~~~~
 ::
 
     lmi -h $HOST sw remove sblim-sfcb
 
-.. _package_update:
+.. _example-update-package:
 
 Package update
 --------------
 Only asynchronous method is provided for this purpose. But with the possibility
 of synchronous invocation.
 
-``lmishell``
-~~~~~~~~~~~~
-Example below shows the synchronous invocation of asynchronous method. ::
+LMIShell
+~~~~~~~~
+Example below shows the synchronous invocation of asynchronous method::
 
     c = connect("host", "user", "pass")
     service = c.root.cimv2.LMI_SoftwareInstallationService.first_instance()
@@ -396,18 +410,18 @@ Example below shows the synchronous invocation of asynchronous method. ::
             Source=identity,
             Target=cs,
             InstallOptions=[5]       # [Update]
-            # to force update, when package is not installed
+            # to force update, when installed package is same or higher version
             #InstallOptions=[4, 5]   # [Install, Update]
     )
     print "installation " + ("successful" if rval == 0 else "failed")
 
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
+LMI metacommand
+~~~~~~~~~~~~~~~
 ::
 
     lmi -h $HOST sw update sblim-sfcb
 
-.. _package_verification:
+.. _example-verify-package:
 
 Package verification
 --------------------
@@ -425,8 +439,8 @@ verification test. Following attributes come into play in this process:
     * Link Target - in case the file is a symbolic link
     * Checksum - in case of regular file
 
-``lmishell``
-~~~~~~~~~~~~
+LMIShell
+~~~~~~~~
 It's done via invocation of
 :ref:`VerifyInstalledIdentity()<LMI-SoftwareInstallationService-VerifyInstalledIdentity>`.
 This is an asynchronous method. We can not use synchronous invocation
@@ -443,7 +457,7 @@ if we want to be able to list failed files.
             Target=ns.PG_ComputerSystem.first_instance_name())
     nevra = (    identity.ElementName if isinstance(identity, LMIInstance)
             else identity.InstanceID[len('LMI:LMI_SoftwareIdentity:'):])
-    if results.rval != 4096:
+    if results.rval != 4096:    # asynchronous job started
         msg = 'failed to verify identity "%s (rval=%d)"' % (nevra, results.rval)
         if results.errorstr:
             msg += ': ' + results.errorstr
@@ -475,17 +489,19 @@ example under `Asynchronous installation`_.
 .. seealso::
     :ref:`LMI_SoftwareIdentityFileCheck<LMI-SoftwareIdentityFileCheck>`
 
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
+LMI metacommand
+~~~~~~~~~~~~~~~
 ::
 
     lmi -h $HOST sw verify sblim-sfcb
 
+.. _example-change-repo-state:
+
 Enable and disable repository
 -----------------------------
 
-``lmishell``
-~~~~~~~~~~~~
+LMIShell
+~~~~~~~~
 ::
 
     c = connect("host", "user", "pass")
@@ -504,8 +520,8 @@ Enable and disable repository
         RequestedState=c.root.cimv2.LMI_SoftwareIdentityResource. \
             RequestedStateValues.Enabled)
 
-``lmi`` meta-command
-~~~~~~~~~~~~~~~~~~~~
+LMI metacommand
+~~~~~~~~~~~~~~~
 ::
 
     lmi -h $HOST sw disable fedora-updates-testing
@@ -515,11 +531,11 @@ Enable and disable repository
 Supported event filters
 -----------------------
 There are various events related to asynchronous job you may be interested
-about. All of them can be subscribed to with static filters presented below.
+in. All of them can be subscribed to with static filters presented below.
 Usage of custom query strings is not supported due to a complexity of
 its parsing. These filters should be already registered in *CIMOM* if
-*OpenLMI Software* providers are installed. You may check them by enumerating
-``LMI_IndicationFilter`` class located in ``root/interop`` namespace.
+OpenLMI-Software provider is installed. You may check them by enumerating
+``CIM_IndicationFilter`` class located in ``root/interop`` namespace.
 All of them apply to two different software job classes you may want to
 subscribe to:
 
@@ -529,8 +545,10 @@ subscribe to:
     :ref:`LMI_SoftwareVerificationJob<LMI-SoftwareVerificationJob>`
         Represents a job requesting verification of installed package.
 
-Filters below are written for :ref:`LMI_SoftwareInstallationJob<LMI-SoftwareInstallationJob>` only. If you deal with the other one, just replace the
-class name right after the ``ISA`` operator and classname in filter's name.
+Filters below are written for
+:ref:`LMI_SoftwareInstallationJob<LMI-SoftwareInstallationJob>` only. If you
+deal with the other one, just replace the class name right after the ``ISA``
+operator and classname in filter's name.
 
 Percent Updated
 ~~~~~~~~~~~~~~~
@@ -632,5 +650,5 @@ Registered under filter name ``"LMI:LMI_SoftwareInstallationJob:Created"``.
 
 .. *****************************************************************************
 .. _documentation: https://fedorahosted.org/openlmi/wiki/scripts
-.. _lmishell:      https://fedorahosted.org/openlmi/wiki/shell
+.. _LMIShell:      http://pythonhosted.org/openlmi-tools/index.html#lmishell
 .. _`Asynchronous Jobs`:    http://jsafrane.fedorapeople.org/openlmi-storage/api/0.6.0/concept-job.html#asynchronous-jobs

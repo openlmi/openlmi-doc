@@ -18,8 +18,8 @@ import types
 
 from lmi.shell.compat import *
 
-from lmi.shell.LMIDecorators import lmi_process_wsman_exceptions
-from lmi.shell.LMIDecorators import lmi_process_wsman_exceptions_rval
+from lmi.shell.LMIDecorators import lmi_wrap_cim_exceptions
+from lmi.shell.LMIDecorators import lmi_wrap_cim_exceptions_rval
 
 from lmi.shell.LMIExceptions import CIMError
 from lmi.shell.LMIExceptions import LMINotSupported
@@ -622,7 +622,6 @@ class LMIWSMANClient(object):
 
     # NOTE: usage with Key=something, Value=something is deprecated
     # NOTE: inst_filter is either None or dict
-    @lmi_process_wsman_exceptions()
     def get_instance_names(self, classname, namespace=None, inst_filter=None,
                            limit=-1, **kwargs):
         """
@@ -647,14 +646,17 @@ class LMIWSMANClient(object):
             appropriate error string
         :raises: :py:exc:`.CIMError`
         """
-        inst_names_list = self.enumerate(
-            LMIWSMANClient.RES_INSTANCE_NAME, classname, namespace,
-            inst_filter, limit, **kwargs)
-        return LMIReturnValue(rval=inst_names_list)
+        @lmi_wrap_cim_exceptions(prefix="EnumerateInstanceNames " + classname)
+        def get_instance_names_core():
+            inst_names_list = self.enumerate(
+                LMIWSMANClient.RES_INSTANCE_NAME, classname, namespace,
+                inst_filter, limit, **kwargs)
+            return LMIReturnValue(rval=inst_names_list)
+        return get_instance_names_core()
 
     # NOTE: usage with Key=something, Value=something is deprecated
     # NOTE: inst_filter is either None or dict
-    @lmi_process_wsman_exceptions()
+    @lmi_wrap_cim_exceptions(prefix="EnumerateInstances")
     def get_instances(self, classname, namespace=None, inst_filter=None,
                       client_filtering=False, limit=-1, **kwargs):
         """
@@ -685,9 +687,10 @@ class LMIWSMANClient(object):
         # We do not enumerate instances directly. First instance names are
         # pulled from CIMOM. This is done due to lack of keybindings
         # information in the pull response of the instance.
-        inst_names_list = self.enumerate(
-            LMIWSMANClient.RES_INSTANCE_NAME, classname, namespace,
-            inst_filter, limit, **kwargs)
+        inst_names_list, _, errorstr = self.get_instance_names(
+            classname, namespace, inst_filter, limit, **kwargs)
+        if not inst_names_list:
+            return LMIReturnValue(rval=None, errorstr=errorstr)
 
         # Get all the instances from instance names. Now we can construct
         # LMIInstance also with object path information.
@@ -710,9 +713,8 @@ class LMIWSMANClient(object):
                     inst_list_filtered.append(inst)
             inst_list = inst_list_filtered
 
-        return LMIReturnValue(rval=inst_list)
+        return LMIReturnValue(rval=inst_list, errorstr=errorstr)
 
-    @lmi_process_wsman_exceptions()
     def get_instance(self, instance, LocalOnly=True, IncludeQualifiers=False,
                      IncludeClassOrigin=False, PropertyList=None):
         """
@@ -735,6 +737,16 @@ class LMIWSMANClient(object):
             ``errorstr`` is set to corresponding error string
         :raises: :py:exc:`.CIMError`
         """
+        @lmi_wrap_cim_exceptions(prefix="GetInstance " + instance.classname)
+        def get_instance_core(path, options):
+            uri = self._cls_ns_to_uri(path.classname, path.namespace)
+            doc = self._cliconn.get(options, uri)
+            self._xml_check_response(doc)
+            inst = self._xml_to_wbem_instance(
+                doc.body().child(), path.namespace, self._cliconn.host())
+            inst.path = path
+            return LMIReturnValue(rval=inst)
+
         path = lmi_instance_to_path(instance)
 
         options = pywsman.ClientOptions()
@@ -744,16 +756,8 @@ class LMIWSMANClient(object):
             else:
                 value = str(v)
             options.add_selector(k, value)
-        uri = self._cls_ns_to_uri(path.classname, path.namespace)
-        doc = self._cliconn.get(options, uri)
-        self._xml_check_response(doc)
 
-        inst = self._xml_to_wbem_instance(
-            doc.body().child(), path.namespace, self._cliconn.host())
-
-        # Adjust CIM Object Path by hand
-        inst.path = path
-        return LMIReturnValue(rval=inst)
+        return get_instance_core(path, options)
 
     def get_class_names(self, *args, **kwargs):
         """
@@ -777,7 +781,6 @@ class LMIWSMANClient(object):
         return LMIReturnValue(
             rval=None, errorstr="GetSuperClass() not supported")
 
-    @lmi_process_wsman_exceptions(-1)
     def call_method(self, instance, method, **params):
         """
         Executes a method within a given instance.
@@ -798,26 +801,29 @@ class LMIWSMANClient(object):
             and errorstr to appropriate error string
         :raises: :py:exc:`.CIMError`
         """
+        @lmi_wrap_cim_exceptions(-1, prefix="InvokeMethod " + method)
+        def call_method_core(method, path, options):
+            uri = self._cls_ns_to_uri(path.classname, path.namespace)
+            doc = self._cliconn.invoke(options, uri, method)
+            self._xml_check_response(doc)
+            method_doc = doc.body().get(method + "_OUTPUT")
+            return self._xml_invoke_rval(
+                method_doc, path.namespace, self._cliconn.host())
+
         path = lmi_instance_to_path(instance)
 
         options = pywsman.ClientOptions()
         for k, v in path.keybindings.iteritems():
             options.add_selector(k, str(v))
-        uri = self._cls_ns_to_uri(path.classname, path.namespace)
 
         # Add method parameters
         for k, v in params.iteritems():
             options.add_property(k, str(v))
 
         # Invoke the method
-        doc = self._cliconn.invoke(options, uri, method)
-        self._xml_check_response(doc)
+        return call_method_core(method, path, options)
 
-        method_doc = doc.body().get(method + "_OUTPUT")
-        return self._xml_invoke_rval(
-            method_doc, path.namespace, self._cliconn.host())
-
-    @lmi_process_wsman_exceptions_rval([])
+    @lmi_wrap_cim_exceptions_rval([], prefix="AssociatorNames")
     def get_associator_names(self, instance, AssocClass=None, ResultClass=None,
                              Role=None, ResultRole=None, limit=-1):
         """
@@ -868,7 +874,7 @@ class LMIWSMANClient(object):
             LMIWSMANClient.RES_INSTANCE_NAME, AssocClass, ResultClass, Role,
             ResultRole, limit)
 
-    @lmi_process_wsman_exceptions_rval([])
+    @lmi_wrap_cim_exceptions_rval([], prefix="Associators")
     def get_associators(self, instance, AssocClass=None, ResultClass=None,
                         Role=None, ResultRole=None, IncludeQualifiers=False,
                         IncludeClassOrigin=False, PropertyList=None, limit=-1):
@@ -923,7 +929,7 @@ class LMIWSMANClient(object):
             LMIWSMANClient.RES_INSTANCE, AssocClass,
             ResultClass, Role, ResultRole, limit)
 
-    @lmi_process_wsman_exceptions_rval([])
+    @lmi_wrap_cim_exceptions_rval([], prefix="ReferenceNames")
     def get_reference_names(self, instance, ResultClass=None, Role=None,
                             limit=-1):
         """
@@ -959,7 +965,7 @@ class LMIWSMANClient(object):
             LMIWSMANClient.RES_INSTANCE_NAME, None,
             ResultClass, Role, None, limit)
 
-    @lmi_process_wsman_exceptions_rval([])
+    @lmi_wrap_cim_exceptions_rval([], prefix="References")
     def get_references(self, instance, ResultClass=None, Role=None,
                        IncludeQualifiers=False, IncludeClassOrigin=False,
                        PropertyList=None, limit=-1):
@@ -1022,7 +1028,7 @@ class LMIWSMANClient(object):
         return LMIReturnValue(
             rval=False, errorstr="DeleteInstance() not supported")
 
-    @lmi_process_wsman_exceptions()
+    @lmi_wrap_cim_exceptions(prefix="ExecQuery")
     def exec_query(self, query_lang, query, namespace=wbem.DEFAULT_NAMESPACE):
         """
         Executes a query and returns a list of :py:class:`wbem.CIMInstance`

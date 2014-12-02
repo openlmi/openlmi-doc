@@ -54,6 +54,16 @@ class LmiSessionCommand(LmiEndPointCommand):
         return Configuration.get_instance().namespace
 
     @classmethod
+    def connection_timeout(cls):
+        """
+        Returns maximum number of seconds the client shall wait for broker's
+        reply. Defaults to ``None`` which means that it's up to the connection
+        object itself to decide. It can be oveririden with
+        ``CONNECTION_TIMEOUT`` property in declaration of command.
+        """
+        return None
+
+    @classmethod
     def dest_pos_args_count(cls):
         """
         There is a namespace/connection object passed as the first positional
@@ -181,6 +191,13 @@ class LmiSessionCommand(LmiEndPointCommand):
             raise TypeError("expected an instance of LMIConnection for"
                     " connection argument, not %s" % repr(connection))
         namespace = self.cim_namespace()
+        timeout = self.connection_timeout()
+        if timeout is not None:
+            if hasattr(connection.connection, "timeout"):
+                LOG().debug("Set connection timeout to %d seconds.", timeout)
+                connection.timeout = timeout * 1000
+            else:
+                LOG().debug("Could not set connection timeout.")
         if namespace is not None:
             connection = LMIUtil.lmi_wrap_cim_namespace(
                     connection, namespace)

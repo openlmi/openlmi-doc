@@ -27,8 +27,8 @@ from lmi.shell.LMIUtil import lmi_set_use_exceptions
 from lmi.shell.LMIUtil import lmi_instance_to_path
 from lmi.shell.LMIUtil import lmi_is_localhost
 
-from lmi.shell.LMIDecorators import lmi_process_cim_exceptions
-from lmi.shell.LMIDecorators import lmi_process_cim_exceptions_rval
+from lmi.shell.LMIDecorators import lmi_wrap_cim_exceptions
+from lmi.shell.LMIDecorators import lmi_wrap_cim_exceptions_rval
 
 from lmi.shell.LMIExceptions import CIMError
 from lmi.shell.LMIExceptions import ConnectionError
@@ -119,7 +119,7 @@ class LMICIMXMLClient(object):
             self.disconnect()
             del self._cliconn
 
-    @lmi_process_cim_exceptions(False)
+    @lmi_wrap_cim_exceptions(False)
     def connect(self):
         """
         Connects to CIMOM.
@@ -172,7 +172,6 @@ class LMICIMXMLClient(object):
 
     # NOTE: usage with Key=something, Value=something is deprecated
     # NOTE: inst_filter is either None or dict
-    @lmi_process_cim_exceptions()
     def get_instance_names(self, classname, namespace=None, inst_filter=None,
                            limit=-1, **kwargs):
         """
@@ -198,6 +197,12 @@ class LMICIMXMLClient(object):
         :raises: :py:exc:`.LMIFilterError`, :py:exc:`.CIMError`,
             :py:exc:`.ConnectionError`
         """
+        @lmi_wrap_cim_exceptions(prefix="EnumerateInstanceNames " + classname)
+        def get_instance_names_core(classname, namespace):
+            return LMIReturnValue(
+                rval=self._cliconn.EnumerateInstanceNames(
+                    classname, namespace))
+
         filter_value = ""
         filter_key = "Name"
         if inst_filter is None:
@@ -217,7 +222,7 @@ class LMICIMXMLClient(object):
         if filter_value:
             inst_filter[filter_key] = filter_value
         try:
-            inst_name_list = self._cliconn.EnumerateInstanceNames(
+            inst_name_list, _, errorstr = get_instance_names_core(
                 classname, namespace)
             if inst_filter:
                 inst_name_list_filtered = []
@@ -234,9 +239,8 @@ class LMICIMXMLClient(object):
             errorstr = "Can not filter by '%s'" % filter_key
             lmi_raise_or_dump_exception(LMIFilterError(errorstr))
             return LMIReturnValue(rval=None, errorstr=errorstr)
-        return LMIReturnValue(rval=inst_name_list)
+        return LMIReturnValue(rval=inst_name_list, errorstr=errorstr)
 
-    @lmi_process_cim_exceptions()
     def get_instance(self, instance, LocalOnly=True, IncludeQualifiers=False,
                      IncludeClassOrigin=False, PropertyList=None):
         """
@@ -275,18 +279,21 @@ class LMICIMXMLClient(object):
         :raises: :py:exc:`.CIMError`, :py:exc:`.ConnectionError`,
             :py:exc:`TypeError`
         """
-        return LMIReturnValue(
-            rval=self._cliconn.GetInstance(
-                lmi_instance_to_path(instance),
-                **filter_kwargs(
-                    LocalOnly=LocalOnly,
-                    IncludeQualifiers=IncludeQualifiers,
-                    IncludeClassOrigin=IncludeClassOrigin,
-                    PropertyList=PropertyList)))
+        @lmi_wrap_cim_exceptions(prefix="GetInstance " + instance.classname)
+        def get_instance_core(path, **kwargs):
+            return LMIReturnValue(
+                rval=self._cliconn.GetInstance(path, **kwargs))
+
+        return get_instance_core(
+            lmi_instance_to_path(instance),
+            **filter_kwargs(
+                LocalOnly=LocalOnly,
+                IncludeQualifiers=IncludeQualifiers,
+                IncludeClassOrigin=IncludeClassOrigin,
+                PropertyList=PropertyList))
 
     # NOTE: usage with Key=something, Value=something is deprecated
     # NOTE: inst_filter is either None or dict
-    @lmi_process_cim_exceptions()
     def get_instances(self, classname, namespace=None, inst_filter=None,
                       client_filtering=False, limit=-1, **kwargs):
         """
@@ -314,6 +321,12 @@ class LMICIMXMLClient(object):
             corresponding error string.
         :raises: :py:exc:`.CIMError`, :py:exc:`.ConnectionError`
         """
+        @lmi_wrap_cim_exceptions([], prefix="EnumerateInstances " + classname)
+        def get_instances_core(classname, namespace, **kwargs):
+            return LMIReturnValue(
+                rval=self._cliconn.EnumerateInstances(
+                    classname, namespace, **kwargs))
+
         filter_value = ""
         filter_key = "Name"
         if inst_filter is None:
@@ -348,16 +361,13 @@ class LMICIMXMLClient(object):
                     else:
                         query += " %s" % filter_value
                     more = True
-            inst_list, _, errorstr = self.exec_query(
+            return self.exec_query(
                 LMICIMXMLClient.QUERY_LANG_WQL, query, namespace)
-            if inst_list is None:
-                return LMIReturnValue(rval=None, errorstr=errorstr)
-            return LMIReturnValue(rval=inst_list)
 
         # Client-side filtering - this is not a pretty solution, but it needs
         # to be present due to TOG-Pegasus, which does not raise an exception,
         # if an error occurs while performing CQL/WQL query.
-        inst_list = self._cliconn.EnumerateInstances(
+        inst_list, _, errorstr = get_instances_core(
             classname,
             namespace,
             LocalOnly=False,
@@ -374,9 +384,9 @@ class LMICIMXMLClient(object):
                 else:
                     inst_list_filtered.append(inst)
             inst_list = inst_list_filtered
-        return LMIReturnValue(rval=inst_list)
+        return LMIReturnValue(rval=inst_list, errorstr=errorstr)
 
-    @lmi_process_cim_exceptions()
+    @lmi_wrap_cim_exceptions(prefix="EnumerateClassNames")
     def get_class_names(self, namespace=None, ClassName=None,
                         DeepInheritance=False):
         """
@@ -404,7 +414,7 @@ class LMICIMXMLClient(object):
                     ClassName=ClassName,
                     DeepInheritance=DeepInheritance)))
 
-    @lmi_process_cim_exceptions()
+    @lmi_wrap_cim_exceptions(prefix="GetClass")
     def get_class(self, classname, namespace=None, LocalOnly=True,
                   IncludeQualifiers=True, IncludeClassOrigin=False,
                   PropertyList=None):
@@ -468,7 +478,6 @@ class LMICIMXMLClient(object):
                 rval=None, rparams=rparams, errorstr=errorstr)
         return LMIReturnValue(rval=minimal_class.superclass)
 
-    @lmi_process_cim_exceptions(-1)
     def call_method(self, instance, method, **params):
         """
         Executes a method within a given instance.
@@ -490,11 +499,15 @@ class LMICIMXMLClient(object):
         :raises: :py:exc:`.CIMError`, :py:exc:`.ConnectionError`,
             :py:exc:`TypeError`
         """
-        path = lmi_instance_to_path(instance)
-        rval, rparams = self._cliconn.InvokeMethod(method, path, **params)
-        return LMIReturnValue(rval=rval, rparams=rparams)
+        @lmi_wrap_cim_exceptions(-1, prefix="InvokeMethod " + method)
+        def call_method_core(path, method, **params):
+            rval, rparams = self._cliconn.InvokeMethod(method, path, **params)
+            return LMIReturnValue(rval=rval, rparams=rparams)
 
-    @lmi_process_cim_exceptions_rval([])
+        path = lmi_instance_to_path(instance)
+        return call_method_core(path, method, **params)
+
+    @lmi_wrap_cim_exceptions_rval([], prefix="AssociatorNames")
     def get_associator_names(self, instance, AssocClass=None, ResultClass=None,
                              Role=None, ResultRole=None, limit=-1):
         """
@@ -549,7 +562,7 @@ class LMICIMXMLClient(object):
                 Role=Role,
                 ResultRole=ResultRole))
 
-    @lmi_process_cim_exceptions_rval([])
+    @lmi_wrap_cim_exceptions_rval([], prefix="Associators")
     def get_associators(self, instance, AssocClass=None, ResultClass=None,
                         Role=None, ResultRole=None, IncludeQualifiers=False,
                         IncludeClassOrigin=False, PropertyList=None,
@@ -617,7 +630,7 @@ class LMICIMXMLClient(object):
                 IncludeClassOrigin=IncludeClassOrigin,
                 PropertyList=PropertyList))
 
-    @lmi_process_cim_exceptions_rval([])
+    @lmi_wrap_cim_exceptions_rval([], prefix="ReferenceNames")
     def get_reference_names(self, instance, ResultClass=None, Role=None,
                             limit=-1):
         """
@@ -655,7 +668,7 @@ class LMICIMXMLClient(object):
                 ResultClass=ResultClass,
                 Role=Role))
 
-    @lmi_process_cim_exceptions_rval([])
+    @lmi_wrap_cim_exceptions_rval([], prefix="References")
     def get_references(self, instance, ResultClass=None, Role=None,
                        IncludeQualifiers=False, IncludeClassOrigin=False,
                        PropertyList=None, limit=-1):
@@ -709,7 +722,7 @@ class LMICIMXMLClient(object):
                 IncludeClassOrigin=IncludeClassOrigin,
                 PropertyList=PropertyList))
 
-    @lmi_process_cim_exceptions(None)
+    @lmi_wrap_cim_exceptions(None, prefix="CreateInstance")
     def create_instance(self, classname, namespace=None, host=None,
                         properties=None, qualifiers=None, property_list=None):
         """
@@ -741,7 +754,7 @@ class LMICIMXMLClient(object):
         cim_path = self._cliconn.CreateInstance(NewInstance=cim_instance)
         return self.get_instance(cim_path, LocalOnly=False)
 
-    @lmi_process_cim_exceptions(-1)
+    @lmi_wrap_cim_exceptions(-1, prefix="ModifyInstance")
     def modify_instance(self, instance, IncludeQualifiers=True,
                         PropertyList=None):
         """
@@ -770,7 +783,7 @@ class LMICIMXMLClient(object):
                 PropertyList=PropertyList))
         return LMIReturnValue(rval=0)
 
-    @lmi_process_cim_exceptions(False)
+    @lmi_wrap_cim_exceptions(False, prefix="DeleteInstance")
     def delete_instance(self, instance):
         """
         Deletes a :py:class:`wbem.CIMInstance` from the CIMOM side.
@@ -792,7 +805,7 @@ class LMICIMXMLClient(object):
         self._cliconn.DeleteInstance(lmi_instance_to_path(instance))
         return LMIReturnValue(rval=True)
 
-    @lmi_process_cim_exceptions()
+    @lmi_wrap_cim_exceptions(prefix="ExecQuery")
     def exec_query(self, query_lang, query, namespace=None):
         """
         Executes a query and returns a list of :py:class:`wbem.CIMInstance`

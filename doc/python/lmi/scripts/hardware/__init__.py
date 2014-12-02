@@ -107,8 +107,8 @@ def get_all_instances(ns, class_name):
 
 def get_hostname(ns):
     """
-    :returns: Tabular data of system hostname.
-    :rtype: List of tuples
+    :returns: System hostname.
+    :rtype: String
     """
     i = get_computer_system(ns)
     return i.Name
@@ -159,8 +159,7 @@ def get_colored_string(msg, color):
 
 def get_all_info(ns):
     """
-    :returns: Tabular data of all available info.
-    :rtype: List of tuples
+    Prints tabular data of all available info.
     """
     global STANDALONE
     STANDALONE = False
@@ -168,19 +167,42 @@ def get_all_info(ns):
     tf = TableFormatter(stdout, 0, True)
     tf.print_host(get_hostname(ns))
 
-    get_system_info(ns)
-    get_motherboard_info(ns)
-    get_cpu_info(ns)
-    get_memory_info(ns)
-    get_disks_info(ns)
+    try:
+        get_system_info(ns)
+    except Exception as e:
+        tf.produce_output([(get_colored_string('error:', RED_COLOR), str(e))])
+
+    try:
+        get_motherboard_info(ns)
+    except Exception as e:
+        tf.produce_output([(get_colored_string('error:', RED_COLOR), str(e))])
+
+    try:
+        get_cpu_info(ns)
+    except Exception as e:
+        tf.produce_output([(get_colored_string('error:', RED_COLOR), str(e))])
+
+    try:
+        get_memory_info(ns)
+    except Exception as e:
+        tf.produce_output([(get_colored_string('error:', RED_COLOR), str(e))])
+
+    try:
+        get_pci_info(ns)
+    except Exception as e:
+        tf.produce_output([(get_colored_string('error:', RED_COLOR), str(e))])
+
+    try:
+        get_disks_info(ns)
+    except Exception as e:
+        tf.produce_output([(get_colored_string('error:', RED_COLOR), str(e))])
 
     STANDALONE = True
     return []
 
 def get_system_info(ns):
     """
-    :returns: Tabular data of system info, from the ``LMI_Chassis`` instance.
-    :rtype: List of tuples
+    Prints tabular data of system info, from the ``LMI_Chassis`` instance.
     """
     result = []
 
@@ -205,6 +227,9 @@ def get_system_info(ns):
     else:
         model = 'N/A'
 
+    if i.Manufacturer:
+        model = '%s %s' % (i.Manufacturer, model)
+
     virt = getattr(i, 'VirtualMachine', None)
     if virt is None:
         virt = 'N/A. You are probably using old openlmi-hardware package on the server.'
@@ -214,7 +239,6 @@ def get_system_info(ns):
     result += [
           ('Chassis Type:', ns.LMI_Chassis.ChassisPackageTypeValues.value_name(
                i.ChassisPackageType)),
-          ('Manufacturer:', i.Manufacturer),
           ('Model:', model),
           ('Serial Number:', i.SerialNumber),
           ('Asset Tag:', i.Tag),
@@ -228,8 +252,7 @@ def get_system_info(ns):
 
 def get_motherboard_info(ns):
     """
-    :returns: Tabular data of motherboard info.
-    :rtype: List of tuples
+    Prints tabular data of motherboard info.
     """
     result = []
 
@@ -239,30 +262,37 @@ def get_motherboard_info(ns):
 
     try:
         i = get_single_instance(ns, 'LMI_Baseboard')
+
+        if i:
+            model = ''
+            if i.Manufacturer:
+                model += i.Manufacturer
+            if i.Model:
+                if model:
+                    model += ' '
+                model += i.Model
+            result += [('Motherboard:', model)]
+        else:
+            if STANDALONE:
+                result += [(get_colored_string('warning:', YELLOW_COLOR),
+                            'LMI_Baseboard instance is missing. This usually means that the server is virtual machine.')]
     except Exception:
         result += [(get_colored_string('error:', RED_COLOR),
                     'Missing class LMI_Baseboard. Is openlmi-hardware package installed on the server?')]
-        tf.produce_output(result)
-        return []
 
-    if not i:
-        if not STANDALONE:
-            return []
-        result += [(get_colored_string('warning:', YELLOW_COLOR),
-                    'LMI_Baseboard instance is missing. This usually means that the server is virtual machine.')]
-        tf.produce_output(result)
-        return []
+    tf.produce_output(result)
+    result = []
 
-    model = i.Model
-    manufacturer = i.Manufacturer
-    if not model:
-        model = 'N/A'
-    if not manufacturer:
-        manufacturer = 'N/A'
+    try:
+        i = get_single_instance(ns, 'LMI_BIOSElement')
 
-    result += [
-          ('Motherboard:', model),
-          ('Manufacturer:', manufacturer)]
+        if i and i.Name:
+            result += [('BIOS:', i.Name)]
+        else:
+            result += [('BIOS:', 'N/A')]
+    except Exception:
+        result += [(get_colored_string('error:', RED_COLOR),
+                    'Missing LMI_BIOSElement class. Openlmi-hardware package is probably out-dated.')]
 
     if not STANDALONE:
         result += [EMPTY_LINE]
@@ -272,8 +302,7 @@ def get_motherboard_info(ns):
 
 def get_cpu_info(ns):
     """
-    :returns: Tabular data of processor info.
-    :rtype: List of tuples
+    Prints tabular data of processor info.
     """
     result = []
 
@@ -311,8 +340,7 @@ def get_cpu_info(ns):
 
 def get_memory_info(ns):
     """
-    :returns: Tabular data of memory info.
-    :rtype: List of tuples
+    Prints tabular data of memory info.
     """
     result = []
 
@@ -378,10 +406,93 @@ def get_memory_info(ns):
     tf.produce_output(result)
     return []
 
+def get_pci_list(ns, pcis, bus=0, level=0):
+    """
+    Recursive function, returns list of PCI devices ready for TableFormatter.
+
+    :param ns: LMI Namespace.
+    :type ns: :py:class:`lmi.shell.LMINamespace.LMINamespace`
+    :param pcis: Sorted list of PCI devices and bridges.
+    :type pcis: List
+    :param bus: ID of PCI bus for this level.
+    :type bus: Integer
+    :param level: Level of recursion.
+    :type level: Integer
+    :returns: Formatted list of tuples of PCI devices.
+    :rtype: List of tuples
+    """
+    if level > 99:
+        return []
+    result = []
+    # For deeper levels, count items on the bus
+    count = 0
+    if level > 0:
+        for p in pcis:
+            if p.BusNumber == bus:
+                count += 1
+    # Print PCI devices
+    i = 1
+    for p in pcis:
+        if p.BusNumber == bus:
+            if level > 0:
+                if i == count:
+                    sign = u'└─ '
+                else:
+                    sign = u'├─ '
+                i += 1
+            else:
+                sign = ''
+            dsc_line = '  ' + ' ' * level + sign + p.DeviceID
+            if p.CreationClassName == 'LMI_PCIBridge':
+                dsc_line += ' %s bridge: ' % \
+                    ns.LMI_PCIBridge.BridgeTypeValues.value_name(p.BridgeType)
+            else:
+                dsc_line += ' %s: ' % \
+                    ns.LMI_PCIDevice.ClassCodeValues.value_name(p.ClassCode)
+            dsc_line += p.Name
+            result += [(dsc_line, '')]
+            if p.CreationClassName == 'LMI_PCIBridge' and p.SecondayBusNumber:
+                result += get_pci_list(ns, pcis, p.SecondayBusNumber, level + 1)
+    return result
+
+def get_pci_info(ns):
+    """
+    Prints tabular data of PCI devices info.
+    """
+    result = [('PCI Devices:', '')]
+
+    tf = TableFormatter(stdout, 0, True, {0: FIRST_COLUMN_MIN_SIZE})
+    if STANDALONE:
+        tf.print_host(get_hostname(ns))
+
+    try:
+        pci_dev = get_all_instances(ns, 'LMI_PCIDevice')
+        pci_br = get_all_instances(ns, 'LMI_PCIBridge')
+    except Exception:
+        result += [(get_colored_string('error:', RED_COLOR),
+                    'Missing PCI related classes. Is openlmi-hardware package installed on the server?')]
+        tf.produce_output(result)
+        return []
+
+    pci = pci_dev + pci_br
+    pci.sort(key=lambda x: x.DeviceID)
+
+    if not pci:
+        result += [(' N/A', 'No PCI Device was detected on the system.')]
+        tf.produce_output(result)
+        return []
+
+    result += get_pci_list(ns, pci)
+
+    if not STANDALONE:
+        result += [EMPTY_LINE]
+
+    tf.produce_output(result)
+    return []
+
 def get_disks_info(ns):
     """
-    :returns: Tabular data of disk info.
-    :rtype: List of tuples
+    Prints tabular data of disk info.
     """
     result = [('Disks:', '')]
 
@@ -404,15 +515,22 @@ def get_disks_info(ns):
 
     for hdd in hdds:
         phys_hdds = hdd.associators(ResultClass='LMI_DiskPhysicalPackage')
-        manufacturer = ''
-        model = ''
-        if phys_hdds:
-            manufacturer = phys_hdds[0].Manufacturer
+        fws = hdd.associators(ResultClass='LMI_DiskDriveSoftwareIdentity')
+
+        if phys_hdds and phys_hdds[0].Model:
             model = phys_hdds[0].Model
-        if not manufacturer:
-            manufacturer = 'N/A'
-        if not model:
+        else:
             model = 'N/A'
+        if phys_hdds[0].Manufacturer \
+                and not model.startswith(phys_hdds[0].Manufacturer):
+            man_model = '%s %s' % (phys_hdds[0].Manufacturer, model)
+        else:
+            man_model = model
+
+        if fws[0].VersionString:
+            fw = fws[0].VersionString
+        else:
+            fw = 'N/A'
 
         form_factor_dict = {
             3: '5.25"',
@@ -435,31 +553,6 @@ def get_disks_info(ns):
             disk_type = 'SSD'
         else:
             disk_type = 'N/A'
-
-        port_type = ''
-        port_speed_current = ''
-        port_speed_max = ''
-        hdd_endpoints = hdd.associators(
-            ResultClass='LMI_DiskDriveATAProtocolEndpoint')
-        if hdd_endpoints:
-            hdd_ports = hdd_endpoints[0].associators(
-                ResultClass='LMI_DiskDriveATAPort')
-            if hdd_ports:
-                if hdd_ports[0].PortType:
-                    port_type = ns.LMI_DiskDriveATAPort.PortTypeValues.value_name(
-                        hdd_ports[0].PortType)
-                if hdd_ports[0].Speed:
-                    port_speed_current = '%.1f Gb/s' % \
-                        (float(hdd_ports[0].Speed) / 1000000000.0)
-                if hdd_ports[0].MaxSpeed:
-                    port_speed_max = '%.1f Gb/s' % \
-                        (float(hdd_ports[0].MaxSpeed) / 1000000000.0)
-        if not port_type:
-            port_type = 'N/A'
-        if not port_speed_current:
-            port_speed_current = 'N/A Gb/s'
-        if not port_speed_max:
-            port_speed_max = 'N/A Gb/s'
 
         status_to_color = {
             'OK': GREEN_COLOR,
@@ -484,15 +577,12 @@ def get_disks_info(ns):
         else:
             result += [('  %s' % hdd.DeviceID, '')]
 
-        result += [('    Manufacturer:', manufacturer),
-            ('    Model:', model),
+        result += [('    Model:', man_model),
+            ('    Firmware:', fw),
             ('    Capacity:', format_memory_size(hdd.Capacity)),
             ('    Form Factor:', form_factor),
             ('    HDD/SSD:', disk_type),
             ('    RPM:', rpm),
-            ('    Port Type:', port_type),
-            ('    Port Speed:', '%s current, %s max' % \
-                (port_speed_current, port_speed_max)),
             ('    SMART Status:', smart),
             ('    Temperature:', temp_str)]
 
