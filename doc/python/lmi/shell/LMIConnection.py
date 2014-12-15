@@ -167,10 +167,16 @@ def connect(uri, username="", password="", interactive=False, use_cache=True,
             sys.stdout.write("\n")
             return None
 
-    connection = LMIConnection(
-        uri, username, password, interactive=interactive,
-        use_cache=use_cache, key_file=key_file, cert_file=cert_file,
-        verify_server_cert=verify_server_cert)
+    try:
+        # Try to create a LMIConnection. We may fail to construct such object,
+        # if WSMAN isn't supported (package pywsman not available).
+        connection = LMIConnection(
+            uri, username, password, interactive=interactive,
+            use_cache=use_cache, key_file=key_file, cert_file=cert_file,
+            verify_server_cert=verify_server_cert)
+    except Exception as e:
+        lmi_raise_or_dump_exception(e)
+        return
 
     # Verify the connection
     rval, _, errorstr = connection.connect()
@@ -241,8 +247,11 @@ class LMIConnection(object):
         """
         Disconnects and frees :py:class:`.LMICIMXMLClient` object.
         """
-        self._client.disconnect()
-        del self._client
+        try:
+            self._client.disconnect()
+            del self._client
+        except AttributeError:
+            pass
 
     def __repr__(self):
         """

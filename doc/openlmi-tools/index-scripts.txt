@@ -1,0 +1,15 @@
+OpenLMI Scripts documentation
+=============================
+ 
+OpenLMI Scripts comproses of *LMI Meta-command* and a collection of small
+python libraries with command-line wrappers.
+ 
+.. warning::
+    *LMI Meta-command* has been moved into *OpenLMI Tools*, where it logically
+    belongs, in version 0.2.8. Feature releases of `openlmi-scripts` package
+    on RHEL will lack this application as well. This package will be just a
+    collection of scripts.
+
+**Contents:**
+
+.. include:: toc.txt

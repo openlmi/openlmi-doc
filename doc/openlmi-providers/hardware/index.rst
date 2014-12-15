@@ -20,14 +20,14 @@ The API can be accessed by any WBEM-capable client. OpenLMI already provides:
 
 OpenLMI-Hardware exposes information about:
 
-* Processor
-* System Memory
-* PCI Devices
-* Chassis
-* Baseboard
-* BIOS
-* Disks
-* Battery
+* :ref:`Processor <usage-cpu-profile>`
+* :ref:`System Memory <usage-system-memory-profile>`
+* :ref:`PCI Devices <usage-pci-device-profile>`
+* :ref:`Chassis <usage-physical-asset-profile>`
+* :ref:`Baseboard <usage-physical-asset-profile>`
+* :ref:`BIOS <usage-bios-profile>`
+* :ref:`Disks <usage-disk-drive-profile>`
+* :ref:`Battery <usage-battery-profile>`
 
 .. rubric:: Examples
 

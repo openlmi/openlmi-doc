@@ -10,11 +10,11 @@ everything under :py:mod:`lmi.scripts` namespace.
 development. Various scripts share this directory in order to provide
 command-line interface through *LMI metacommand*.
 
-Generated from version: ``0.10.2``
+Generated from version: ``0.10.4``, git: ``openlmi-tools-0.10.4``
 
 .. ifconfig:: with_commands
 
-    Scripts version: 0.3.0
+    Scripts version: 0.4.0
 
 .. only:: html
 

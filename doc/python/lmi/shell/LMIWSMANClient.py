@@ -13,7 +13,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-import pywsman
+try:
+    import pywsman
+    HAVE_PYWSMAN = True
+except ImportError:
+    HAVE_PYWSMAN = False
 import types
 
 from lmi.shell.compat import *
@@ -22,7 +26,10 @@ from lmi.shell.LMIDecorators import lmi_wrap_cim_exceptions
 from lmi.shell.LMIDecorators import lmi_wrap_cim_exceptions_rval
 
 from lmi.shell.LMIExceptions import CIMError
+from lmi.shell.LMIExceptions import ConnectionError
 from lmi.shell.LMIExceptions import LMINotSupported
+
+from lmi.shell.LMIShellLogger import lmi_get_logger
 
 from lmi.shell.LMIReturnValue import LMIReturnValue
 
@@ -46,6 +53,8 @@ SCHEMES = {
     # "DCIM": "http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2"
     "DCIM": "http://schemas.dell.com/wbem/wscim/1/cim-schema/2"
 }
+
+logger = lmi_get_logger()
 
 
 class LMIWSMANClient(object):
@@ -76,6 +85,12 @@ class LMIWSMANClient(object):
 
     def __init__(self, uri, username="", password="", interactive=False,
                  verify_server_cert=True, key_file=None, cert_file=None):
+        if not HAVE_PYWSMAN:
+            logger.error("WSMAN not supported")
+            raise ConnectionError(
+                wbem.CIM_ERR_NOT_SUPPORTED,
+                "WSMAN not supported")
+
         if not uri.startswith("http://") and \
                 not uri.startswith("https://"):
             uri = "https://" + uri

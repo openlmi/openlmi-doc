@@ -193,9 +193,10 @@ class LmiSessionCommand(LmiEndPointCommand):
         namespace = self.cim_namespace()
         timeout = self.connection_timeout()
         if timeout is not None:
-            if hasattr(connection.connection, "timeout"):
+            conn = getattr(connection, "connection", connection)
+            if hasattr(conn, "timeout"):
                 LOG().debug("Set connection timeout to %d seconds.", timeout)
-                connection.timeout = timeout * 1000
+                conn.timeout = timeout * 1000
             else:
                 LOG().debug("Could not set connection timeout.")
         if namespace is not None:

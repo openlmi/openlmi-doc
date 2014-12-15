@@ -5,7 +5,7 @@ This library builds on top of *LMIShell*'s functionality. It provides various
 utilities and wrappers for building command-line interfaces to *OpenLMI
 Providers*.
 
-Generated from version: ``0.10.2``
+Generated from version: ``0.10.4``, git: ``openlmi-tools-0.10.4``
 
 -------------------------------------------------------------------------------
 

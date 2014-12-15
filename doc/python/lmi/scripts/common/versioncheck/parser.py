@@ -67,12 +67,12 @@ from pyparsing import Literal, Combine, Optional, ZeroOrMore, \
 #: the condition. The latter causes the comparison to end on first satisfied
 #: part.
 OP_MAP = {
-        '==' : (operator.eq, all),
-        '<=' : (operator.le, all),
-        '>=' : (operator.ge, all),
-        '!=' : (operator.ne, any),
-        '>'  : (operator.gt, any),
-        '<'  : (operator.lt, any)
+        '==' : operator.eq,
+        '<=' : operator.le,
+        '>=' : operator.ge,
+        '!=' : operator.ne,
+        '>'  : operator.gt,
+        '<'  : operator.lt
 }
 
 def cmp_version(fst, snd, opsign='<'):
@@ -94,17 +94,13 @@ def cmp_version(fst, snd, opsign='<'):
         return tuple(int(p) if p else -1 for p in ver.split('.'))
     aparts = splitver(fst)
     bparts = splitver(snd)
-    op, which = OP_MAP[opsign]
-    if which is all:
-        for ap, bp in zip(aparts, bparts):
-            if not op(ap, bp):
-                return False
-    else:
-        for ap, bp in zip(aparts, bparts):
-            if op(ap, bp):
-                return True
+    op = OP_MAP[opsign]
+    for ap, bp in zip(aparts, bparts):
+        if not op(ap, bp):
             if ap != bp:
                 return False
+        if ap != bp:
+            return op(ap, bp)
     return op(len(aparts), len(bparts))
 
 class SemanticGroup(object):

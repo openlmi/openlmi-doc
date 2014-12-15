@@ -131,7 +131,7 @@ class LMIInstance(LMIWrapperBaseObject):
             value = value.wrapped_object
         if name in self._cim_instance:
             t = self._cim_instance.properties[name].type
-            self._cim_instance[name] = lmi_cast_to_cim(t, value)
+            self._cim_instance.properties[name].value = lmi_cast_to_cim(t, value)
         else:
             self.__dict__[name] = value
 

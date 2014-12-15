@@ -3,7 +3,7 @@ LMIShell API reference
 
 This is a generated documentation from *LMIShell*'s sources.
 
-Generated from version: ``0.10.2``
+Generated from version: ``0.10.4``, git: ``openlmi-tools-0.10.4``
 
 .. only:: html
 
